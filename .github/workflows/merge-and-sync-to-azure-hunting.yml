@@ -12,7 +12,17 @@ jobs:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
     - name: Merge
       run: bash ./.github/workflows/merge.sh
-    - name: Push 
+    - name: Push locally
+      uses: emiliensocchi/actions@sync-to-remote-file
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source_file: 'customqueries.json'
+        destination_file: 'customqueries.json'
+        destination_repo: 'emiliensocchi/azurehound-cipher-queries'
+        user_email: 'emilien.socchi@gmail.com'
+        user_name: 'emiliensocchi'
+    - name: Push remotely
       uses: emiliensocchi/actions@sync-to-remote-file
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
