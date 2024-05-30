@@ -16,15 +16,6 @@ jobs:
         git add .
         git commit --message "Merge queries"
         git push -u origin HEAD:main
-    - name: Push locally
-      uses: emiliensocchi/actions@sync-to-remote-file
-      with:
-        source_file: 'customqueries.json'
-        destination_file: 'customqueries.json'
-        destination_repo: 'emiliensocchi/azurehound-cipher-queries'
-        commit_message: 'Merge queries'
-        user_email: 'emilien.socchi@gmail.com'
-        user_name: 'emiliensocchi'
     - name: Push remotely
       uses: emiliensocchi/actions@sync-to-remote-file
       with:
