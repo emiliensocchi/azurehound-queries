@@ -11,7 +11,11 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
     - name: Merge
-      run: bash ./.github/workflows/merge.sh
+      run: |
+        bash ./.github/workflows/merge.sh
+        git add .
+        git commit --message "Merge queries"
+        git push -u origin HEAD:main
     - name: Push locally
       uses: emiliensocchi/actions@sync-to-remote-file
       env:
