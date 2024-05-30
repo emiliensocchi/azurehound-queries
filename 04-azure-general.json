@@ -1,0 +1,50 @@
+{
+    "name": "Find all Azure subscriptions",
+    "category": "Azure - General",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (n:AZSubscription) RETURN n"
+        }
+    ]
+}
+{
+    "name": "Find all Azure subscriptions with their direct controllers",
+    "category": "Azure - General",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p = (n)-[r]->(s:AZSubscription) RETURN p"
+        }
+    ]
+}
+{
+    "name": "Find all users with an active Azure role",
+    "category": "Azure - General",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (az) WHERE (az:AZSubscription or az:AZResourceGroup or az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZManagementGroup or az:AZKeyVault) MATCH p = (g:AZUser)-[r]->(az) RETURN p"
+        }
+    ]
+}
+{
+    "name": "Find all groups with an active Azure role",
+    "category": "Azure - General",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (az) WHERE (az:AZSubscription or az:AZResourceGroup or az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZManagementGroup or az:AZKeyVault) MATCH p = (g:AZGroup)-[r]->(az) RETURN p"
+        }
+    ]
+}
+{
+    "name": "Find all dynamic groups with an active Azure role",
+    "category": "Azure - General",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (g) WHERE EXISTS(g.membershipRule) MATCH (az) WHERE (az:AZSubscription or az:AZResourceGroup or az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZManagementGroup or az:AZKeyVault) MATCH p = (g)-[r]->(az) RETURN p"
+        }
+    ]
+}

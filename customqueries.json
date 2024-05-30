@@ -1,0 +1,1064 @@
+{
+  "queries": [
+    {
+      "name": "Find all active Global Administrators",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p =(n)-[r:AZGlobalAdmin*1..]->(m) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all active sensitive non-M365 Entra ID Administrators (last updated: 2024-01-24)",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p=(n)-[:AZHasRole|AZMemberOf*1..2]->(r:AZRole WHERE r.displayname =~ '(?i)Application Administrator|Authentication Administrator|Authentication Policy Administrator|Azure DevOps Administrator|Azure Information Protection Administrator|B2C IEF Keyset Administrator|Cloud Application Administrator|Cloud Device Administrator|Conditional Access Administrator|Directory Writers|External Identity Provider Administrator|Global Administrator|Groups Administrator|Helpdesk Administrator|Hybrid Identity Administrator|Intune Administrator|Microsoft Entra Joined Device Local Administrator|Partner Tier1 Support|Partner Tier2 Support|Password Administrator|Privileged Authentication Administrator|Privileged Role Administrator|User Administrator|Windows 365 Administrator') RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all active M365 Administrators (last updated: 2024-01-24)",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p=(n)-[:AZHasRole|AZMemberOf*1..2]->(r:AZRole WHERE r.displayname =~ '(?i)Dynamics 365 Administrator|Exchange Administrator|Fabric Administrator|Kaizala Administrator|Power Platform Administrator|SharePoint Administrator|Skype for Business Administrator|Teams Administrator|Viva Goals Administrator|Viva Pulse Administrator|Yammer Administrator') RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all groups with an active Entra ID role",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (m:AZGroup)-[r:AZHasRole]->(n:AZRole) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all groups with a potentially eligible Entra ID role",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (g:AZGroup {isassignabletorole: True}) RETURN g"
+        }
+      ]
+    },
+    {
+      "name": "Find all dynamic groups with an active Entra ID role",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (g) WHERE EXISTS(g.membershipRule) MATCH p = (g)-[r:AZHasRole]->(n:AZRole) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all dynamic groups",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (g) WHERE EXISTS(g.membershipRule) RETURN g"
+        }
+      ]
+    },
+    {
+      "name": "Find all identities with an active Entra ID Role",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (n)-[:AZHasRole|AZMemberOf*1..2]->(r:AZRole WHERE r.displayname CONTAINS('Administrator')) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all owners of Entra ID Applications",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (n)-[r:AZOwns]->(g:AZApp) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all Service Principals",
+      "category": "Entra ID - Service Principals / Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (sp:AZServicePrincipal) RETURN sp",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Service Principals with an assigned Entra ID role",
+      "category": "Entra ID - Service Principals / Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p=(m:AZServicePrincipal)-[r:AZHasRole]->(n:AZRole) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all Service Principals with AZMGGrantAppRoles (direct path to GA)",
+      "category": "Entra ID - Service Principals / Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p=(n)-[r:AZMGGrantAppRoles]->(o:AZTenant) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Service Principals with sensitive Application permissions",
+      "category": "Entra ID - Service Principals / Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p=(m:AZServicePrincipal)-[r:AZMGAppRoleAssignment_ReadWrite_All|AZMGApplication_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGServicePrincipalEndpoint_ReadWrite_All]->(n:AZServicePrincipal) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all direct Controllers of Microsoft Graph",
+      "category": "Entra ID - Service Principals / Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (n)-[r:AZAddOwner|AZAddSecret|AZAppAdmin|AZCloudAppAdmin|AZMGAddOwner|AZMGAddSecret|AZOwns]->(g:AZServicePrincipal {appdisplayname: \"Microsoft Graph\"}) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Entra ID Users with a Path to High Value Targets",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (m:AZUser),(n {highvalue:true}),p=shortestPath((m)-[r*1..]->(n)) WHERE NONE (r IN relationships(p) WHERE type(r)= \"GetChanges\") AND NONE (r in relationships(p) WHERE type(r)=\"GetChangesAll\") AND NOT m=n RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Entra ID users synchronized from on-prem AD with a Path to High Value Targets",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (m:AZUser WHERE m.onpremisesyncenabled = true),(n {highvalue:true}),p=shortestPath((m)-[r*1..]->(n)) WHERE NONE (r IN relationships(p) WHERE type(r)= \"GetChanges\") AND NONE (r in relationships(p) WHERE type(r)=\"GetChangesAll\") AND NOT m=n RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths to High Value Entra ID Roles",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZRole WHERE n.displayname =~ '(?i)Global Administrator|Privileged Role Administrator|Privileged Authentication Administrator|Application Administrator|Cloud Application Administrator|User Administrator|Authentication Policy Administrator|Exchange Administrator|Helpdesk Administrator|Sharepoint Administrator|Azure DevOps Administrator'), (m), p=shortestPath((m)-[r*1..]->(n)) WHERE NOT m=n RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths to MS Graph",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n) WHERE NOT n.displayname=\"Microsoft Graph\" WITH n MATCH p = shortestPath((n)-[r*1..]->(g:AZServicePrincipal {appdisplayname: \"Microsoft Graph\"})) WHERE n<>g RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find Entra ID Applications with Paths to High Value Targets",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (m:AZApp),(n {highvalue:true}),p=shortestPath((m)-[r*1..]->(n)) WHERE NONE (r IN relationships(p) WHERE type(r)= \"GetChanges\") AND NONE (r in relationships(p) WHERE type(r)=\"GetChangesAll\") AND NOT m=n RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths from Owned Users to Service Principals",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (u:AZUser {owned: true}), (m:AZServicePrincipal) MATCH p = shortestPath((u)-[*..]->(m)) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths from Owned Users to Managed Identities",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (u:AZUser {owned: true}), (m:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'}) MATCH p = shortestPath((u)-[*..]->(m)) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths from all Users to Managed Identities",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (u:AZUser), (m:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'}) MATCH p = shortestPath((u)-[*..]->(m)) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Azure subscriptions",
+      "category": "Azure - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZSubscription) RETURN n"
+        }
+      ]
+    },
+    {
+      "name": "Find all Azure subscriptions with their direct controllers",
+      "category": "Azure - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (n)-[r]->(s:AZSubscription) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all users with an active Azure role",
+      "category": "Azure - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (az) WHERE (az:AZSubscription or az:AZResourceGroup or az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZManagementGroup or az:AZKeyVault) MATCH p = (g:AZUser)-[r]->(az) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all groups with an active Azure role",
+      "category": "Azure - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (az) WHERE (az:AZSubscription or az:AZResourceGroup or az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZManagementGroup or az:AZKeyVault) MATCH p = (g:AZGroup)-[r]->(az) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all dynamic groups with an active Azure role",
+      "category": "Azure - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (g) WHERE EXISTS(g.membershipRule) MATCH (az) WHERE (az:AZSubscription or az:AZResourceGroup or az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZManagementGroup or az:AZKeyVault) MATCH p = (g)-[r]->(az) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all Service principals with Azure permissions on MGs, Subscriptions or RGs",
+      "category": "Azure - Service Principals",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (az) WHERE (az:AZManagementGroup or az:AZSubscription or az:AZResourceGroup) MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'Application'})-[r]->(az) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Service principals with Azure permissions",
+      "category": "Azure - Service Principals",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (az) WHERE (az:AZSubscription or az:AZResourceGroup or az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZManagementGroup or az:AZKeyVault) MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'Application'})-[r]->(az) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Managed Identities",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'}) RETURN sp",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all resources with an assigned Managed Identity",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p=(m)-[:AZManagedIdentity]->(n) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all VMs with an assigned Managed Identity",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p=(:AZVM)-[:AZManagedIdentity]->(n) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Managed Identities with Azure permissions to any scope",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (az) WHERE (az:AZManagementGroup or az:AZSubscription or az:AZResourceGroup or az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZKeyVault) MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(az) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Managed Identities with Azure permissions on MGs, Subscriptions or RGs",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (az) WHERE (az:AZManagementGroup or az:AZSubscription or az:AZResourceGroup) MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(az) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Contributors to resources with an assigned MI that has permissions (might not work as expected)",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (az) WHERE (az:AZSubscription or az:AZResourceGroup or az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZManagementGroup or az:AZKeyVault) MATCH (n)-[r:AZContributor]->(az) MATCH (az)<-[r]-(sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'}) MATCH p = (n)-[r]->(az) return p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "(?) Find all Managed Identities with a path to an Azure Key Vault",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (m:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[*]->(kv:AZKeyVault) WITH collect(m) AS managedIdentities MATCH p = (n)-[r]->(kv:AZKeyVault) WHERE n IN managedIdentities RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "(?) Find all VMs with an assigned Managed Identity that have a path to a Key Vault",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p1 = (:AZVM)-[:AZManagedIdentity]->(n) WITH collect(n) AS managedIdentities MATCH p2 = (m:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[*]->(kv:AZKeyVault) WHERE m IN managedIdentities RETURN p2",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths from Azure Users to subscription",
+      "category": "Azure - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZUser) WITH n MATCH p = shortestPath((n)-[r*1..]->(g:AZSubscription)) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all Paths to Azure VMs",
+      "category": "Azure - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (n)-[r]->(g:AZVM) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Path from Owned Azure Users to VMs",
+      "category": "Azure - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZVM) MATCH p = shortestPath((m:AZUser{owned: true})-[*..]->(n)) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Paths to Azure KeyVaults",
+      "category": "Azure - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (n)-[r]->(g:AZKeyVault) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all Paths to Azure KeyVaults from Owned Principals",
+      "category": "Azure - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = ({owned: true})-[r]->(g:AZKeyVault) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths to Azure subscription",
+      "category": "Azure - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZSubscription), (m), p=shortestPath((m)-[r*1..]->(n)) WHERE NOT m=n RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all users originating from on-premises with an active Entra ID role",
+      "category": "Hybrid - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p=(n WHERE n.onpremisesyncenabled = true)-[:AZHasRole|AZMemberOf*1..2]->(r:AZRole WHERE r.displayname CONTAINS('Administrator')) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all Entra ID users originating from on-premises",
+      "category": "Hybrid - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZUser WHERE n.onpremisesyncenabled = true) RETURN n",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Entra ID groups originating from on-premises",
+      "category": "Hybrid - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (g:AZGroup {onpremsyncenabled: True}) RETURN g"
+        }
+      ]
+    },
+    {
+      "name": "Find all Synchronization accounts possibly used for Entra ID Connect",
+      "category": "Hybrid - Entra ID Connect",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (u) WHERE (u:User OR u:AZUser) AND (u.name =~ '(?i)^MSOL_|.*AADConnect.*' OR u.userprincipalname =~ '(?i)^sync_.*') OPTIONAL MATCH (u)-[:HasSession]->(s:Session) RETURN u, s",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Sessions of Synchronization accounts possibly used for Entra ID Connect",
+      "category": "Hybrid - Entra ID Connect",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p=(m:Computer)-[:HasSession]->(n) WHERE (n:User OR n:AZUser) AND ((n.name =~ '(?i)^MSOL_|.*AADConnect.*') OR (n.userPrincipalName =~ '(?i)^sync_.*')) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Entra ID Connect Servers",
+      "category": "Hybrid - Entra ID Connect",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZUser) WHERE n.name =~ '(?i)^SYNC_(.*?)_(.*?)@.*' WITH n, split(n.name, '_')[1] AS computerNamePattern MATCH (c:Computer) WHERE c.name CONTAINS computerNamePattern RETURN c",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths to Entra ID Connect Servers from Owned Users",
+      "category": "Hybrid - Entra ID Connect",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZUser) WHERE n.name =~ '(?i)^SYNC_(.*?)_(.*?)@.*' WITH n, split(n.name, '_')[1] AS computerNamePattern MATCH (c:Computer) WHERE c.name CONTAINS computerNamePattern WITH collect(c) AS computers MATCH p = shortestPath((u:User)-[*]-(c:Computer)) WHERE c IN computers AND length(p) > 0 AND u.owned = true RETURN u, p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all active Global Administrators",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p =(n)-[r:AZGlobalAdmin*1..]->(m) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all active sensitive non-M365 Entra ID Administrators (last updated: 2024-01-24)",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p=(n)-[:AZHasRole|AZMemberOf*1..2]->(r:AZRole WHERE r.displayname =~ '(?i)Application Administrator|Authentication Administrator|Authentication Policy Administrator|Azure DevOps Administrator|Azure Information Protection Administrator|B2C IEF Keyset Administrator|Cloud Application Administrator|Cloud Device Administrator|Conditional Access Administrator|Directory Writers|External Identity Provider Administrator|Global Administrator|Groups Administrator|Helpdesk Administrator|Hybrid Identity Administrator|Intune Administrator|Microsoft Entra Joined Device Local Administrator|Partner Tier1 Support|Partner Tier2 Support|Password Administrator|Privileged Authentication Administrator|Privileged Role Administrator|User Administrator|Windows 365 Administrator') RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all active M365 Administrators (last updated: 2024-01-24)",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p=(n)-[:AZHasRole|AZMemberOf*1..2]->(r:AZRole WHERE r.displayname =~ '(?i)Dynamics 365 Administrator|Exchange Administrator|Fabric Administrator|Kaizala Administrator|Power Platform Administrator|SharePoint Administrator|Skype for Business Administrator|Teams Administrator|Viva Goals Administrator|Viva Pulse Administrator|Yammer Administrator') RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all groups with an active Entra ID role",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (m:AZGroup)-[r:AZHasRole]->(n:AZRole) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all groups with a potentially eligible Entra ID role",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (g:AZGroup {isassignabletorole: True}) RETURN g"
+        }
+      ]
+    },
+    {
+      "name": "Find all dynamic groups with an active Entra ID role",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (g) WHERE EXISTS(g.membershipRule) MATCH p = (g)-[r:AZHasRole]->(n:AZRole) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all dynamic groups",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (g) WHERE EXISTS(g.membershipRule) RETURN g"
+        }
+      ]
+    },
+    {
+      "name": "Find all identities with an active Entra ID Role",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (n)-[:AZHasRole|AZMemberOf*1..2]->(r:AZRole WHERE r.displayname CONTAINS('Administrator')) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all owners of Entra ID Applications",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (n)-[r:AZOwns]->(g:AZApp) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all Service Principals",
+      "category": "Entra ID - Service Principals / Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (sp:AZServicePrincipal) RETURN sp",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Service Principals with an assigned Entra ID role",
+      "category": "Entra ID - Service Principals / Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p=(m:AZServicePrincipal)-[r:AZHasRole]->(n:AZRole) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all Service Principals with AZMGGrantAppRoles (direct path to GA)",
+      "category": "Entra ID - Service Principals / Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p=(n)-[r:AZMGGrantAppRoles]->(o:AZTenant) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Service Principals with sensitive Application permissions",
+      "category": "Entra ID - Service Principals / Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p=(m:AZServicePrincipal)-[r:AZMGAppRoleAssignment_ReadWrite_All|AZMGApplication_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGServicePrincipalEndpoint_ReadWrite_All]->(n:AZServicePrincipal) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all direct Controllers of Microsoft Graph",
+      "category": "Entra ID - Service Principals / Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (n)-[r:AZAddOwner|AZAddSecret|AZAppAdmin|AZCloudAppAdmin|AZMGAddOwner|AZMGAddSecret|AZOwns]->(g:AZServicePrincipal {appdisplayname: \"Microsoft Graph\"}) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Entra ID Users with a Path to High Value Targets",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (m:AZUser),(n {highvalue:true}),p=shortestPath((m)-[r*1..]->(n)) WHERE NONE (r IN relationships(p) WHERE type(r)= \"GetChanges\") AND NONE (r in relationships(p) WHERE type(r)=\"GetChangesAll\") AND NOT m=n RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Entra ID users synchronized from on-prem AD with a Path to High Value Targets",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (m:AZUser WHERE m.onpremisesyncenabled = true),(n {highvalue:true}),p=shortestPath((m)-[r*1..]->(n)) WHERE NONE (r IN relationships(p) WHERE type(r)= \"GetChanges\") AND NONE (r in relationships(p) WHERE type(r)=\"GetChangesAll\") AND NOT m=n RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths to High Value Entra ID Roles",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZRole WHERE n.displayname =~ '(?i)Global Administrator|Privileged Role Administrator|Privileged Authentication Administrator|Application Administrator|Cloud Application Administrator|User Administrator|Authentication Policy Administrator|Exchange Administrator|Helpdesk Administrator|Sharepoint Administrator|Azure DevOps Administrator'), (m), p=shortestPath((m)-[r*1..]->(n)) WHERE NOT m=n RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths to MS Graph",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n) WHERE NOT n.displayname=\"Microsoft Graph\" WITH n MATCH p = shortestPath((n)-[r*1..]->(g:AZServicePrincipal {appdisplayname: \"Microsoft Graph\"})) WHERE n<>g RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find Entra ID Applications with Paths to High Value Targets",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (m:AZApp),(n {highvalue:true}),p=shortestPath((m)-[r*1..]->(n)) WHERE NONE (r IN relationships(p) WHERE type(r)= \"GetChanges\") AND NONE (r in relationships(p) WHERE type(r)=\"GetChangesAll\") AND NOT m=n RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths from Owned Users to Service Principals",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (u:AZUser {owned: true}), (m:AZServicePrincipal) MATCH p = shortestPath((u)-[*..]->(m)) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths from Owned Users to Managed Identities",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (u:AZUser {owned: true}), (m:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'}) MATCH p = shortestPath((u)-[*..]->(m)) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths from all Users to Managed Identities",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (u:AZUser), (m:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'}) MATCH p = shortestPath((u)-[*..]->(m)) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Azure subscriptions",
+      "category": "Azure - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZSubscription) RETURN n"
+        }
+      ]
+    },
+    {
+      "name": "Find all Azure subscriptions with their direct controllers",
+      "category": "Azure - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (n)-[r]->(s:AZSubscription) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all users with an active Azure role",
+      "category": "Azure - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (az) WHERE (az:AZSubscription or az:AZResourceGroup or az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZManagementGroup or az:AZKeyVault) MATCH p = (g:AZUser)-[r]->(az) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all groups with an active Azure role",
+      "category": "Azure - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (az) WHERE (az:AZSubscription or az:AZResourceGroup or az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZManagementGroup or az:AZKeyVault) MATCH p = (g:AZGroup)-[r]->(az) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all dynamic groups with an active Azure role",
+      "category": "Azure - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (g) WHERE EXISTS(g.membershipRule) MATCH (az) WHERE (az:AZSubscription or az:AZResourceGroup or az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZManagementGroup or az:AZKeyVault) MATCH p = (g)-[r]->(az) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all Service principals with Azure permissions on MGs, Subscriptions or RGs",
+      "category": "Azure - Service Principals",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (az) WHERE (az:AZManagementGroup or az:AZSubscription or az:AZResourceGroup) MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'Application'})-[r]->(az) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Service principals with Azure permissions",
+      "category": "Azure - Service Principals",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (az) WHERE (az:AZSubscription or az:AZResourceGroup or az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZManagementGroup or az:AZKeyVault) MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'Application'})-[r]->(az) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Managed Identities",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'}) RETURN sp",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all resources with an assigned Managed Identity",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p=(m)-[:AZManagedIdentity]->(n) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all VMs with an assigned Managed Identity",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p=(:AZVM)-[:AZManagedIdentity]->(n) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Managed Identities with Azure permissions to any scope",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (az) WHERE (az:AZManagementGroup or az:AZSubscription or az:AZResourceGroup or az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZKeyVault) MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(az) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Managed Identities with Azure permissions on MGs, Subscriptions or RGs",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (az) WHERE (az:AZManagementGroup or az:AZSubscription or az:AZResourceGroup) MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(az) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Contributors to resources with an assigned MI that has permissions (might not work as expected)",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (az) WHERE (az:AZSubscription or az:AZResourceGroup or az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZManagementGroup or az:AZKeyVault) MATCH (n)-[r:AZContributor]->(az) MATCH (az)<-[r]-(sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'}) MATCH p = (n)-[r]->(az) return p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "(?) Find all Managed Identities with a path to an Azure Key Vault",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (m:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[*]->(kv:AZKeyVault) WITH collect(m) AS managedIdentities MATCH p = (n)-[r]->(kv:AZKeyVault) WHERE n IN managedIdentities RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "(?) Find all VMs with an assigned Managed Identity that have a path to a Key Vault",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p1 = (:AZVM)-[:AZManagedIdentity]->(n) WITH collect(n) AS managedIdentities MATCH p2 = (m:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[*]->(kv:AZKeyVault) WHERE m IN managedIdentities RETURN p2",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths from Azure Users to subscription",
+      "category": "Azure - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZUser) WITH n MATCH p = shortestPath((n)-[r*1..]->(g:AZSubscription)) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all Paths to Azure VMs",
+      "category": "Azure - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (n)-[r]->(g:AZVM) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Path from Owned Azure Users to VMs",
+      "category": "Azure - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZVM) MATCH p = shortestPath((m:AZUser{owned: true})-[*..]->(n)) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Paths to Azure KeyVaults",
+      "category": "Azure - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (n)-[r]->(g:AZKeyVault) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all Paths to Azure KeyVaults from Owned Principals",
+      "category": "Azure - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = ({owned: true})-[r]->(g:AZKeyVault) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths to Azure subscription",
+      "category": "Azure - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZSubscription), (m), p=shortestPath((m)-[r*1..]->(n)) WHERE NOT m=n RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all users originating from on-premises with an active Entra ID role",
+      "category": "Hybrid - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p=(n WHERE n.onpremisesyncenabled = true)-[:AZHasRole|AZMemberOf*1..2]->(r:AZRole WHERE r.displayname CONTAINS('Administrator')) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all Entra ID users originating from on-premises",
+      "category": "Hybrid - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZUser WHERE n.onpremisesyncenabled = true) RETURN n",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Entra ID groups originating from on-premises",
+      "category": "Hybrid - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (g:AZGroup {onpremsyncenabled: True}) RETURN g"
+        }
+      ]
+    },
+    {
+      "name": "Find all Synchronization accounts possibly used for Entra ID Connect",
+      "category": "Hybrid - Entra ID Connect",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (u) WHERE (u:User OR u:AZUser) AND (u.name =~ '(?i)^MSOL_|.*AADConnect.*' OR u.userprincipalname =~ '(?i)^sync_.*') OPTIONAL MATCH (u)-[:HasSession]->(s:Session) RETURN u, s",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Sessions of Synchronization accounts possibly used for Entra ID Connect",
+      "category": "Hybrid - Entra ID Connect",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p=(m:Computer)-[:HasSession]->(n) WHERE (n:User OR n:AZUser) AND ((n.name =~ '(?i)^MSOL_|.*AADConnect.*') OR (n.userPrincipalName =~ '(?i)^sync_.*')) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Entra ID Connect Servers",
+      "category": "Hybrid - Entra ID Connect",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZUser) WHERE n.name =~ '(?i)^SYNC_(.*?)_(.*?)@.*' WITH n, split(n.name, '_')[1] AS computerNamePattern MATCH (c:Computer) WHERE c.name CONTAINS computerNamePattern RETURN c",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths to Entra ID Connect Servers from Owned Users",
+      "category": "Hybrid - Entra ID Connect",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZUser) WHERE n.name =~ '(?i)^SYNC_(.*?)_(.*?)@.*' WITH n, split(n.name, '_')[1] AS computerNamePattern MATCH (c:Computer) WHERE c.name CONTAINS computerNamePattern WITH collect(c) AS computers MATCH p = shortestPath((u:User)-[*]-(c:Computer)) WHERE c IN computers AND length(p) > 0 AND u.owned = true RETURN u, p",
+          "allowCollapse": true
+        }
+      ]
+    }
+  ]
+}

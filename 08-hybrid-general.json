@@ -1,0 +1,31 @@
+{
+    "name": "Find all users originating from on-premises with an active Entra ID role",
+    "category": "Hybrid - General",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(n WHERE n.onpremisesyncenabled = true)-[:AZHasRole|AZMemberOf*1..2]->(r:AZRole WHERE r.displayname CONTAINS('Administrator')) RETURN p"
+        }
+    ]
+}
+{
+    "name": "Find all Entra ID users originating from on-premises",
+    "category": "Hybrid - General",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (n:AZUser WHERE n.onpremisesyncenabled = true) RETURN n",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all Entra ID groups originating from on-premises",
+    "category": "Hybrid - General",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (g:AZGroup {onpremsyncenabled: True}) RETURN g"
+        }
+    ]
+}

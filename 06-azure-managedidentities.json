@@ -1,0 +1,88 @@
+{
+    "name": "Find all Managed Identities",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'}) RETURN sp",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all resources with an assigned Managed Identity",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(m)-[:AZManagedIdentity]->(n) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all VMs with an assigned Managed Identity",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(:AZVM)-[:AZManagedIdentity]->(n) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all Managed Identities with Azure permissions to any scope",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (az) WHERE (az:AZManagementGroup or az:AZSubscription or az:AZResourceGroup or az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZKeyVault) MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(az) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all Managed Identities with Azure permissions on MGs, Subscriptions or RGs",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (az) WHERE (az:AZManagementGroup or az:AZSubscription or az:AZResourceGroup) MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(az) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all Contributors to resources with an assigned MI that has permissions (might not work as expected)",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (az) WHERE (az:AZSubscription or az:AZResourceGroup or az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZManagementGroup or az:AZKeyVault) MATCH (n)-[r:AZContributor]->(az) MATCH (az)<-[r]-(sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'}) MATCH p = (n)-[r]->(az) return p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "(?) Find all Managed Identities with a path to an Azure Key Vault",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (m:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[*]->(kv:AZKeyVault) WITH collect(m) AS managedIdentities MATCH p = (n)-[r]->(kv:AZKeyVault) WHERE n IN managedIdentities RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "(?) Find all VMs with an assigned Managed Identity that have a path to a Key Vault",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p1 = (:AZVM)-[:AZManagedIdentity]->(n) WITH collect(n) AS managedIdentities MATCH p2 = (m:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[*]->(kv:AZKeyVault) WHERE m IN managedIdentities RETURN p2",
+            "allowCollapse": true
+        }
+    ]
+}

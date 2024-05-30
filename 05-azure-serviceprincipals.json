@@ -1,0 +1,22 @@
+{
+    "name": "Find all Service principals with Azure permissions on MGs, Subscriptions or RGs",
+    "category": "Azure - Service Principals",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (az) WHERE (az:AZManagementGroup or az:AZSubscription or az:AZResourceGroup) MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'Application'})-[r]->(az) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all Service principals with Azure permissions",
+    "category": "Azure - Service Principals",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (az) WHERE (az:AZSubscription or az:AZResourceGroup or az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZManagementGroup or az:AZKeyVault) MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'Application'})-[r]->(az) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
