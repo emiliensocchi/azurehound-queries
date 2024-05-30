@@ -1,0 +1,24 @@
+name: Merge and Synchronize to remote directory
+run-name: Merge and Sync repo to remote directory
+on: push
+
+jobs:
+  merge-and-sync-to-remote-dir:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: emiliensocchi/actions@checkout
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+    - name: Merge
+      run: bash ./azurehound-cipher-queries/.github/workflows/merge.sh
+    - name: Push 
+      uses: emiliensocchi/actions@sync-to-remote-file
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source_file: 'customqueries.json'
+        destination_file: 'Tools/azurehound/customqueries.json'
+        destination_repo: 'emiliensocchi/azure-hunting'
+        user_email: 'emilien.socchi@gmail.com'
+        user_name: 'emiliensocchi'
