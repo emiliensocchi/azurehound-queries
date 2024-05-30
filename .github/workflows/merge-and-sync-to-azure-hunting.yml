@@ -11,17 +11,14 @@ jobs:
     - name: Checkout
       uses: emiliensocchi/actions@checkout
     - name: Merge
-      run: |
-        bash ./.github/workflows/merge.sh
-        git add .
-        git commit --message "Merge queries"
-        git push -u origin HEAD:main
+      run: bash ./.github/workflows/merge.sh
     - name: Push locally
       uses: emiliensocchi/actions@sync-to-remote-file
       with:
         source_file: 'customqueries.json'
         destination_file: 'customqueries.json'
         destination_repo: 'emiliensocchi/azurehound-cipher-queries'
+        commit_message: 'Merge queries'
         user_email: 'emilien.socchi@gmail.com'
         user_name: 'emiliensocchi'
     - name: Push remotely
