@@ -5,11 +5,11 @@ on: push
 jobs:
   merge-and-sync-to-remote-dir:
     runs-on: ubuntu-latest
+    env:
+      API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
     steps:
     - name: Checkout
       uses: emiliensocchi/actions@checkout
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
     - name: Merge
       run: |
         bash ./.github/workflows/merge.sh
@@ -18,8 +18,6 @@ jobs:
         git push -u origin HEAD:main
     - name: Push locally
       uses: emiliensocchi/actions@sync-to-remote-file
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
         source_file: 'customqueries.json'
         destination_file: 'customqueries.json'
@@ -28,8 +26,6 @@ jobs:
         user_name: 'emiliensocchi'
     - name: Push remotely
       uses: emiliensocchi/actions@sync-to-remote-file
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
         source_file: 'customqueries.json'
         destination_file: 'Tools/azurehound/customqueries.json'
