@@ -1,7 +1,7 @@
 {
   "queries": [
     {
-      "name": "Find all active Global Administratorsss",
+      "name": "Find all active Global Administrators",
       "category": "Entra ID - General",
       "queryList": [
         {
