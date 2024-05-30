@@ -11,7 +11,7 @@ jobs:
     - name: Checkout
       uses: emiliensocchi/actions@checkout
     - name: Merge and commit
-      uses: emiliensocchi/actions@merge-queries-and-commit
+      uses: emiliensocchi/actions@merge-cipher-queries
       with:
         user_email: 'emilien.socchi@gmail.com'
         user_name: 'emiliensocchi'
