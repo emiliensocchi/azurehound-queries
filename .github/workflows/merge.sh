@@ -16,4 +16,5 @@ do
 done
 
 printf '{ "queries": %s }' "$(jq --slurp . $merged_file)" | jq -r > "$output_file"
+rm -rf "$merged_file"
 echo "Queries merged to: $output_file"
