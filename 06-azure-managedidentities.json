@@ -1,58 +1,312 @@
 {
-    "name": "Find all Managed Identities",
+  "name": "ALL - Find all MIs with Azure permissions on Management Groups",
+  "category": "Azure - Managed Identities",
+  "queryList": [
+    {
+      "final": true,
+      "query": "MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(az:AZManagementGroup) RETURN p",
+      "allowCollapse": true
+    }
+  ]
+}
+{
+  "name": "ALL - Find all MIs with Azure permissions on Subscriptions",
+  "category": "Azure - Managed Identities",
+  "queryList": [
+    {
+      "final": true,
+      "query": "MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(az:AZSubscription) RETURN p",
+      "allowCollapse": true
+    }
+  ]
+}
+{
+    "name": "ALL - Find all MIs with Azure permissions on Resource Groups",
     "category": "Azure - Managed Identities",
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'}) RETURN sp",
+            "query": "MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(az:AZResourceGroup) RETURN p",
             "allowCollapse": true
         }
     ]
 }
 {
-    "name": "Find all resources with an assigned Managed Identity",
+    "name": "ALL - Find all MIs with Azure permissions on individual resources",
     "category": "Azure - Managed Identities",
     "queryList": [
         {
             "final": true,
-            "query": "MATCH p=(m)-[:AZManagedIdentity]->(n) RETURN p",
+            "query": "MATCH (az) WHERE (az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZKeyVault) MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(az) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+
+#######################################################
+THIS IS THE BEST APPROACH - START SETTING UP THE TIER FILES FOR VARIABLES, THEN CONTINUE
+
+THE MAIN PROBLEM WILL BE TO DEAL WITH PIM AND CONTRIBUTORS WHO ARE INVISIBLE IN BOODHOUND!
+HAVING A LIST OF WHO IS A CONTRIBUTOR MIGHT HELP, SO THAT THEY CAN BE MARKED AS OWNED IN BH, THEN WE CAN MAKE A QUERY BASED ON THAT
+
+# Find all identities that are Owner/Contributor/UserAdmin on resources with an MI that has an Entra ID role
+MATCH p=(n1)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n2)-[:AZManagedIdentity]-(n3)-[:AZHasRole]->(n4) RETURN p
+
+# Find all identities that are Owner/Contributor/UserAdmin on resources with an MI that has a T0 application permission
+MATCH p=(n1)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n2)-[:AZManagedIdentity]-(n3)-[appt0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All]->(n4) RETURN p
+
+# Find all identities that are Owner/Contributor/UserAdmin on resources with an MI that has a T0 Azure permission
+MATCH p=(n1)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n2)-[:AZManagedIdentity]-(n3)-[appt0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n4) RETURN p
+
+
+
+
+FOR LOGIC APPS, SINCE READERS MIGHT BE ABLE TO ACCESS RUN HISTROY AND READ SECRETS, IT MIGHT BE NICE TO HAVE A QUERY FOR IT
+
+
+
+
+
+
+{
+    "name": "VM - Find all VMs with an MI that has an Entra ID role",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(:AZVM)-[:AZManagedIdentity]-(n)-[:AZHasRole]->(m) RETURN p",
             "allowCollapse": true
         }
     ]
 }
 {
-    "name": "Find all VMs with an assigned Managed Identity",
+    "name": "VM - Find all VMs with an MI that has a Tier-0 application permission - REPLACE WITH VAR",
     "category": "Azure - Managed Identities",
     "queryList": [
         {
             "final": true,
-            "query": "MATCH p=(:AZVM)-[:AZManagedIdentity]->(n) RETURN p",
+            "query": "MATCH p=(:AZVM)-[:AZManagedIdentity]-(n)-[t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All]->(m) RETURN p",
             "allowCollapse": true
         }
     ]
 }
 {
-    "name": "Find all Managed Identities with Azure permissions to any scope",
+    "name": "VM - Find all VMs with an MI that has a Tier-0 Azure permission - REPLACE WITH VAR",
     "category": "Azure - Managed Identities",
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (az) WHERE (az:AZManagementGroup or az:AZSubscription or az:AZResourceGroup or az:AZVM or az:AZAutomationAccount or az:AZContainerRegistry or az:AZFunctionApp or az:AZLogicApp or az:AZManagedCluster or az:AZVMScaleSet or az:AZWebApp or az:AZKeyVault) MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(az) RETURN p",
+            "query": "MATCH p=(:AZVM)-[:AZManagedIdentity]-(n)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(m) RETURN p",
             "allowCollapse": true
         }
     ]
 }
 {
-    "name": "Find all Managed Identities with Azure permissions on MGs, Subscriptions or RGs",
+    "name": "VM - Find all VMs with an MI that has permissions on Management Groups",
     "category": "Azure - Managed Identities",
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (az) WHERE (az:AZManagementGroup or az:AZSubscription or az:AZResourceGroup) MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(az) RETURN p",
+            "query": "MATCH p=(:AZVM)-[:AZManagedIdentity]-(n)-[r]->(:AZManagementGroup) RETURN p",
             "allowCollapse": true
         }
     ]
 }
+{
+    "name": "VM - Find all VMs with an MI that has permissions on Subscriptions",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(:AZVM)-[:AZManagedIdentity]-(n)-[r]->(:AZSubscription) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "VM - Find all VMs with an MI that has permissions on Resource Groups",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(:AZVM)-[:AZManagedIdentity]-(n)-[r]->(:AZResourceGroup) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "VM - Find all VMs with an MI that has permissions on individual resources - REPLACE WITH VAR",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (scope) WHERE (scope:AZVM or scope:AZAutomationAccount or scope:AZContainerRegistry or scope:AZFunctionApp or scope:AZLogicApp or scope:AZManagedCluster or scope:AZVMScaleSet or scope:AZWebApp or scope:AZManagementGroup or scope:AZKeyVault) MATCH p=(:AZVM)-[:AZManagedIdentity]-(n)-[r]->(scope) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+
+
+WAIT HERE
+
+
+
+
+{
+    "name": "App Services - Find all App Services with an MI that has an Entra ID role",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(:AzWebApp)-[:AZManagedIdentity]-(n)-[:AZHasRole]->(m) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "App Services - Find all App Services with an MI that has a Tier-0 application permission - REPLACE WITH VAR",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(:AzWebApp)-[:AZManagedIdentity]-(n)-[t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All]->(m) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "App Services - Find all App Services with an MI that has a Tier-0 Azure permission - REPLACE WITH VAR",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(:AzWebApp)-[:AZManagedIdentity]-(n)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AzWebAppContributor|AZWebsiteContributor|AzWebAppAdminLogin|AZUserAccessAdministrator]->(m) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "App Services - Find all App Services with an MI that has permissions on Management Groups",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(:AzWebApp)-[:AZManagedIdentity]-(n)-[r]->(:AZManagementGroup) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "App Services - Find all App Services with an MI that has permissions on Subscriptions",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(:AzWebApp)-[:AZManagedIdentity]-(n)-[r]->(:AZSubscription) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "App Services - Find all App Services with an MI that has permissions on Resource Groups",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(:AzWebApp)-[:AZManagedIdentity]-(n)-[r]->(:AZResourceGroup) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "App Services - Find all App Services with an MI that has permissions on individual resources - REPLACE WITH VAR",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (scope) WHERE (scope:AzWebApp or scope:AZAutomationAccount or scope:AZContainerRegistry or scope:AZFunctionApp or scope:AZLogicApp or scope:AZManagedCluster or scope:AZApp ServicescaleSet or scope:AZWebApp or scope:AZManagementGroup or scope:AZKeyVault) MATCH p=(:AzWebApp)-[:AZManagedIdentity]-(n)-[r]->(scope) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+
+
+
+
+{
+    "name": "Find all Function Apps with an assigned MI",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(:AZFunctionApp)-[:AZManagedIdentity]->(n) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all Logic Apps with an assigned MI",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(:AZLogicApp)-[:AZManagedIdentity]->(n) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all AKS clusters with an assigned MI",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(:AZManagedCluster)-[:AZManagedIdentity]->(n) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all VM Scale Sets (VMSS) with an assigned MI",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(:AZVMScaleSet)-[:AZManagedIdentity]->(n) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all Automation Accounts with an assigned MI",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(:AZAutomationAccount)-[:AZManagedIdentity]->(n) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+
+{
+    "name": "Find all Azure Container Registries (ACR) with an assigned MI",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(:AZContainerRegistry)-[:AZManagedIdentity]->(n) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+
+
+
+
+
+
+
 {
     "name": "Find all Contributors to resources with an assigned MI that has permissions (might not work as expected)",
     "category": "Azure - Managed Identities",
@@ -75,14 +329,4 @@
         }
     ]
 }
-{
-    "name": "(?) Find all VMs with an assigned Managed Identity that have a path to a Key Vault",
-    "category": "Azure - Managed Identities",
-    "queryList": [
-        {
-            "final": true,
-            "query": "MATCH p1 = (:AZVM)-[:AZManagedIdentity]->(n) WITH collect(n) AS managedIdentities MATCH p2 = (m:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[*]->(kv:AZKeyVault) WHERE m IN managedIdentities RETURN p2",
-            "allowCollapse": true
-        }
-    ]
-}
+
