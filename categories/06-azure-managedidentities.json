@@ -49,6 +49,20 @@ THIS IS THE BEST APPROACH - START SETTING UP THE TIER FILES FOR VARIABLES, THEN 
 THE MAIN PROBLEM WILL BE TO DEAL WITH PIM AND CONTRIBUTORS WHO ARE INVISIBLE IN BOODHOUND!
 HAVING A LIST OF WHO IS A CONTRIBUTOR MIGHT HELP, SO THAT THEY CAN BE MARKED AS OWNED IN BH, THEN WE CAN MAKE A QUERY BASED ON THAT
 
+
+**ISSUE**
+THIS APPROACH ONLY WORKS IF AN IDENTITY IS **DIRECTY** AN OWNER ON THE RESOURCE WITH THE MI
+IF THE IDENTITY IS OWNER THROUGH MULTIPLE NODES (E.G. OWNS AN SP THAT HAS OWNERSHIP OF THE RESOURCE), IT WILL NOT SHOW UP!!!!!!! 
+
+
+# WORKING! - Find all users/groups with a path to a VM with an MI that has T0 Azure permissions
+
+MATCH (identity) WHERE (identity:AZUser OR identity:AZGroup OR identity:AZServicePrincipal) MATCH p=(identity)-[r*1..3]->(:AZVM)-[:AZManagedIdentity]-(n2)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p
+
+
+
+
+
 # Find all identities that are Owner/Contributor/UserAdmin on resources with an MI that has an Entra ID role
 MATCH p=(n1)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n2)-[:AZManagedIdentity]-(n3)-[:AZHasRole]->(n4) RETURN p
 
@@ -56,8 +70,14 @@ MATCH p=(n1)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|A
 MATCH p=(n1)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n2)-[:AZManagedIdentity]-(n3)-[appt0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All]->(n4) RETURN p
 
 # Find all identities that are Owner/Contributor/UserAdmin on resources with an MI that has a T0 Azure permission
-MATCH p=(n1)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n2)-[:AZManagedIdentity]-(n3)-[appt0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n4) RETURN p
+MATCH p=(n1)-[t0:AZOwnerAZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n2)-[:AZManagedIdentity]-(n3)-[appt0:AZOwner|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n4) RETURN p
 
+
+
+MATCH p=(n1)-[t0:AZOwnerAZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n2)-[:AZManagedIdentity]-(n3)-[appt0:AZOwner|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n4) RETURN p
+
+
+MATCH p=(:AZVM)-                                                                                                                                                                                             [:AZManagedIdentity]-(n)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(m) RETURN p
 
 
 
