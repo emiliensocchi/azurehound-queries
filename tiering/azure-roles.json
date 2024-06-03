@@ -1,0 +1,57 @@
+[
+    {
+        "tier": "0",
+        "roleName": "Owner",
+        "edgeName": "AZOwns"
+    },
+    {
+        "tier": "0",
+        "roleName": "Contributor",
+        "edgeName": "AZContributor"
+    },
+    {
+        "tier": "0",
+        "roleName": "Automation Contributor",
+        "edgeName": "AZAutomationContributor"
+    },
+    {
+        "tier": "0",
+        "roleName": "Azure Kubernetes Service Contributor",
+        "edgeName": "AZAKSContributor"
+    },
+    {
+        "tier": "0",
+        "roleName": "Avere Contributor",
+        "edgeName": "AZAvereContributor"
+    },
+    {
+        "tier": "0",
+        "roleName": "Logic App Contributor",
+        "edgeName": "AZLogicAppContributor"
+    },
+    {
+        "tier": "0",
+        "roleName": "Virtual Machine Contributor",
+        "edgeName": "AZVMContributor"
+    },
+    {
+        "tier": "0",
+        "roleName": "Website Contributor",
+        "edgeName": "AZWebsiteContributor"
+    },
+    {
+        "tier": "0",
+        "roleName": "Virtual Machine Administrator Login",
+        "edgeName": "AZVMAdminLogin"
+    },
+    {
+        "tier": "0",
+        "roleName": "User Access Administrator",
+        "edgeName": "AZUserAccessAdministrator"
+    },
+    {
+        "tier": "0",
+        "roleName": "Role Based Access Control Administrator",
+        "edgeName": ""
+    }
+]

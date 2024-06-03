@@ -1,0 +1,22 @@
+{
+    "name": "VM - Find all VMs with an MI that has an Entra ID role",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(:AZVM)-[t0:$VAR_ALL-AZ-ROLES-IN-T0]-(n)-[:AZHasRole]->(m) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "VM - Find all VMs with an MI that has a Tier-0 application permission - REPLACE WITH VAR",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(:AZVM)-[:AZManagedIdentity]-(n)-[t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All]->(m) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
