@@ -1,0 +1,30 @@
+{
+    "name": "Find all users with an active Azure role",
+    "category": "Azure - General",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (node) WHERE (node:_VAR_all-az-scopes) MATCH p = (:AZUser)-[r]->(node) RETURN p"
+        }
+    ]
+}
+{
+    "name": "Find all groups with an active Azure role",
+    "category": "Azure - General",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (node) WHERE (node:_VAR_all-az-scopes) MATCH p = (:AZGroup)-[r]->(node) RETURN p"
+        }
+    ]
+}
+{
+    "name": "Find all dynamic groups with an active Azure role",
+    "category": "Azure - General",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (g) WHERE EXISTS(g.membershipRule) MATCH (node) WHERE (node:_VAR_all-az-scopes) MATCH p = (g)-[r]->(node) RETURN p"
+        }
+    ]
+}

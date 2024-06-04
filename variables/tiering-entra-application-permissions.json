@@ -1,0 +1,47 @@
+[
+    {
+        "tier": "0",
+        "applicationPermissionName": "Application.ReadWrite.All",
+        "edgeName": "AZMGApplication_ReadWrite_All"
+    },
+    {
+        "tier": "0",
+        "applicationPermissionName": "AppRoleAssignment.ReadWrite.All",
+        "edgeName": "AZMGAppRoleAssignment_ReadWrite_All"
+    },
+    {
+        "tier": "1",
+        "applicationPermissionName": "Directory.ReadWrite.All",
+        "edgeName": "AZMGDirectory_ReadWrite_All"
+    },
+    {
+        "tier": "1",
+        "applicationPermissionName": "GroupMember.ReadWrite.All",
+        "edgeName": "AZMGGroupMember_ReadWrite_All"
+    },
+    {
+        "tier": "1",
+        "applicationPermissionName": "Group.ReadWrite.All",
+        "edgeName": "AZMGGroup_ReadWrite_All"
+    },
+    {
+        "tier": "0",
+        "applicationPermissionName": "RoleManagement.ReadWrite.Directory ",
+        "edgeName": "AZMGRoleManagement_ReadWrite_Directory"
+    },
+    {
+        "tier": "0",
+        "applicationPermissionName": "RoleManagement.ReadWrite.Directory",
+        "edgeName": "AZMGGrantRole"
+    },
+    {
+        "tier": "0",
+        "applicationPermissionName": "ServicePrincipalEndpoint.ReadWrite.All",
+        "edgeName": "AZMGServicePrincipalEndpoint_ReadWrite_All"
+    },
+    {
+        "tier": "0",
+        "applicationPermissionName": "Application.ReadWrite.All OR RoleManagement.ReadWrite.Directory",
+        "edgeName": "AZMGGrantAppRoles"
+    }
+]

@@ -1,21 +1,11 @@
-{
-    "name": "Find all Service Principals",
-    "category": "Entra ID - Service Principals / Managed Identities",
-    "queryList": [
-        {
-            "final": true,
-            "query": "MATCH (sp:AZServicePrincipal) RETURN sp",
-            "allowCollapse": true
-        }
-    ]
-}
+
 {
     "name": "Find all Service Principals with an assigned Entra ID role",
     "category": "Entra ID - Service Principals / Managed Identities",
     "queryList": [
         {
             "final": true,
-            "query": "MATCH p=(m:AZServicePrincipal)-[r:AZHasRole]->(n:AZRole) RETURN p"
+            "query": "MATCH p = (m:AZServicePrincipal)-[r:AZHasRole]->(n:AZRole) RETURN p"
         }
     ]
 }
@@ -25,7 +15,7 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH p=(n)-[r:AZMGGrantAppRoles]->(o:AZTenant) RETURN p",
+            "query": "MATCH p = (n)-[r:AZMGGrantAppRoles]->(o:AZTenant) RETURN p",
             "allowCollapse": true
         }
     ]
@@ -36,7 +26,7 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH p=(m:AZServicePrincipal)-[r:AZMGAppRoleAssignment_ReadWrite_All|AZMGApplication_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGServicePrincipalEndpoint_ReadWrite_All]->(n:AZServicePrincipal) RETURN p",
+            "query": "MATCH p = (m:AZServicePrincipal)-[r:AZMGAppRoleAssignment_ReadWrite_All|AZMGApplication_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGServicePrincipalEndpoint_ReadWrite_All]->(n:AZServicePrincipal) RETURN p",
             "allowCollapse": true
         }
     ]

@@ -1,6 +1,6 @@
 {
     "name": "Find shortest Paths from Azure Users to subscription",
-    "category": "Azure - Paths",
+    "category": "Azure - Paths (OLD)",
     "queryList": [
         {
             "final": true,
@@ -10,7 +10,7 @@
 }
 {
     "name": "Find shortest Path from Owned Azure Users to VMs",
-    "category": "Azure - Paths",
+    "category": "Azure - Paths (OLD)",
     "queryList": [
         {
             "final": true,
@@ -20,18 +20,8 @@
     ]
 }
 {
-    "name": "Find all Paths to Azure KeyVaults",
-    "category": "Azure - Paths",
-    "queryList": [
-        {
-            "final": true,
-            "query": "MATCH p = (n)-[r]->(g:AZKeyVault) RETURN p"
-        }
-    ]
-}
-{
     "name": "Find all Paths to Azure KeyVaults from Owned Principals",
-    "category": "Azure - Paths",
+    "category": "Azure - Paths (OLD)",
     "queryList": [
         {
             "final": true,
@@ -42,7 +32,7 @@
 }
 {
     "name": "Find shortest Paths to Azure subscription",
-    "category": "Azure - Paths",
+    "category": "Azure - Paths (OLD)",
     "queryList": [
         {
             "final": true,

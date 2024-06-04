@@ -1,0 +1,38 @@
+[
+    {
+        "helperName": "All security principals",
+        "variableName": "_VAR_all-security-principals",
+        "componentType": "node",
+        "components": [
+            "AZUser", 
+            "AZGroup",
+            "AZServicePrincipal"
+        ]
+    },
+    {
+        "helperName": "All Azure resources",
+        "variableName": "_VAR_all-az-resources",
+        "componentType": "node",
+        "components": [
+            "AZVM",
+            "AZAutomationAccount",
+            "AZContainerRegistry",
+            "AZFunctionApp",
+            "AZLogicApp",
+            "AZManagedCluster",
+            "AZVMScaleSet",
+            "AZWebApp",
+            "AZKeyVault"
+        ]
+    },
+    {
+        "helperName": "All High-level Azure scopes",
+        "variableName": "_VAR_all-high-level-az-scopes",
+        "componentType": "node",
+        "components": [
+            "AZManagementGroup",
+            "AZSubscription",
+            "AZResourceGroup"
+        ]
+    }
+]

@@ -1,0 +1,48 @@
+
+ENTRA ID ROLE
+
+
+{
+  "name": "ALL - Find all MIs with Azure permissions on Management Groups",
+  "category": "Azure - Managed Identity",
+  "queryList": [
+    {
+      "final": true,
+      "query": "MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(az:AZManagementGroup) RETURN p",
+      "allowCollapse": true
+    }
+  ]
+}
+{
+  "name": "ALL - Find all MIs with Azure permissions on Subscriptions",
+  "category": "Azure - Managed Identity",
+  "queryList": [
+    {
+      "final": true,
+      "query": "MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(az:AZSubscription) RETURN p",
+      "allowCollapse": true
+    }
+  ]
+}
+{
+    "name": "ALL - Find all MIs with Azure permissions on Resource Groups",
+    "category": "Azure - Managed Identity",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(az:AZResourceGroup) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "ALL - Find all MIs with Azure permissions on individual resources",
+    "category": "Azure - Managed Identity",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (az) WHERE (az:_VAR_all-az-resources) MATCH p = (sp:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(az) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
