@@ -43,7 +43,7 @@
     ]
 }
 {
-    "name": "Find all VMs with an MI that has permissions on Management Groups",
+    "name": "Find all VMSS with an MI that has permissions on Management Groups",
     "category": "Azure - Virtual Machine Scale Set (VMSS)",
     "queryList": [
         {
@@ -54,7 +54,7 @@
     ]
 }
 {
-    "name": "Find all VMs with an MI that has permissions on Subscriptions",
+    "name": "Find all VMSS with an MI that has permissions on Subscriptions",
     "category": "Azure - Virtual Machine Scale Set (VMSS)",
     "queryList": [
         {
@@ -65,7 +65,7 @@
     ]
 }
 {
-    "name": "Find all VMs with an MI that has permissions on Resource Groups",
+    "name": "Find all VMSS with an MI that has permissions on Resource Groups",
     "category": "Azure - Virtual Machine Scale Set (VMSS)",
     "queryList": [
         {
@@ -76,7 +76,7 @@
     ]
 }
 {
-    "name": "Find all VMs with an MI that has permissions on individual resources",
+    "name": "Find all VMSS with an MI that has permissions on individual resources",
     "category": "Azure - Virtual Machine Scale Set (VMSS)",
     "queryList": [
         {

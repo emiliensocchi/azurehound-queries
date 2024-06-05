@@ -43,7 +43,7 @@
     ]
 }
 {
-    "name": "Find all VMs with an MI that has permissions on Management Groups",
+    "name": "Find all ACRs with an MI that has permissions on Management Groups",
     "category": "Azure - Container Registry (ACR)",
     "queryList": [
         {
@@ -54,7 +54,7 @@
     ]
 }
 {
-    "name": "Find all VMs with an MI that has permissions on Subscriptions",
+    "name": "Find all ACRs with an MI that has permissions on Subscriptions",
     "category": "Azure - Container Registry (ACR)",
     "queryList": [
         {
@@ -65,7 +65,7 @@
     ]
 }
 {
-    "name": "Find all VMs with an MI that has permissions on Resource Groups",
+    "name": "Find all ACRs with an MI that has permissions on Resource Groups",
     "category": "Azure - Container Registry (ACR)",
     "queryList": [
         {
@@ -76,7 +76,7 @@
     ]
 }
 {
-    "name": "Find all VMs with an MI that has permissions on individual resources",
+    "name": "Find all ACRs with an MI that has permissions on individual resources",
     "category": "Azure - Container Registry (ACR)",
     "queryList": [
         {

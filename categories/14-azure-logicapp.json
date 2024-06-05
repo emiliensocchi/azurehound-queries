@@ -43,7 +43,7 @@
     ]
 }
 {
-    "name": "Find all VMs with an MI that has permissions on Management Groups",
+    "name": "Find all Logic Apps with an MI that has permissions on Management Groups",
     "category": "Azure - Logic App",
     "queryList": [
         {
@@ -54,7 +54,7 @@
     ]
 }
 {
-    "name": "Find all VMs with an MI that has permissions on Subscriptions",
+    "name": "Find all Logic Apps with an MI that has permissions on Subscriptions",
     "category": "Azure - Logic App",
     "queryList": [
         {
@@ -65,7 +65,7 @@
     ]
 }
 {
-    "name": "Find all VMs with an MI that has permissions on Resource Groups",
+    "name": "Find all Logic Apps with an MI that has permissions on Resource Groups",
     "category": "Azure - Logic App",
     "queryList": [
         {
@@ -76,7 +76,7 @@
     ]
 }
 {
-    "name": "Find all VMs with an MI that has permissions on individual resources",
+    "name": "Find all Logic Apps with an MI that has permissions on individual resources",
     "category": "Azure - Logic App",
     "queryList": [
         {
