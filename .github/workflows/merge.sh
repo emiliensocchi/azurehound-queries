@@ -28,10 +28,10 @@ placeholder_entra_app_permissions_tier_0='_VAR_all-entra-app-permissions-in-t0'
 placeholder_entra_app_permissions_tier_1='_VAR_all-entra-app-permissions-in-t1'
 placeholder_azure_roles_tier_0='_VAR_all-az-roles-in-t0'
 # Tiering files
-tiering_dir="${repo_root_dir}/variables/tiering/"
-tier_file_entra_roles="${tiering_dir}entra-roles.json"
-tier_file_entra_app_permissions="${tiering_dir}entra-application-permissions.json"
-tier_file_azure_roles="${tiering_dir}azure-roles.json"
+tiering_dir="${repo_root_dir}/variables/"
+tier_file_entra_roles="${tiering_dir}tiering-entra-roles.json"
+tier_file_entra_app_permissions="${tiering_dir}tiering-entra-application-permissions.json"
+tier_file_azure_roles="${tiering_dir}tiering-azure-roles.json"
 # Tiering content
 entra_roles_tier_0="$(cat $tier_file_entra_roles | jq -r '.[] | select(.tier == "0" and .edgeName != "") | .edgeName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
 entra_app_permissions_tier_0="$(cat $tier_file_entra_app_permissions | jq -r '.[] | select(.tier == "0" and .edgeName != "") | .edgeName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
@@ -46,7 +46,7 @@ placeholder_all_azure_scopes='_VAR_all-az-scopes'
 
 # Helper file
 helper_dir="${repo_root_dir}/variables/"
-helper_file="${helper_dir}helper.json"
+helper_file="${helper_dir}helpers.json"
 # Helper content
 helper_all_security_principals="$(cat $helper_file | jq -r  '.[] | select(.variableName == '\"$placeholder_all_security_principals\"') | .components[]' | sed -n ':a;N;${s/\n/ or node:/g;p};ba')"
 helper_all_azure_resources="$(cat $helper_file | jq -r  '.[] | select(.variableName == '\"$placeholder_all_azure_resources\"') | .components[]' | sed -n ':a;N;${s/\n/ or node:/g;p};ba')"
