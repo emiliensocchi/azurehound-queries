@@ -482,7 +482,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Management Groups",
+      "name": "Find all AKS clusters with an MI that has permissions on Management Groups",
       "category": "Azure - Azure Kuberntes Service (AKS)",
       "queryList": [
         {
@@ -493,7 +493,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Subscriptions",
+      "name": "Find all AKS clusters with an MI that has permissions on Subscriptions",
       "category": "Azure - Azure Kuberntes Service (AKS)",
       "queryList": [
         {
@@ -504,7 +504,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Resource Groups",
+      "name": "Find all AKS clusters with an MI that has permissions on Resource Groups",
       "category": "Azure - Azure Kuberntes Service (AKS)",
       "queryList": [
         {
@@ -515,7 +515,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on individual resources",
+      "name": "Find all AKS clusters with an MI that has permissions on individual resources",
       "category": "Azure - Azure Kuberntes Service (AKS)",
       "queryList": [
         {
@@ -570,7 +570,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Management Groups",
+      "name": "Find all App Services with an MI that has permissions on Management Groups",
       "category": "Azure - App Service",
       "queryList": [
         {
@@ -581,7 +581,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Subscriptions",
+      "name": "Find all App Services with an MI that has permissions on Subscriptions",
       "category": "Azure - App Service",
       "queryList": [
         {
@@ -592,7 +592,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Resource Groups",
+      "name": "Find all App Services with an MI that has permissions on Resource Groups",
       "category": "Azure - App Service",
       "queryList": [
         {
@@ -603,7 +603,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on individual resources",
+      "name": "Find all App Services with an MI that has permissions on individual resources",
       "category": "Azure - App Service",
       "queryList": [
         {
@@ -658,7 +658,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Management Groups",
+      "name": "Find all Automation Accounts with an MI that has permissions on Management Groups",
       "category": "Azure - Automation Account",
       "queryList": [
         {
@@ -669,7 +669,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Subscriptions",
+      "name": "Find all Automation Accounts with an MI that has permissions on Subscriptions",
       "category": "Azure - Automation Account",
       "queryList": [
         {
@@ -680,7 +680,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Resource Groups",
+      "name": "Find all Automation Accounts with an MI that has permissions on Resource Groups",
       "category": "Azure - Automation Account",
       "queryList": [
         {
@@ -691,7 +691,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on individual resources",
+      "name": "Find all Automation Accounts with an MI that has permissions on individual resources",
       "category": "Azure - Automation Account",
       "queryList": [
         {
@@ -746,7 +746,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Management Groups",
+      "name": "Find all ACRs with an MI that has permissions on Management Groups",
       "category": "Azure - Container Registry (ACR)",
       "queryList": [
         {
@@ -757,7 +757,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Subscriptions",
+      "name": "Find all ACRs with an MI that has permissions on Subscriptions",
       "category": "Azure - Container Registry (ACR)",
       "queryList": [
         {
@@ -768,7 +768,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Resource Groups",
+      "name": "Find all ACRs with an MI that has permissions on Resource Groups",
       "category": "Azure - Container Registry (ACR)",
       "queryList": [
         {
@@ -779,7 +779,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on individual resources",
+      "name": "Find all ACRs with an MI that has permissions on individual resources",
       "category": "Azure - Container Registry (ACR)",
       "queryList": [
         {
@@ -834,7 +834,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Management Groups",
+      "name": "Find all Function Apps with an MI that has permissions on Management Groups",
       "category": "Azure - Function Apps",
       "queryList": [
         {
@@ -845,7 +845,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Subscriptions",
+      "name": "Find all Function Apps with an MI that has permissions on Subscriptions",
       "category": "Azure - Function Apps",
       "queryList": [
         {
@@ -856,7 +856,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Resource Groups",
+      "name": "Find all Function Apps with an MI that has permissions on Resource Groups",
       "category": "Azure - Function Apps",
       "queryList": [
         {
@@ -867,7 +867,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on individual resources",
+      "name": "Find all Function Apps with an MI that has permissions on individual resources",
       "category": "Azure - Function Apps",
       "queryList": [
         {
@@ -922,7 +922,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Management Groups",
+      "name": "Find all Key Vaults with an MI that has permissions on Management Groups",
       "category": "Azure - Key Vault",
       "queryList": [
         {
@@ -933,7 +933,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Subscriptions",
+      "name": "Find all Key Vaults with an MI that has permissions on Subscriptions",
       "category": "Azure - Key Vault",
       "queryList": [
         {
@@ -944,7 +944,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Resource Groups",
+      "name": "Find all Key Vaults with an MI that has permissions on Resource Groups",
       "category": "Azure - Key Vault",
       "queryList": [
         {
@@ -955,7 +955,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on individual resources",
+      "name": "Find all Key Vaults with an MI that has permissions on individual resources",
       "category": "Azure - Key Vault",
       "queryList": [
         {
@@ -1010,7 +1010,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Management Groups",
+      "name": "Find all Logic Apps with an MI that has permissions on Management Groups",
       "category": "Azure - Logic App",
       "queryList": [
         {
@@ -1021,7 +1021,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Subscriptions",
+      "name": "Find all Logic Apps with an MI that has permissions on Subscriptions",
       "category": "Azure - Logic App",
       "queryList": [
         {
@@ -1032,7 +1032,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Resource Groups",
+      "name": "Find all Logic Apps with an MI that has permissions on Resource Groups",
       "category": "Azure - Logic App",
       "queryList": [
         {
@@ -1043,7 +1043,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on individual resources",
+      "name": "Find all Logic Apps with an MI that has permissions on individual resources",
       "category": "Azure - Logic App",
       "queryList": [
         {
@@ -1186,7 +1186,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Management Groups",
+      "name": "Find all VMSS with an MI that has permissions on Management Groups",
       "category": "Azure - Virtual Machine Scale Set (VMSS)",
       "queryList": [
         {
@@ -1197,7 +1197,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Subscriptions",
+      "name": "Find all VMSS with an MI that has permissions on Subscriptions",
       "category": "Azure - Virtual Machine Scale Set (VMSS)",
       "queryList": [
         {
@@ -1208,7 +1208,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on Resource Groups",
+      "name": "Find all VMSS with an MI that has permissions on Resource Groups",
       "category": "Azure - Virtual Machine Scale Set (VMSS)",
       "queryList": [
         {
@@ -1219,7 +1219,7 @@
       ]
     },
     {
-      "name": "Find all VMs with an MI that has permissions on individual resources",
+      "name": "Find all VMSS with an MI that has permissions on individual resources",
       "category": "Azure - Virtual Machine Scale Set (VMSS)",
       "queryList": [
         {
