@@ -10,9 +10,6 @@
 ##
 repo_root_dir="$(realpath $0 | sed 's/\.github.*//')"
 
-echo "PATH: $repo_root_dir"
-
-
 output_file="${repo_root_dir}customqueries.json"
 files_to_merge="$(find "$repo_root_dir" -regextype posix-extended -regex '.*[0-9]{2}.*\.json' | sort)"
 merged_file='merged.json'
