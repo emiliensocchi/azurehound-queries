@@ -10,17 +10,17 @@
         "edgeName": "AZMGAppRoleAssignment_ReadWrite_All"
     },
     {
-        "tier": "1",
+        "tier": "0",
         "applicationPermissionName": "Directory.ReadWrite.All",
         "edgeName": "AZMGDirectory_ReadWrite_All"
     },
     {
-        "tier": "1",
+        "tier": "0",
         "applicationPermissionName": "GroupMember.ReadWrite.All",
         "edgeName": "AZMGGroupMember_ReadWrite_All"
     },
     {
-        "tier": "1",
+        "tier": "0",
         "applicationPermissionName": "Group.ReadWrite.All",
         "edgeName": "AZMGGroup_ReadWrite_All"
     },
