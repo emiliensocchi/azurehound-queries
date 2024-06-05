@@ -1,6 +1,6 @@
 {
     "name": "Find all principals with a path to a Function App that has an MI with an Entra ID role",
-    "category": "Azure - Function Apps",
+    "category": "Azure - Function App",
     "queryList": [
         {
             "final": true,
@@ -11,7 +11,7 @@
 }
 {
     "name": "Find all principals with a path to a Function App that has an MI with a Tier-0 application permission",
-    "category": "Azure - Function Apps",
+    "category": "Azure - Function App",
     "queryList": [
         {
             "final": true,
@@ -22,7 +22,7 @@
 }
 {
     "name": "Find all principals with a path to a Function App that has an MI with a Tier-1 application permission",
-    "category": "Azure - Function Apps",
+    "category": "Azure - Function App",
     "queryList": [
         {
             "final": true,
@@ -33,7 +33,7 @@
 }
 {
     "name": "Find all principals with a path to a Function App that has an MI with a Tier-0 Azure role",
-    "category": "Azure - Function Apps",
+    "category": "Azure - Function App",
     "queryList": [
         {
             "final": true,
@@ -44,7 +44,7 @@
 }
 {
     "name": "Find all Function Apps with an MI that has permissions on Management Groups",
-    "category": "Azure - Function Apps",
+    "category": "Azure - Function App",
     "queryList": [
         {
             "final": true,
@@ -55,7 +55,7 @@
 }
 {
     "name": "Find all Function Apps with an MI that has permissions on Subscriptions",
-    "category": "Azure - Function Apps",
+    "category": "Azure - Function App",
     "queryList": [
         {
             "final": true,
@@ -66,7 +66,7 @@
 }
 {
     "name": "Find all Function Apps with an MI that has permissions on Resource Groups",
-    "category": "Azure - Function Apps",
+    "category": "Azure - Function App",
     "queryList": [
         {
             "final": true,
@@ -77,7 +77,7 @@
 }
 {
     "name": "Find all Function Apps with an MI that has permissions on individual resources",
-    "category": "Azure - Function Apps",
+    "category": "Azure - Function App",
     "queryList": [
         {
             "final": true,
