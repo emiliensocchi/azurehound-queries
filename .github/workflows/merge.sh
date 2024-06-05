@@ -30,7 +30,7 @@ placeholder_azure_roles_tier_0='_VAR_all-az-roles-in-t0'
 # Tiering files
 tiering_dir="${repo_root_dir}/variables/"
 tier_file_entra_roles="${tiering_dir}tiering-entra-roles.json"
-tier_file_entra_app_permissions="${tiering_dir}tiering-entra-application-permissions.json"
+tier_file_entra_app_permissions="${tiering_dir}tiering-entra-application-permissions.json" 
 tier_file_azure_roles="${tiering_dir}tiering-azure-roles.json"
 
 
