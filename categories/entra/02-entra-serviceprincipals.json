@@ -1,0 +1,88 @@
+{
+    "name": "Find all SPs with an Entra ID role",
+    "category": "Entra ID - Service Principals",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p = (:AZServicePrincipal {serviceprincipaltype: 'Application'})-[:AZHasRole]->(:AZRole) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+  }
+  {
+    "name": "Find all SPs with a Tier-0 application permission",
+    "category": "Entra ID - Service Principals",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p = (:AZServicePrincipal {serviceprincipaltype: 'Application'})-[t0:_VAR_all-entra-app-permissions-in-t0]->(n) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+  }
+  {
+    "name": "Find all SPs with a Tier-1 application permission",
+    "category": "Entra ID - Service Principals",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p = (:AZServicePrincipal {serviceprincipaltype: 'Application'})-[t1:_VAR_all-entra-app-permissions-in-t1]->(n) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+  }
+  {
+    "name": "Find all principals with an abusable permission on MS Graph",
+    "category": "Entra ID - Service Principals",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p = (n)-[r:AZAddOwner|AZAddSecret|AZAppAdmin|AZCloudAppAdmin|AZMGAddOwner|AZMGAddSecret|AZOwns]->(:AZServicePrincipal {appdisplayname: \"Microsoft Graph\"}) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+  }
+  {
+    "name": "Find all SPs with Azure permissions on Management Groups",
+    "category": "Azure - Service Principals",
+    "queryList": [
+      {
+        "final": true,
+        "query": "MATCH p = (:AZServicePrincipal {serviceprincipaltype: 'Application'})-[r]->(:AZManagementGroup) RETURN p",
+        "allowCollapse": true
+      }
+    ]
+  }
+  {
+    "name": "Find all SPs with Azure permissions on Subscriptions",
+    "category": "Azure - Service Principals",
+    "queryList": [
+      {
+        "final": true,
+        "query": "MATCH p = (:AZServicePrincipal {serviceprincipaltype: 'Application'})-[r]->(:AZSubscription) RETURN p",
+        "allowCollapse": true
+      }
+    ]
+  }
+  {
+      "name": "Find all SPs with Azure permissions on Resource Groups",
+      "category": "Azure - Service Principals",
+      "queryList": [
+          {
+              "final": true,
+              "query": "MATCH p = (:AZServicePrincipal {serviceprincipaltype: 'Application'})-[r]->(:AZResourceGroup) RETURN p",
+              "allowCollapse": true
+          }
+      ]
+  }
+  {
+      "name": "Find all SPs with Azure permissions on individual resources",
+      "category": "Azure - Service Principals",
+      "queryList": [
+          {
+              "final": true,
+              "query": "MATCH (node) WHERE (node:_VAR_all-az-resources) MATCH p = (:AZServicePrincipal {serviceprincipaltype: 'Application'})-[r]->(node) RETURN p",
+              "allowCollapse": true
+          }
+      ]
+  }

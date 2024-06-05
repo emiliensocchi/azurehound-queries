@@ -4,7 +4,7 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH p =(n)-[r:AZGlobalAdmin*1..]->(m) RETURN p"
+            "query": "MATCH p =(n)-[:AZGlobalAdmin]->(:AZTenant) RETURN p"
         }
     ]
 }

@@ -1,0 +1,77 @@
+{
+  "name": "Find all MIs with an Entra ID role",
+  "category": "Azure - Managed Identities",
+  "queryList": [
+      {
+          "final": true,
+          "query": "MATCH p = (:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[:AZHasRole]->(:AZRole) RETURN p",
+          "allowCollapse": true
+      }
+  ]
+}
+{
+  "name": "Find all MIs with a Tier-0 application permission",
+  "category": "Azure - Managed Identities",
+  "queryList": [
+      {
+          "final": true,
+          "query": "MATCH p = (:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[t0:_VAR_all-entra-app-permissions-in-t0]->(n) RETURN p",
+          "allowCollapse": true
+      }
+  ]
+}
+{
+  "name": "Find all MIs with a Tier-1 application permission",
+  "category": "Azure - Managed Identities",
+  "queryList": [
+      {
+          "final": true,
+          "query": "MATCH p = (:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[t1:_VAR_all-entra-app-permissions-in-t1]->(n) RETURN p",
+          "allowCollapse": true
+      }
+  ]
+}
+{
+  "name": "Find all MIs with Azure permissions on Management Groups",
+  "category": "Azure - Managed Identities",
+  "queryList": [
+    {
+      "final": true,
+      "query": "MATCH p = (:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(:AZManagementGroup) RETURN p",
+      "allowCollapse": true
+    }
+  ]
+}
+{
+  "name": "Find all MIs with Azure permissions on Subscriptions",
+  "category": "Azure - Managed Identities",
+  "queryList": [
+    {
+      "final": true,
+      "query": "MATCH p = (:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(:AZSubscription) RETURN p",
+      "allowCollapse": true
+    }
+  ]
+}
+{
+    "name": "Find all MIs with Azure permissions on Resource Groups",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p = (:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(:AZResourceGroup) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all MIs with Azure permissions on individual resources",
+    "category": "Azure - Managed Identities",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (node) WHERE (node:_VAR_all-az-resources) MATCH p = (:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'})-[r]->(node) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
