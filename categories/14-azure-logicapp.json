@@ -81,7 +81,7 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (az) WHERE (node:_VAR_all-az-resources) MATCH p = (:AZLogicApp)-[:AZManagedIdentity]-(n)-[r]->(az) RETURN p",
+            "query": "MATCH (node) WHERE (node:_VAR_all-az-resources) MATCH p = (:AZLogicApp)-[:AZManagedIdentity]-(n)-[r]->(node) RETURN p",
             "allowCollapse": true
         }
     ]
