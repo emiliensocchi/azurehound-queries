@@ -63,7 +63,7 @@ helper_file="${helper_dir}helpers.json"
 # Helper content
 helper_built_in_service_principals="$(cat $helper_file | jq -r  '.[] | select(.variableName == '\"$placeholder_built_in_service_principals\"') | .components[]' | sed -n ':a;N;${s/\n/|/g;p};ba')"
 helper_all_security_principals="$(cat $helper_file | jq -r  '.[] | select(.variableName == '\"$placeholder_all_security_principals\"') | .components[]' | sed -n ':a;N;${s/\n/ or node:/g;p};ba')"
-helper_all_security_principals_excluding_built_in="$(echo $helper_all_security_principals | sed "s/ node:AZServicePrincipal/ \(node:AZServicePrincipal AND NOT node.displayname STARTS WITH '$helper_built_in_service_principals'/")"
+helper_all_security_principals_excluding_built_in="$(echo $helper_all_security_principals | sed "s/ node:AZServicePrincipal/ \(node:AZServicePrincipal AND NOT node.displayname STARTS WITH '$helper_built_in_service_principals'\)/")"
 helper_all_azure_resources="$(cat $helper_file | jq -r  '.[] | select(.variableName == '\"$placeholder_all_azure_resources\"') | .components[]' | sed -n ':a;N;${s/\n/ or node:/g;p};ba')"
 helper_all_high_level_azure_scopes="$(cat $helper_file | jq -r  '.[] | select(.variableName == '\"$placeholder_all_high_level_azure_scopes\"') | .components[]' | sed -n ':a;N;${s/\n/ or node:/g;p};ba')"
 helper_all_scopes="$(echo ${helper_all_high_level_azure_scopes} or node:${helper_all_azure_resources})"
