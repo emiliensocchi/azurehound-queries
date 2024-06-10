@@ -663,7 +663,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH p=(node)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(:AZAutomationAccount)",
+          "query": "MATCH p=(node)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(:AZAutomationAccount) RETURN p",
           "allowCollapse": true
         }
       ]
