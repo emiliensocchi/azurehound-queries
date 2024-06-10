@@ -43,6 +43,17 @@
     ]
 }
 {
+    "name": "Find all principals with a direct Contributor-like permission to an Automation Account",
+    "category": "Azure - Automation Account",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p=(node)-[t0:_VAR_all-az-roles-in-t0]->(:AZAutomationAccount)",
+            "allowCollapse": true
+        }
+    ]
+}
+{
     "name": "Find all Automation Accounts with an MI that has permissions on Management Groups",
     "category": "Azure - Automation Account",
     "queryList": [
