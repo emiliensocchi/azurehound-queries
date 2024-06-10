@@ -10,6 +10,15 @@
         ]
     },
     {
+        "helperName": "Built-in service principals used by Microsoft-owned services",
+        "variableName": "_VAR_built-in-service-principals",
+        "componentType": "node",
+        "components": [
+            "policy-", 
+            "pim"
+        ]
+    },
+    {
         "helperName": "All Azure resources",
         "variableName": "_VAR_all-az-resources",
         "componentType": "node",
