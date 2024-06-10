@@ -76,8 +76,8 @@ cat $merged_file \
 | sed "s/${placeholder_entra_app_permissions_tier_0}/${entra_app_permissions_tier_0}/" \
 | sed "s/${placeholder_entra_app_permissions_tier_1}/${entra_app_permissions_tier_1}/" \
 | sed "s/${placeholder_azure_roles_tier_0}/${azure_roles_tier_0}/" \
-| sed "s/${placeholder_all_security_principals}/${helper_all_security_principals}/" \
 | sed "s/${placeholder_all_security_principals_excluding_built_in}/${helper_all_security_principals_excluding_built_in}/" \
+| sed "s/${placeholder_all_security_principals}/${helper_all_security_principals}/" \
 | sed "s/${placeholder_all_azure_resources}/${helper_all_azure_resources}/" \
 | sed "s/${placeholder_all_high_level_azure_scopes}/${helper_all_high_level_azure_scopes}/" \
 | sed "s/${placeholder_all_azure_scopes}/${helper_all_scopes}/" \
