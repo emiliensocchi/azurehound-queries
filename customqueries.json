@@ -520,7 +520,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (az) WHERE (az:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZManagedCluster)-[:AZManagedIdentity]-(n)-[r]->(az) RETURN p",
+          "query": "MATCH (az) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZManagedCluster)-[:AZManagedIdentity]-(n)-[r]->(az) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -608,7 +608,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (az) WHERE (az:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZWebApp)-[:AZManagedIdentity]-(n)-[r]->(az) RETURN p",
+          "query": "MATCH (az) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZWebApp)-[:AZManagedIdentity]-(n)-[r]->(az) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -696,7 +696,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (az) WHERE (az:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZAutomationAccount)-[:AZManagedIdentity]-(n)-[r]->(az) RETURN p",
+          "query": "MATCH (az) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZAutomationAccount)-[:AZManagedIdentity]-(n)-[r]->(az) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -784,7 +784,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (az) WHERE (az:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZContainerRegistry)-[:AZManagedIdentity]-(n)-[r]->(az) RETURN p",
+          "query": "MATCH (az) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZContainerRegistry)-[:AZManagedIdentity]-(n)-[r]->(az) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -872,7 +872,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (az) WHERE (az:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZFunctionApp)-[:AZManagedIdentity]-(n)-[r]->(az) RETURN p",
+          "query": "MATCH (az) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZFunctionApp)-[:AZManagedIdentity]-(n)-[r]->(az) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -960,7 +960,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (az) WHERE (az:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZKeyVault)-[:AZManagedIdentity]-(n)-[r]->(az) RETURN p",
+          "query": "MATCH (az) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZKeyVault)-[:AZManagedIdentity]-(n)-[r]->(az) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1048,7 +1048,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (az) WHERE (az:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZLogicApp)-[:AZManagedIdentity]-(n)-[r]->(az) RETURN p",
+          "query": "MATCH (az) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZLogicApp)-[:AZManagedIdentity]-(n)-[r]->(az) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1136,7 +1136,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (az) WHERE (az:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZVM)-[:AZManagedIdentity]-(n)-[r]->(az) RETURN p",
+          "query": "MATCH (az) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZVM)-[:AZManagedIdentity]-(n)-[r]->(az) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1224,7 +1224,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (az) WHERE (az:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZVMScaleSet)-[:AZManagedIdentity]-(n)-[r]->(az) RETURN p",
+          "query": "MATCH (az) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZVMScaleSet)-[:AZManagedIdentity]-(n)-[r]->(az) RETURN p",
           "allowCollapse": true
         }
       ]
