@@ -278,7 +278,7 @@
     },
     {
       "name": "Find all Synchronization accounts possibly used for Entra ID Connect",
-      "category": "Hybrid - Entra ID Connect",
+      "category": "Hybrid - General",
       "queryList": [
         {
           "final": true,
