@@ -46,7 +46,7 @@ entra_app_permissions_tier_1="$(cat $tier_file_entra_app_permissions | jq -r '.[
 azure_roles_tier_0="$(cat $tier_file_azure_roles | jq -r '.[] | select(.tier == "0" and .edgeName != "") | .edgeName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
 
 
-#-- Helpers
+#-- Helpers 
 
 # Helper placeholders
 placeholder_built_in_service_principals='_VAR_built-in-service-principals'
