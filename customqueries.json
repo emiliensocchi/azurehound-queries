@@ -1,3 +1,1244 @@
 {
-  "queries": []
+  "queries": [
+    {
+      "name": "Find all active Global Administrators",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p =(n)-[:AZGlobalAdmin]->(:AZTenant) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all active sensitive non-M365 Entra ID Administrators (last updated: 2024-01-24)",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (n)-[:AZHasRole|AZMemberOf*1..2]->(r:AZRole WHERE r.displayname =~ '(?i)Application Administrator|Authentication Administrator|Authentication Policy Administrator|Azure DevOps Administrator|Azure Information Protection Administrator|B2C IEF Keyset Administrator|Cloud Application Administrator|Cloud Device Administrator|Conditional Access Administrator|Directory Writers|External Identity Provider Administrator|Global Administrator|Groups Administrator|Helpdesk Administrator|Hybrid Identity Administrator|Intune Administrator|Microsoft Entra Joined Device Local Administrator|Partner Tier1 Support|Partner Tier2 Support|Password Administrator|Privileged Authentication Administrator|Privileged Role Administrator|User Administrator|Windows 365 Administrator') RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all active M365 Administrators (last updated: 2024-01-24)",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (n)-[:AZHasRole|AZMemberOf*1..2]->(r:AZRole WHERE r.displayname =~ '(?i)Dynamics 365 Administrator|Exchange Administrator|Fabric Administrator|Kaizala Administrator|Power Platform Administrator|SharePoint Administrator|Skype for Business Administrator|Teams Administrator|Viva Goals Administrator|Viva Pulse Administrator|Yammer Administrator') RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all groups with an active Entra ID role",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (m:AZGroup)-[r:AZHasRole]->(n:AZRole) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all groups with a potentially eligible Entra ID role",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (g:AZGroup {isassignabletorole: True}) RETURN g"
+        }
+      ]
+    },
+    {
+      "name": "Find all dynamic groups with an active Entra ID role",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (g) WHERE EXISTS(g.membershipRule) MATCH p = (g)-[r:AZHasRole]->(n:AZRole) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all dynamic groups",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (g) WHERE EXISTS(g.membershipRule) RETURN g"
+        }
+      ]
+    },
+    {
+      "name": "Find all identities with an active Entra ID Role",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (n)-[:AZHasRole|AZMemberOf*1..2]->(r:AZRole WHERE r.displayname CONTAINS('Administrator')) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all owners of Entra ID Applications",
+      "category": "Entra ID - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (n)-[r:AZOwns]->(g:AZApp) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all SPs with an Entra ID role",
+      "category": "Entra ID - Service Principals",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:_VAR_service_principals-excluding-built-in) MATCH p = (node)-[:AZHasRole]->(:AZRole) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all SPs with a Tier-0 application permission",
+      "category": "Entra ID - Service Principals",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:_VAR_service_principals-excluding-built-in) MATCH p = (node)-[t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all SPs with a Tier-1 application permission",
+      "category": "Entra ID - Service Principals",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:_VAR_service_principals-excluding-built-in) MATCH p = (node)-[t1:]->(n) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with an abusable permission on MS Graph",
+      "category": "Entra ID - Service Principals",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (n)-[r:AZAddOwner|AZAddSecret|AZAppAdmin|AZCloudAppAdmin|AZMGAddOwner|AZMGAddSecret|AZOwns]->(:AZServicePrincipal {appdisplayname: \"Microsoft Graph\"}) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all SPs with Azure permissions on Management Groups",
+      "category": "Azure - Service Principals",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:_VAR_service_principals-excluding-built-in) MATCH p = (node)-[r]->(:AZManagementGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all SPs with Azure permissions on Subscriptions",
+      "category": "Azure - Service Principals",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:_VAR_service_principals-excluding-built-in) MATCH p = (node)-[r]->(:AZSubscription) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all SPs with Azure permissions on Resource Groups",
+      "category": "Azure - Service Principals",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:_VAR_service_principals-excluding-built-in) MATCH p = (node)-[r]->(:AZResourceGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all SPs with Azure permissions on individual resources",
+      "category": "Azure - Service Principals",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH (node) WHERE (node:_VAR_service_principals-excluding-built-in) MATCH p = (node)-[r]->(node) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Entra ID Users with a Path to High Value Targets",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (m:AZUser),(n {highvalue:true}),p=shortestPath((m)-[r*1..]->(n)) WHERE NONE (r IN relationships(p) WHERE type(r)= \"GetChanges\") AND NONE (r in relationships(p) WHERE type(r)=\"GetChangesAll\") AND NOT m=n RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Entra ID users synchronized from on-prem AD with a Path to High Value Targets",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (m:AZUser WHERE m.onpremisesyncenabled = true),(n {highvalue:true}),p=shortestPath((m)-[r*1..]->(n)) WHERE NONE (r IN relationships(p) WHERE type(r)= \"GetChanges\") AND NONE (r in relationships(p) WHERE type(r)=\"GetChangesAll\") AND NOT m=n RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths to High Value Entra ID Roles",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZRole WHERE n.displayname =~ '(?i)Global Administrator|Privileged Role Administrator|Privileged Authentication Administrator|Application Administrator|Cloud Application Administrator|User Administrator|Authentication Policy Administrator|Exchange Administrator|Helpdesk Administrator|Sharepoint Administrator|Azure DevOps Administrator'), (m), p=shortestPath((m)-[r*1..]->(n)) WHERE NOT m=n RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths to MS Graph",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n) WHERE NOT n.displayname=\"Microsoft Graph\" WITH n MATCH p = shortestPath((n)-[r*1..]->(g:AZServicePrincipal {appdisplayname: \"Microsoft Graph\"})) WHERE n<>g RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find Entra ID Applications with Paths to High Value Targets",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (m:AZApp),(n {highvalue:true}),p=shortestPath((m)-[r*1..]->(n)) WHERE NONE (r IN relationships(p) WHERE type(r)= \"GetChanges\") AND NONE (r in relationships(p) WHERE type(r)=\"GetChangesAll\") AND NOT m=n RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths from Owned Users to Service Principals",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (u:AZUser {owned: true}), (m:AZServicePrincipal) MATCH p = shortestPath((u)-[*..]->(m)) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths from Owned Users to Managed Identities",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (u:AZUser {owned: true}), (m:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'}) MATCH p = shortestPath((u)-[*..]->(m)) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths from all Users to Managed Identities",
+      "category": "Entra ID - Paths",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (u:AZUser), (m:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'}) MATCH p = shortestPath((u)-[*..]->(m)) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all users originating from on-premises with an active Entra ID role",
+      "category": "Hybrid - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node.onpremisesyncenabled = true) MATCH p = (node)-[:AZHasRole|AZMemberOf*1..2]->(r:AZRole WHERE r.displayname CONTAINS('Administrator')) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all Synchronization accounts possibly used for Entra ID Connect",
+      "category": "Hybrid - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (u) WHERE (u:User OR u:AZUser) AND (u.name =~ '(?i)^MSOL_|.*AADConnect.*' OR u.userprincipalname =~ '(?i)^sync_.*') OPTIONAL MATCH (u)-[:HasSession]->(s:Session) RETURN u, s",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all users with an active Azure role",
+      "category": "Azure - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZManagementGroup or node:AZSubscription or node:AZResourceGroup or node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZUser)-[r]->(node) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all groups with an active Azure role",
+      "category": "Azure - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZManagementGroup or node:AZSubscription or node:AZResourceGroup or node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZGroup)-[r]->(node) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all dynamic groups with an active Azure role",
+      "category": "Azure - General",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (g) WHERE EXISTS(g.membershipRule) MATCH (node) WHERE (node:AZManagementGroup or node:AZSubscription or node:AZResourceGroup or node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (g)-[r]->(node) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find all MIs with an Entra ID role",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'} AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim')) MATCH p = (node)-[:AZHasRole]->(:AZRole) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all MIs with a Tier-0 application permission",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'} AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim')) MATCH p = (node)-[t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all MIs with a Tier-1 application permission",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'} AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim')) MATCH p = (node)-[t1:]->(n) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all MIs with Azure permissions on Management Groups",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'} AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim')) MATCH p = (node)-[r]->(:AZManagementGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all MIs with Azure permissions on Subscriptions",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'} AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim')) MATCH p = (node)-[r]->(:AZSubscription) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all MIs with Azure permissions on Resource Groups",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'} AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim')) MATCH p = (node)-[r]->(:AZResourceGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all MIs with Azure permissions on individual resources",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH (node) WHERE (node:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'} AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim')) MATCH p = (node)-[r]->(node) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths from Azure Users to subscription",
+      "category": "Azure - Paths (OLD)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZUser) WITH n MATCH p = shortestPath((n)-[r*1..]->(g:AZSubscription)) RETURN p"
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Path from Owned Azure Users to VMs",
+      "category": "Azure - Paths (OLD)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZVM) MATCH p = shortestPath((m:AZUser{owned: true})-[*..]->(n)) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Paths to Azure KeyVaults from Owned Principals",
+      "category": "Azure - Paths (OLD)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = ({owned: true})-[r]->(g:AZKeyVault) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find shortest Paths to Azure subscription",
+      "category": "Azure - Paths (OLD)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (n:AZSubscription), (m), p=shortestPath((m)-[r*1..]->(n)) WHERE NOT m=n RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an AKS cluster that has an MI with an Entra ID role",
+      "category": "Azure - Azure Kuberntes Service (AKS)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZManagedCluster)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an AKS cluster that has an MI with a Tier-0 application permission",
+      "category": "Azure - Azure Kuberntes Service (AKS)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZManagedCluster)-[:AZManagedIdentity]-(n1)-[t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an AKS cluster that has an MI with a Tier-1 application permission",
+      "category": "Azure - Azure Kuberntes Service (AKS)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZManagedCluster)-[:AZManagedIdentity]-(n1)-[t1:]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an AKS cluster that has an MI with a Tier-0 Azure role",
+      "category": "Azure - Azure Kuberntes Service (AKS)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZManagedCluster)-[:AZManagedIdentity]-(n2)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all AKS clusters with an MI that has permissions on Management Groups",
+      "category": "Azure - Azure Kuberntes Service (AKS)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZManagedCluster)-[:AZManagedIdentity]-(n)-[r]->(:AZManagementGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all AKS clusters with an MI that has permissions on Subscriptions",
+      "category": "Azure - Azure Kuberntes Service (AKS)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZManagedCluster)-[:AZManagedIdentity]-(n)-[r]->(:AZSubscription) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all AKS clusters with an MI that has permissions on Resource Groups",
+      "category": "Azure - Azure Kuberntes Service (AKS)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZManagedCluster)-[:AZManagedIdentity]-(n)-[r]->(:AZResourceGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all AKS clusters with an MI that has permissions on individual resources",
+      "category": "Azure - Azure Kuberntes Service (AKS)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZManagedCluster)-[:AZManagedIdentity]-(n)-[r]->(node) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an App Service that has an MI with an Entra ID role",
+      "category": "Azure - App Service",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZWebApp)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an App Service that has an MI with a Tier-0 application permission",
+      "category": "Azure - App Service",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZWebApp)-[:AZManagedIdentity]-(n1)-[t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an App Service that has an MI with a Tier-1 application permission",
+      "category": "Azure - App Service",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZWebApp)-[:AZManagedIdentity]-(n1)-[t1:]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an App Service that has an MI with a Tier-0 Azure role",
+      "category": "Azure - App Service",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZWebApp)-[:AZManagedIdentity]-(n2)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all App Services with an MI that has permissions on Management Groups",
+      "category": "Azure - App Service",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZWebApp)-[:AZManagedIdentity]-(n)-[r]->(:AZManagementGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all App Services with an MI that has permissions on Subscriptions",
+      "category": "Azure - App Service",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZWebApp)-[:AZManagedIdentity]-(n)-[r]->(:AZSubscription) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all App Services with an MI that has permissions on Resource Groups",
+      "category": "Azure - App Service",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZWebApp)-[:AZManagedIdentity]-(n)-[r]->(:AZResourceGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all App Services with an MI that has permissions on individual resources",
+      "category": "Azure - App Service",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZWebApp)-[:AZManagedIdentity]-(n)-[r]->(node) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an Automation Account that has an MI with an Entra ID role",
+      "category": "Azure - Automation Account",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZAutomationAccount)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an Automation Account that has an MI with a Tier-0 application permission",
+      "category": "Azure - Automation Account",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZAutomationAccount)-[:AZManagedIdentity]-(n1)-[t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an Automation Account that has an MI with a Tier-1 application permission",
+      "category": "Azure - Automation Account",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZAutomationAccount)-[:AZManagedIdentity]-(n1)-[t1:]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an Automation Account that has an MI with a Tier-0 Azure role",
+      "category": "Azure - Automation Account",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZAutomationAccount)-[:AZManagedIdentity]-(n2)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a direct Contributor-like permission to an Automation Account",
+      "category": "Azure - Automation Account",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p=(node)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(:AZAutomationAccount) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Automation Accounts with an MI that has permissions on Management Groups",
+      "category": "Azure - Automation Account",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZAutomationAccount)-[:AZManagedIdentity]-(n)-[r]->(:AZManagementGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Automation Accounts with an MI that has permissions on Subscriptions",
+      "category": "Azure - Automation Account",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZAutomationAccount)-[:AZManagedIdentity]-(n)-[r]->(:AZSubscription) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Automation Accounts with an MI that has permissions on Resource Groups",
+      "category": "Azure - Automation Account",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZAutomationAccount)-[:AZManagedIdentity]-(n)-[r]->(:AZResourceGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Automation Accounts with an MI that has permissions on individual resources",
+      "category": "Azure - Automation Account",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZAutomationAccount)-[:AZManagedIdentity]-(n)-[r]->(node) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an ACR that has an MI with an Entra ID role",
+      "category": "Azure - Container Registry (ACR)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZContainerRegistry)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an ACR that has an MI with a Tier-0 application permission",
+      "category": "Azure - Container Registry (ACR)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZContainerRegistry)-[:AZManagedIdentity]-(n1)-[t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an ACR that has an MI with a Tier-1 application permission",
+      "category": "Azure - Container Registry (ACR)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZContainerRegistry)-[:AZManagedIdentity]-(n1)-[t1:]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an ACR that has an MI with a Tier-0 Azure role",
+      "category": "Azure - Container Registry (ACR)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZContainerRegistry)-[:AZManagedIdentity]-(n2)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all ACRs with an MI that has permissions on Management Groups",
+      "category": "Azure - Container Registry (ACR)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZContainerRegistry)-[:AZManagedIdentity]-(n)-[r]->(:AZManagementGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all ACRs with an MI that has permissions on Subscriptions",
+      "category": "Azure - Container Registry (ACR)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZContainerRegistry)-[:AZManagedIdentity]-(n)-[r]->(:AZSubscription) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all ACRs with an MI that has permissions on Resource Groups",
+      "category": "Azure - Container Registry (ACR)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZContainerRegistry)-[:AZManagedIdentity]-(n)-[r]->(:AZResourceGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all ACRs with an MI that has permissions on individual resources",
+      "category": "Azure - Container Registry (ACR)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZContainerRegistry)-[:AZManagedIdentity]-(n)-[r]->(node) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a Function App that has an MI with an Entra ID role",
+      "category": "Azure - Function App",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZFunctionApp)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a Function App that has an MI with a Tier-0 application permission",
+      "category": "Azure - Function App",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZFunctionApp)-[:AZManagedIdentity]-(n1)-[t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a Function App that has an MI with a Tier-1 application permission",
+      "category": "Azure - Function App",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZFunctionApp)-[:AZManagedIdentity]-(n1)-[t1:]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a Function App that has an MI with a Tier-0 Azure role",
+      "category": "Azure - Function App",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZFunctionApp)-[:AZManagedIdentity]-(n2)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Function Apps with an MI that has permissions on Management Groups",
+      "category": "Azure - Function App",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZFunctionApp)-[:AZManagedIdentity]-(n)-[r]->(:AZManagementGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Function Apps with an MI that has permissions on Subscriptions",
+      "category": "Azure - Function App",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZFunctionApp)-[:AZManagedIdentity]-(n)-[r]->(:AZSubscription) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Function Apps with an MI that has permissions on Resource Groups",
+      "category": "Azure - Function App",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZFunctionApp)-[:AZManagedIdentity]-(n)-[r]->(:AZResourceGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Function Apps with an MI that has permissions on individual resources",
+      "category": "Azure - Function App",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZFunctionApp)-[:AZManagedIdentity]-(n)-[r]->(node) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a Key Vault that has an MI with an Entra ID role",
+      "category": "Azure - Key Vault",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZKeyVault)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a Key Vault that has an MI with a Tier-0 application permission",
+      "category": "Azure - Key Vault",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZKeyVault)-[:AZManagedIdentity]-(n1)-[t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a Key Vault that has an MI with a Tier-1 application permission",
+      "category": "Azure - Key Vault",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZKeyVault)-[:AZManagedIdentity]-(n1)-[t1:]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a Key Vault that has an MI with a Tier-0 Azure role",
+      "category": "Azure - Key Vault",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZKeyVault)-[:AZManagedIdentity]-(n2)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Key Vaults with an MI that has permissions on Management Groups",
+      "category": "Azure - Key Vault",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZKeyVault)-[:AZManagedIdentity]-(n)-[r]->(:AZManagementGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Key Vaults with an MI that has permissions on Subscriptions",
+      "category": "Azure - Key Vault",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZKeyVault)-[:AZManagedIdentity]-(n)-[r]->(:AZSubscription) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Key Vaults with an MI that has permissions on Resource Groups",
+      "category": "Azure - Key Vault",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZKeyVault)-[:AZManagedIdentity]-(n)-[r]->(:AZResourceGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Key Vaults with an MI that has permissions on individual resources",
+      "category": "Azure - Key Vault",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZKeyVault)-[:AZManagedIdentity]-(n)-[r]->(node) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a Logic App that has an MI with an Entra ID role",
+      "category": "Azure - Logic App",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZLogicApp)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a Logic App that has an MI with a Tier-0 application permission",
+      "category": "Azure - Logic App",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZLogicApp)-[:AZManagedIdentity]-(n1)-[t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a Logic App that has an MI with a Tier-1 application permission",
+      "category": "Azure - Logic App",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZLogicApp)-[:AZManagedIdentity]-(n1)-[t1:]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a Logic App that has an MI with a Tier-0 Azure role",
+      "category": "Azure - Logic App",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZLogicApp)-[:AZManagedIdentity]-(n2)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Logic Apps with an MI that has permissions on Management Groups",
+      "category": "Azure - Logic App",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZLogicApp)-[:AZManagedIdentity]-(n)-[r]->(:AZManagementGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Logic Apps with an MI that has permissions on Subscriptions",
+      "category": "Azure - Logic App",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZLogicApp)-[:AZManagedIdentity]-(n)-[r]->(:AZSubscription) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Logic Apps with an MI that has permissions on Resource Groups",
+      "category": "Azure - Logic App",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZLogicApp)-[:AZManagedIdentity]-(n)-[r]->(:AZResourceGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all Logic Apps with an MI that has permissions on individual resources",
+      "category": "Azure - Logic App",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZLogicApp)-[:AZManagedIdentity]-(n)-[r]->(node) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a VM that has an MI with an Entra ID role",
+      "category": "Azure - Virtual Machine (VM)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZVM)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a VM that has an MI with a Tier-0 application permission",
+      "category": "Azure - Virtual Machine (VM)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZVM)-[:AZManagedIdentity]-(n1)-[t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a VM that has an MI with a Tier-1 application permission",
+      "category": "Azure - Virtual Machine (VM)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZVM)-[:AZManagedIdentity]-(n1)-[t1:]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a VM that has an MI with a Tier-0 Azure role",
+      "category": "Azure - Virtual Machine (VM)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZVM)-[:AZManagedIdentity]-(n2)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all VMs with an MI that has permissions on Management Groups",
+      "category": "Azure - Virtual Machine (VM)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZVM)-[:AZManagedIdentity]-(n)-[r]->(:AZManagementGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all VMs with an MI that has permissions on Subscriptions",
+      "category": "Azure - Virtual Machine (VM)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZVM)-[:AZManagedIdentity]-(n)-[r]->(:AZSubscription) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all VMs with an MI that has permissions on Resource Groups",
+      "category": "Azure - Virtual Machine (VM)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZVM)-[:AZManagedIdentity]-(n)-[r]->(:AZResourceGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all VMs with an MI that has permissions on individual resources",
+      "category": "Azure - Virtual Machine (VM)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZVM)-[:AZManagedIdentity]-(n)-[r]->(node) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a VMSS that has an MI with an Entra ID role",
+      "category": "Azure - Virtual Machine Scale Set (VMSS)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a VMSS that has an MI with a Tier-0 application permission",
+      "category": "Azure - Virtual Machine Scale Set (VMSS)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n1)-[t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a VMSS that has an MI with a Tier-1 application permission",
+      "category": "Azure - Virtual Machine Scale Set (VMSS)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n1)-[t1:]->(n2) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a VMSS that has an MI with a Tier-0 Azure role",
+      "category": "Azure - Virtual Machine Scale Set (VMSS)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim'))) MATCH p=(node)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n2)-[t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all VMSS with an MI that has permissions on Management Groups",
+      "category": "Azure - Virtual Machine Scale Set (VMSS)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZVMScaleSet)-[:AZManagedIdentity]-(n)-[r]->(:AZManagementGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all VMSS with an MI that has permissions on Subscriptions",
+      "category": "Azure - Virtual Machine Scale Set (VMSS)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZVMScaleSet)-[:AZManagedIdentity]-(n)-[r]->(:AZSubscription) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all VMSS with an MI that has permissions on Resource Groups",
+      "category": "Azure - Virtual Machine Scale Set (VMSS)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH p = (:AZVMScaleSet)-[:AZManagedIdentity]-(n)-[r]->(:AZResourceGroup) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all VMSS with an MI that has permissions on individual resources",
+      "category": "Azure - Virtual Machine Scale Set (VMSS)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (node) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH p = (:AZVMScaleSet)-[:AZManagedIdentity]-(n)-[r]->(node) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    }
+  ]
 }
