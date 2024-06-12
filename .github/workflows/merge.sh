@@ -52,23 +52,25 @@ azure_roles_tier_0="$(cat $tier_file_azure_roles | jq -r '.[] | select(.tier == 
 placeholder_built_in_service_principals='_VAR_built-in-service-principals'
 placeholder_all_security_principals='_VAR_all-security-principals'
 placeholder_all_security_principals_excluding_built_in='_VAR_all-security-principals-excluding-built-in'
+placeholder_service_principals_excluding_built_in='_VAR_service-principals-excluding-built-in'
+placeholder_managed_identities_excluding_built_in='_VAR_managed-identities-excluding-built-in'
 placeholder_all_azure_resources='_VAR_all-az-resources'
-placeholder_all_high_level_azure_scopes='_VAR_all-high-level-az-scopes'
+placeholder_high_level_azure_scopes='_VAR_high-level-az-scopes'
 placeholder_all_azure_scopes='_VAR_all-az-scopes'
 
 # Helper file
 helper_dir="${repo_root_dir}/variables/"
 helper_file="${helper_dir}helpers.json"
 
-# MATCH (node) WHERE (node:AZUser or node:AZGroup or (node:AZServicePrincipal AND NOT (node.displayname STARTS WITH 'policy' OR node.displayname STARTS WITH 'pim')))
-
 # Helper content
 helper_built_in_service_principals="$(cat $helper_file | jq '.[] | select(.variableName == '\"$placeholder_built_in_service_principals\"') | .components[]' | sed "s/\"/'/g" | sed -n ':a;N;${s/\n/ or node.displayname starts with /g;p};ba')"
 helper_all_security_principals="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_all_security_principals\"') | .components[]' | sed -n ':a;N;${s/\n/ or node:/g;p};ba')"
 helper_all_security_principals_excluding_built_in="$(echo $helper_all_security_principals | sed "s/ node:AZServicePrincipal/ \(node:AZServicePrincipal AND NOT \(node.displayname STARTS WITH $helper_built_in_service_principals\)\)/")"
+helper_service_principals_excluding_built_in=":AZServicePrincipal {serviceprincipaltype: 'Application'} AND NOT (node.displayname STARTS WITH $helper_built_in_service_principals)"
+helper_service_managed_identities_excluding_built_in=":AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'} AND NOT (node.displayname STARTS WITH $helper_built_in_service_principals)"
 helper_all_azure_resources="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_all_azure_resources\"') | .components[]' | sed -n ':a;N;${s/\n/ or node:/g;p};ba')"
-helper_all_high_level_azure_scopes="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_all_high_level_azure_scopes\"') | .components[]' | sed -n ':a;N;${s/\n/ or node:/g;p};ba')"
-helper_all_scopes="$(echo ${helper_all_high_level_azure_scopes} or node:${helper_all_azure_resources})"
+helper_high_level_azure_scopes="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_high_level_azure_scopes\"') | .components[]' | sed -n ':a;N;${s/\n/ or node:/g;p};ba')"
+helper_all_scopes="$(echo ${helper_high_level_azure_scopes} or node:${helper_all_azure_resources})"
 
 
 #-- Replace and merge content
@@ -79,9 +81,11 @@ cat $merged_file \
 | sed "s/${placeholder_entra_app_permissions_tier_1}/${entra_app_permissions_tier_1}/" \
 | sed "s/${placeholder_azure_roles_tier_0}/${azure_roles_tier_0}/" \
 | sed "s/${placeholder_all_security_principals_excluding_built_in}/${helper_all_security_principals_excluding_built_in}/" \
+| sed "s/${placeholder_service_principals_excluding_built_in}/${helper_service_principals_excluding_built_in}/" \
+| sed "s/${placeholder_managed_identities_excluding_built_in}/${helper_service_managed_identities_excluding_built_in}/" \
 | sed "s/${placeholder_all_security_principals}/${helper_all_security_principals}/" \
 | sed "s/${placeholder_all_azure_resources}/${helper_all_azure_resources}/" \
-| sed "s/${placeholder_all_high_level_azure_scopes}/${helper_all_high_level_azure_scopes}/" \
+| sed "s/${placeholder_high_level_azure_scopes}/${helper_high_level_azure_scopes}/" \
 | sed "s/${placeholder_all_azure_scopes}/${helper_all_scopes}/" \
 > $merged_file
 
