@@ -11,7 +11,7 @@
 }
 {
     "name": "Find all principals with a path to a Function App that has an MI with a Tier-0 application permission",
-    "category": "Azure - Function App",
+    "category": "Azure - Function App", 
     "queryList": [
         {
             "final": true,
