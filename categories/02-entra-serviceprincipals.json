@@ -8,8 +8,8 @@
             "allowCollapse": true
         }
     ]
-  }
-  {
+}
+{
     "name": "Find all SPs with a Tier-0 application permission",
     "category": "Entra ID - Service Principals",
     "queryList": [
@@ -19,8 +19,8 @@
             "allowCollapse": true
         }
     ]
-  }
-  {
+}
+{
     "name": "Find all SPs with a Tier-1 application permission",
     "category": "Entra ID - Service Principals",
     "queryList": [
@@ -30,8 +30,8 @@
             "allowCollapse": true
         }
     ]
-  }
-  {
+}
+{
     "name": "Find all principals with an abusable permission on MS Graph",
     "category": "Entra ID - Service Principals",
     "queryList": [
@@ -41,8 +41,8 @@
             "allowCollapse": true
         }
     ]
-  }
-  {
+}
+{
     "name": "Find all SPs with Azure permissions on Management Groups",
     "category": "Azure - Service Principals",
     "queryList": [
@@ -52,8 +52,8 @@
         "allowCollapse": true
       }
     ]
-  }
-  {
+}
+{
     "name": "Find all SPs with Azure permissions on Subscriptions",
     "category": "Azure - Service Principals",
     "queryList": [
@@ -63,8 +63,8 @@
         "allowCollapse": true
       }
     ]
-  }
-  {
+}
+{
       "name": "Find all SPs with Azure permissions on Resource Groups",
       "category": "Azure - Service Principals",
       "queryList": [
@@ -74,8 +74,8 @@
               "allowCollapse": true
           }
       ]
-  }
-  {
+}
+{
       "name": "Find all SPs with Azure permissions on individual resources",
       "category": "Azure - Service Principals",
       "queryList": [
@@ -85,4 +85,15 @@
               "allowCollapse": true
           }
       ]
-  }
+}
+{
+    "name": "Find all SPs with access to a Key Vault",
+    "category": "Azure - Service Principals",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (node) WHERE (node:AZServicePrincipal AND node.serviceprincipaltype = 'Application') MATCH p = (node)-[r]->(:AZKeyVault) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
