@@ -39,10 +39,14 @@ tier_file_entra_roles="${tiering_dir}tiering-entra-roles.json"
 tier_file_entra_app_permissions="${tiering_dir}tiering-entra-application-permissions.json" 
 tier_file_azure_roles="${tiering_dir}tiering-azure-roles.json"
 
-# Tiering content
+# Tiering content with associated keys
+# entra_roles_t0
 entra_roles_tier_0="$(cat $tier_file_entra_roles | jq -r '.[] | select(.tier == "0" and .edgeName != "") | .edgeName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
+# entra_app_permissions_t0
 entra_app_permissions_tier_0="$(cat $tier_file_entra_app_permissions | jq -r '.[] | select(.tier == "0" and .edgeName != "") | .edgeName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
+# entra_app_permissions_t1
 entra_app_permissions_tier_1="$(cat $tier_file_entra_app_permissions | jq -r '.[] | select(.tier == "1" and .edgeName != "") | .edgeName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
+# azure_roles_t0
 azure_roles_tier_0="$(cat $tier_file_azure_roles | jq -r '.[] | select(.tier == "0" and .edgeName != "") | .edgeName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
 
 
@@ -62,15 +66,23 @@ placeholder_all_azure_scopes='_VAR_all-az-scopes'
 helper_dir="${repo_root_dir}/variables/"
 helper_file="${helper_dir}helpers.json"
 
-# Helper content
-helper_built_in_service_principals="$(cat $helper_file | jq '.[] | select(.variableName == '\"$placeholder_built_in_service_principals\"') | .components[]' | sed "s/\"/'/g" | sed -n ':a;N;${s/\n/ or node.displayname starts with /g;p};ba')"
-helper_all_security_principals="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_all_security_principals\"') | .components[]' | sed -n ':a;N;${s/\n/ or node:/g;p};ba')"
-helper_all_security_principals_excluding_built_in="$(echo $helper_all_security_principals | sed "s/ node:AZServicePrincipal/ \(node:AZServicePrincipal AND NOT \(node.displayname STARTS WITH $helper_built_in_service_principals\)\)/")"
-helper_service_principals_excluding_built_in="AZServicePrincipal AND node.serviceprincipaltype = 'Application' AND NOT (node.displayname STARTS WITH $helper_built_in_service_principals)"
-helper_managed_identities_excluding_built_in="AZServicePrincipal AND node.serviceprincipaltype = 'ManagedIdentity' AND NOT (node.displayname STARTS WITH $helper_built_in_service_principals)"
-helper_all_azure_resources="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_all_azure_resources\"') | .components[]' | sed -n ':a;N;${s/\n/ or node:/g;p};ba')"
-helper_high_level_azure_scopes="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_high_level_azure_scopes\"') | .components[]' | sed -n ':a;N;${s/\n/ or node:/g;p};ba')"
-helper_all_scopes="$(echo ${helper_high_level_azure_scopes} or node:${helper_all_azure_resources})"
+# Helper content with associated keys
+# builtin_sps
+helper_built_in_service_principals="$(cat $helper_file | jq '.[] | select(.variableName == '\"$placeholder_built_in_service_principals\"') | .components[]' | sed "s/\"/'/g" | sed -n ':a;N;${s/\n/ or builtin_sps.displayname starts with /g;p};ba')"
+# all_principals
+helper_all_security_principals="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_all_security_principals\"') | .components[]' | sed -n ':a;N;${s/\n/ or all_principals:/g;p};ba')"
+# all_principals_excluding_builtin
+helper_all_security_principals_excluding_built_in="$(echo $helper_all_security_principals | sed "s/ all_principals_excluding_builtin:AZServicePrincipal/ \(all_principals_excluding_builtin:AZServicePrincipal AND NOT \(all_principals_excluding_builtin.displayname STARTS WITH $helper_built_in_service_principals\)\)/")"
+# sps_excluding_builtin
+helper_service_principals_excluding_built_in="AZServicePrincipal AND sps_excluding_builtin.serviceprincipaltype = 'Application' AND NOT (sps_excluding_builtin.displayname STARTS WITH $helper_built_in_service_principals)"
+# mis_excluding_builtin
+helper_managed_identities_excluding_built_in="AZServicePrincipal AND mis_excluding_builtin.serviceprincipaltype = 'ManagedIdentity' AND NOT (mis_excluding_builtin.displayname STARTS WITH $helper_built_in_service_principals)"
+# all_az_resources
+helper_all_azure_resources="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_all_azure_resources\"') | .components[]' | sed -n ':a;N;${s/\n/ or all_az_resources:/g;p};ba')"
+# highlevel_az_scopes
+helper_high_level_azure_scopes="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_high_level_azure_scopes\"') | .components[]' | sed -n ':a;N;${s/\n/ or highlevel_az_scopes:/g;p};ba')"
+# all_az_scopes
+helper_all_scopes="$(echo ${helper_high_level_azure_scopes} or all_az_scopes:${helper_all_azure_resources})"
 
 
 #-- Replace and merge content

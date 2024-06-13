@@ -4,7 +4,7 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (node) WHERE (node:_VAR_service-principals-excluding-built-in) MATCH p = (node)-[:AZHasRole]->(:AZRole) RETURN p",
+            "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:_VAR_service-principals-excluding-built-in) MATCH p = (sps_excluding_builtin)-[:AZHasRole]->(:AZRole) RETURN p",
             "allowCollapse": true
         }
     ]
@@ -15,7 +15,7 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (node) WHERE (node:_VAR_service-principals-excluding-built-in) MATCH p = (node)-[t0:_VAR_all-entra-app-permissions-in-t0]->(n) RETURN p",
+            "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:_VAR_service-principals-excluding-built-in) MATCH p = (sps_excluding_builtin)-[entra_app_permissions_t0:_VAR_all-entra-app-permissions-in-t0]->(n) RETURN p",
             "allowCollapse": true
         }
     ]
@@ -26,7 +26,7 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (node) WHERE (node:_VAR_service-principals-excluding-built-in) MATCH p = (node)-[t1:_VAR_all-entra-app-permissions-in-t1]->(n) RETURN p",
+            "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:_VAR_service-principals-excluding-built-in) MATCH p = (sps_excluding_builtin)-[entra_app_permissions_t1:_VAR_all-entra-app-permissions-in-t1]->(n) RETURN p",
             "allowCollapse": true
         }
     ]
@@ -48,7 +48,7 @@
     "queryList": [
       {
         "final": true,
-        "query": "MATCH (node) WHERE (node:_VAR_service-principals-excluding-built-in) MATCH p = (node)-[r]->(:AZManagementGroup) RETURN p",
+        "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:_VAR_service-principals-excluding-built-in) MATCH p = (sps_excluding_builtin)-[r]->(:AZManagementGroup) RETURN p",
         "allowCollapse": true
       }
     ]
@@ -59,7 +59,7 @@
     "queryList": [
       {
         "final": true,
-        "query": "MATCH (node) WHERE (node:_VAR_service-principals-excluding-built-in) MATCH p = (node)-[r]->(:AZSubscription) RETURN p",
+        "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:_VAR_service-principals-excluding-built-in) MATCH p = (sps_excluding_builtin)-[r]->(:AZSubscription) RETURN p",
         "allowCollapse": true
       }
     ]
@@ -70,7 +70,7 @@
       "queryList": [
           {
               "final": true,
-              "query": "MATCH (node) WHERE (node:_VAR_service-principals-excluding-built-in) MATCH p = (node)-[r]->(:AZResourceGroup) RETURN p",
+              "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:_VAR_service-principals-excluding-built-in) MATCH p = (sps_excluding_builtin)-[r]->(:AZResourceGroup) RETURN p",
               "allowCollapse": true
           }
       ]
@@ -81,7 +81,7 @@
       "queryList": [
           {
               "final": true,
-              "query": "MATCH (node) WHERE (node:_VAR_all-az-resources) MATCH (node) WHERE (node:_VAR_service-principals-excluding-built-in) MATCH p = (node)-[r]->(node) RETURN p",
+              "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:_VAR_service-principals-excluding-built-in) MATCH (all_az_resources) WHERE (all_az_resources:_VAR_all-az-resources) MATCH p = (sps_excluding_builtin)-[r]->(all_az_resources) RETURN p",
               "allowCollapse": true
           }
       ]

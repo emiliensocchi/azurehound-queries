@@ -4,7 +4,7 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (node) WHERE (node:_VAR_all-az-scopes) MATCH p = (:AZUser)-[r]->(node) RETURN p"
+            "query": "MATCH (all_az_scopes) WHERE (all_az_scopes:_VAR_all-az-scopes) MATCH p = (:AZUser)-[r]->(all_az_scopes) RETURN p"
         }
     ]
 }
@@ -14,7 +14,7 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (node) WHERE (node:_VAR_all-az-scopes) MATCH p = (:AZGroup)-[r]->(node) RETURN p"
+            "query": "MATCH (all_az_scopes) WHERE (all_az_scopes:_VAR_all-az-scopes) MATCH p = (:AZGroup)-[r]->(all_az_scopes) RETURN p"
         }
     ]
 }
@@ -24,7 +24,7 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (g) WHERE EXISTS(g.membershipRule) MATCH (node) WHERE (node:_VAR_all-az-scopes) MATCH p = (g)-[r]->(node) RETURN p"
+            "query": "MATCH (g) WHERE EXISTS(g.membershipRule) MATCH (all_az_scopes) WHERE (all_az_scopes:_VAR_all-az-scopes) MATCH p = (g)-[r]->(all_az_scopes) RETURN p"
         }
     ]
 }
