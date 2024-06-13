@@ -87,13 +87,14 @@
       ]
 }
 {
-    "name": "Find all SPs with access to a Key Vault",
+    "name": "Find all SPs with access to a Key Vault's data plane",
     "category": "Azure - Service Principals",
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (node) WHERE (node:AZServicePrincipal AND node.serviceprincipaltype = 'Application') MATCH p = (node)-[r]->(:AZKeyVault) RETURN p",
+            "query": "MATCH (node) WHERE (node:AZServicePrincipal AND node.serviceprincipaltype = 'Application') MATCH p = (node)-[r:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
             "allowCollapse": true
         }
     ]
 }
+
