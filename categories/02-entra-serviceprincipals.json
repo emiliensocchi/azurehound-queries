@@ -91,7 +91,7 @@
     "category": "Azure - Service Principals",
     "queryList": [
         {
-            "final": true,
+            "final": true, 
             "query": "MATCH (node) WHERE (node:AZServicePrincipal AND node.serviceprincipaltype = 'Application') MATCH p = (node)-[r:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
             "allowCollapse": true
         }
