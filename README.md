@@ -1,3 +1,3 @@
-# AzureHound Cipher queries
+# AzureHound Queries
 
-Collection of cipher queries for [AzureHound](https://github.com/BloodHoundAD/AzureHound).
+Collection of BloodHound queries for Azure.
