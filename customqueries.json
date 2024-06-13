@@ -96,7 +96,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (node) WHERE (node:_VAR_service_principals-excluding-built-in) MATCH p = (node)-[:AZHasRole]->(:AZRole) RETURN p",
+          "query": "MATCH (node) WHERE (node:AZServicePrincipal AND node.serviceprincipaltype = 'Application' AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim')) MATCH p = (node)-[:AZHasRole]->(:AZRole) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -107,7 +107,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (node) WHERE (node:_VAR_service_principals-excluding-built-in) MATCH p = (node)-[t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n) RETURN p",
+          "query": "MATCH (node) WHERE (node:AZServicePrincipal AND node.serviceprincipaltype = 'Application' AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim')) MATCH p = (node)-[t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -118,7 +118,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (node) WHERE (node:_VAR_service_principals-excluding-built-in) MATCH p = (node)-[t1:]->(n) RETURN p",
+          "query": "MATCH (node) WHERE (node:AZServicePrincipal AND node.serviceprincipaltype = 'Application' AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim')) MATCH p = (node)-[t1:]->(n) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -140,7 +140,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (node) WHERE (node:_VAR_service_principals-excluding-built-in) MATCH p = (node)-[r]->(:AZManagementGroup) RETURN p",
+          "query": "MATCH (node) WHERE (node:AZServicePrincipal AND node.serviceprincipaltype = 'Application' AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim')) MATCH p = (node)-[r]->(:AZManagementGroup) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -151,7 +151,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (node) WHERE (node:_VAR_service_principals-excluding-built-in) MATCH p = (node)-[r]->(:AZSubscription) RETURN p",
+          "query": "MATCH (node) WHERE (node:AZServicePrincipal AND node.serviceprincipaltype = 'Application' AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim')) MATCH p = (node)-[r]->(:AZSubscription) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -162,7 +162,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (node) WHERE (node:_VAR_service_principals-excluding-built-in) MATCH p = (node)-[r]->(:AZResourceGroup) RETURN p",
+          "query": "MATCH (node) WHERE (node:AZServicePrincipal AND node.serviceprincipaltype = 'Application' AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim')) MATCH p = (node)-[r]->(:AZResourceGroup) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -173,7 +173,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (node) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH (node) WHERE (node:_VAR_service_principals-excluding-built-in) MATCH p = (node)-[r]->(node) RETURN p",
+          "query": "MATCH (node) WHERE (node:AZVM or node:AZAutomationAccount or node:AZContainerRegistry or node:AZFunctionApp or node:AZLogicApp or node:AZManagedCluster or node:AZVMScaleSet or node:AZWebApp or node:AZKeyVault) MATCH (node) WHERE (node:AZServicePrincipal AND node.serviceprincipaltype = 'Application' AND NOT (node.displayname STARTS WITH 'policy-' or node.displayname starts with 'pim')) MATCH p = (node)-[r]->(node) RETURN p",
           "allowCollapse": true
         }
       ]
