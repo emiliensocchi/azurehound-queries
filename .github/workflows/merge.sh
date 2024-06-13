@@ -72,7 +72,7 @@ helper_built_in_service_principals="$(cat $helper_file | jq '.[] | select(.varia
 # all_principals
 helper_all_security_principals="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_all_security_principals\"') | .components[]' | sed -n ':a;N;${s/\n/ or all_principals:/g;p};ba')"
 # all_principals_excluding_builtin
-helper_all_security_principals_excluding_built_in="$(echo $helper_all_security_principals | sed "s/ all_principals_excluding_builtin:AZServicePrincipal/ \(all_principals_excluding_builtin:AZServicePrincipal AND NOT \(all_principals_excluding_builtin.displayname STARTS WITH $helper_built_in_service_principals\)\)/")"
+helper_all_security_principals_excluding_built_in="$(echo $helper_all_security_principals | sed "s/all_principals/all_principals_excluding_builtin/g" | sed "s/ all_principals_excluding_builtin:AZServicePrincipal/ \(all_principals_excluding_builtin:AZServicePrincipal AND NOT \(all_principals_excluding_builtin.displayname STARTS WITH $helper_built_in_service_principals\)\)/")"
 # sps_excluding_builtin
 helper_service_principals_excluding_built_in="AZServicePrincipal AND sps_excluding_builtin.serviceprincipaltype = 'Application' AND NOT (sps_excluding_builtin.displayname STARTS WITH $helper_built_in_service_principals)"
 # mis_excluding_builtin
@@ -82,7 +82,7 @@ helper_all_azure_resources="$(cat $helper_file | jq -r '.[] | select(.variableNa
 # highlevel_az_scopes
 helper_high_level_azure_scopes="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_high_level_azure_scopes\"') | .components[]' | sed -n ':a;N;${s/\n/ or highlevel_az_scopes:/g;p};ba')"
 # all_az_scopes
-helper_all_scopes="$(echo ${helper_high_level_azure_scopes} or all_az_scopes:${helper_all_azure_resources})"
+helper_all_scopes="$(echo $helper_high_level_azure_scopes | sed "s/highlevel_az_scopes/all_az_scopes/g") or all_az_scopes:${helper_all_azure_resources})"
 
 
 #-- Replace and merge content
