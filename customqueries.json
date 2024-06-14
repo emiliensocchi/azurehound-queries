@@ -314,7 +314,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (highlevel_az_scopes) WHERE (highlevel_az_scopes:AZManagementGroup or highlevel_az_scopes:AZSubscription or highlevel_az_scopes:AZResourceGroup) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*') MATCH p = (non_admin_users)-[r]->(highlevel_az_scopes) RETURN p"
+          "query": "MATCH (highlevel_az_scopes) WHERE (highlevel_az_scopes:AZManagementGroup or highlevel_az_scopes:AZSubscription or highlevel_az_scopes:AZResourceGroup) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*' AND NOT non_admin_users.displayname =~ '(?i).*emergency.*') MATCH p = (non_admin_users)-[r]->(highlevel_az_scopes) RETURN p"
         }
       ]
     },
@@ -324,7 +324,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_az_resources) WHERE (all_az_resources:AZVM or all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp or all_az_resources:AZKeyVault) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*') MATCH p = (non_admin_users)-[r]->(all_az_resources) RETURN p"
+          "query": "MATCH (all_az_resources) WHERE (all_az_resources:AZVM or all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp or all_az_resources:AZKeyVault) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*' AND NOT non_admin_users.displayname =~ '(?i).*emergency.*') MATCH p = (non_admin_users)-[r]->(all_az_resources) RETURN p"
         }
       ]
     },
