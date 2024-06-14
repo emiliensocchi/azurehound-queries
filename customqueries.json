@@ -314,7 +314,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_az_scopes) WHERE (all_az_scopes:AZManagementGroup or all_az_scopes:AZSubscription or all_az_scopes:AZResourceGroup or all_az_scopes:AZVM or all_az_scopes:AZAutomationAccount or all_az_scopes:AZContainerRegistry or all_az_scopes:AZFunctionApp or all_az_scopes:AZLogicApp or all_az_scopes:AZManagedCluster or all_az_scopes:AZVMScaleSet or all_az_scopes:AZWebApp or all_az_scopes:AZKeyVault) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname CONTAINS 'admin') MATCH p = (non_admin_users)-[r]->(all_az_scopes) RETURN p"
+          "query": "MATCH (all_az_scopes) WHERE (all_az_scopes:AZManagementGroup or all_az_scopes:AZSubscription or all_az_scopes:AZResourceGroup or all_az_scopes:AZVM or all_az_scopes:AZAutomationAccount or all_az_scopes:AZContainerRegistry or all_az_scopes:AZFunctionApp or all_az_scopes:AZLogicApp or all_az_scopes:AZManagedCluster or all_az_scopes:AZVMScaleSet or all_az_scopes:AZWebApp or all_az_scopes:AZKeyVault) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*') MATCH p = (non_admin_users)-[r]->(all_az_scopes) RETURN p"
         }
       ]
     },
