@@ -23,15 +23,15 @@
         "variableName": "_VAR_all-az-resources",
         "componentType": "node",
         "components": [
-            "AZVM",
             "AZAutomationAccount",
             "AZContainerRegistry",
             "AZFunctionApp",
+            "AZKeyVault",
             "AZLogicApp",
             "AZManagedCluster",
             "AZVMScaleSet",
             "AZWebApp",
-            "AZKeyVault"
+            "AZVM"
         ]
     },
     {
