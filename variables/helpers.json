@@ -29,9 +29,9 @@
             "AZKeyVault",
             "AZLogicApp",
             "AZManagedCluster",
+            "AZVM",
             "AZVMScaleSet",
-            "AZWebApp",
-            "AZVM"
+            "AZWebApp"
         ]
     },
     {
