@@ -96,7 +96,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:AZServicePrincipal AND sps_excluding_builtin.serviceprincipaltype = 'Application' AND NOT (sps_excluding_builtin.displayname STARTS WITH 'policy-' or sps_excluding_builtin.displayname starts with 'pim')) MATCH p = (sps_excluding_builtin)-[:AZHasRole]->(:AZRole) RETURN p",
+          "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:AZServicePrincipal AND sps_excluding_builtin.serviceprincipaltype = 'Application' AND NOT (sps_excluding_builtin.displayname STARTS WITH 'pim' or sps_excluding_builtin.displayname starts with 'policy-')) MATCH p = (sps_excluding_builtin)-[:AZHasRole]->(:AZRole) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -107,7 +107,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:AZServicePrincipal AND sps_excluding_builtin.serviceprincipaltype = 'Application' AND NOT (sps_excluding_builtin.displayname STARTS WITH 'policy-' or sps_excluding_builtin.displayname starts with 'pim')) MATCH p = (sps_excluding_builtin)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n) RETURN p",
+          "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:AZServicePrincipal AND sps_excluding_builtin.serviceprincipaltype = 'Application' AND NOT (sps_excluding_builtin.displayname STARTS WITH 'pim' or sps_excluding_builtin.displayname starts with 'policy-')) MATCH p = (sps_excluding_builtin)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -118,7 +118,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:AZServicePrincipal AND sps_excluding_builtin.serviceprincipaltype = 'Application' AND NOT (sps_excluding_builtin.displayname STARTS WITH 'policy-' or sps_excluding_builtin.displayname starts with 'pim')) MATCH p = (sps_excluding_builtin)-[entra_app_permissions_t1:]->(n) RETURN p",
+          "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:AZServicePrincipal AND sps_excluding_builtin.serviceprincipaltype = 'Application' AND NOT (sps_excluding_builtin.displayname STARTS WITH 'pim' or sps_excluding_builtin.displayname starts with 'policy-')) MATCH p = (sps_excluding_builtin)-[entra_app_permissions_t1:]->(n) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -140,7 +140,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:AZServicePrincipal AND sps_excluding_builtin.serviceprincipaltype = 'Application' AND NOT (sps_excluding_builtin.displayname STARTS WITH 'policy-' or sps_excluding_builtin.displayname starts with 'pim')) MATCH p = (sps_excluding_builtin)-[r]->(:AZManagementGroup) RETURN p",
+          "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:AZServicePrincipal AND sps_excluding_builtin.serviceprincipaltype = 'Application' AND NOT (sps_excluding_builtin.displayname STARTS WITH 'pim' or sps_excluding_builtin.displayname starts with 'policy-')) MATCH p = (sps_excluding_builtin)-[r]->(:AZManagementGroup) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -151,7 +151,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:AZServicePrincipal AND sps_excluding_builtin.serviceprincipaltype = 'Application' AND NOT (sps_excluding_builtin.displayname STARTS WITH 'policy-' or sps_excluding_builtin.displayname starts with 'pim')) MATCH p = (sps_excluding_builtin)-[r]->(:AZSubscription) RETURN p",
+          "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:AZServicePrincipal AND sps_excluding_builtin.serviceprincipaltype = 'Application' AND NOT (sps_excluding_builtin.displayname STARTS WITH 'pim' or sps_excluding_builtin.displayname starts with 'policy-')) MATCH p = (sps_excluding_builtin)-[r]->(:AZSubscription) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -162,7 +162,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:AZServicePrincipal AND sps_excluding_builtin.serviceprincipaltype = 'Application' AND NOT (sps_excluding_builtin.displayname STARTS WITH 'policy-' or sps_excluding_builtin.displayname starts with 'pim')) MATCH p = (sps_excluding_builtin)-[r]->(:AZResourceGroup) RETURN p",
+          "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:AZServicePrincipal AND sps_excluding_builtin.serviceprincipaltype = 'Application' AND NOT (sps_excluding_builtin.displayname STARTS WITH 'pim' or sps_excluding_builtin.displayname starts with 'policy-')) MATCH p = (sps_excluding_builtin)-[r]->(:AZResourceGroup) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -173,7 +173,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:AZServicePrincipal AND sps_excluding_builtin.serviceprincipaltype = 'Application' AND NOT (sps_excluding_builtin.displayname STARTS WITH 'policy-' or sps_excluding_builtin.displayname starts with 'pim')) MATCH (all_az_resources) WHERE (all_az_resources:AZVM or all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp or all_az_resources:AZKeyVault) MATCH p = (sps_excluding_builtin)-[r]->(all_az_resources) RETURN p",
+          "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:AZServicePrincipal AND sps_excluding_builtin.serviceprincipaltype = 'Application' AND NOT (sps_excluding_builtin.displayname STARTS WITH 'pim' or sps_excluding_builtin.displayname starts with 'policy-')) MATCH (all_az_resources) WHERE (all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZKeyVault or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVM or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp) MATCH p = (sps_excluding_builtin)-[r]->(all_az_resources) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -304,7 +304,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_az_scopes) WHERE (all_az_scopes:AZManagementGroup or all_az_scopes:AZSubscription or all_az_scopes:AZResourceGroup or all_az_scopes:AZVM or all_az_scopes:AZAutomationAccount or all_az_scopes:AZContainerRegistry or all_az_scopes:AZFunctionApp or all_az_scopes:AZLogicApp or all_az_scopes:AZManagedCluster or all_az_scopes:AZVMScaleSet or all_az_scopes:AZWebApp or all_az_scopes:AZKeyVault) MATCH p = (:AZUser)-[r]->(all_az_scopes) RETURN p"
+          "query": "MATCH (all_az_scopes) WHERE (all_az_scopes:AZManagementGroup or all_az_scopes:AZResourceGroup or all_az_scopes:AZSubscription or all_az_scopes:AZAutomationAccount or all_az_scopes:AZContainerRegistry or all_az_scopes:AZFunctionApp or all_az_scopes:AZKeyVault or all_az_scopes:AZLogicApp or all_az_scopes:AZManagedCluster or all_az_scopes:AZVM or all_az_scopes:AZVMScaleSet or all_az_scopes:AZWebApp) MATCH p = (:AZUser)-[r]->(all_az_scopes) RETURN p"
         }
       ]
     },
@@ -314,17 +314,17 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (highlevel_az_scopes) WHERE (highlevel_az_scopes:AZManagementGroup or highlevel_az_scopes:AZSubscription or highlevel_az_scopes:AZResourceGroup) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*' AND NOT non_admin_users.displayname =~ '(?i).*emergency.*') MATCH p = (non_admin_users)-[r]->(highlevel_az_scopes) RETURN p"
+          "query": "MATCH (highlevel_az_scopes) WHERE (highlevel_az_scopes:AZManagementGroup or highlevel_az_scopes:AZResourceGroup or highlevel_az_scopes:AZSubscription) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*' AND NOT non_admin_users.displayname =~ '(?i).*emergency.*') MATCH p = (non_admin_users)-[r]->(highlevel_az_scopes) RETURN p"
         }
       ]
     },
     {
-      "name": "Find all non-admin users with an active Azure role on an individual resource",
+      "name": "Find all non-admin users with an active Azure role on an individual resource that is not a VM",
       "category": "Azure - General",
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_az_resources) WHERE (all_az_resources:AZVM or all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp or all_az_resources:AZKeyVault) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*' AND NOT non_admin_users.displayname =~ '(?i).*emergency.*') MATCH p = (non_admin_users)-[r]->(all_az_resources) RETURN p"
+          "query": "MATCH (all_az_resources_excluding_vms) WHERE (all_az_resources_excluding_vms:AZAutomationAccount or all_az_resources_excluding_vms:AZContainerRegistry or all_az_resources_excluding_vms:AZFunctionApp or all_az_resources_excluding_vms:AZLogicApp or all_az_resources_excluding_vms:AZManagedCluster or all_az_resources_excluding_vms:AZVM or all_az_resources_excluding_vms:AZVMScaleSet or all_az_resources_excluding_vms:AZWebApp) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*' AND NOT non_admin_users.displayname =~ '(?i).*emergency.*') MATCH p = (non_admin_users)-[r]->(all_az_resources_excluding_vms) RETURN p"
         }
       ]
     },
@@ -334,7 +334,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_az_scopes) WHERE (all_az_scopes:AZManagementGroup or all_az_scopes:AZSubscription or all_az_scopes:AZResourceGroup or all_az_scopes:AZVM or all_az_scopes:AZAutomationAccount or all_az_scopes:AZContainerRegistry or all_az_scopes:AZFunctionApp or all_az_scopes:AZLogicApp or all_az_scopes:AZManagedCluster or all_az_scopes:AZVMScaleSet or all_az_scopes:AZWebApp or all_az_scopes:AZKeyVault) MATCH p = (:AZGroup)-[r]->(all_az_scopes) RETURN p"
+          "query": "MATCH (all_az_scopes) WHERE (all_az_scopes:AZManagementGroup or all_az_scopes:AZResourceGroup or all_az_scopes:AZSubscription or all_az_scopes:AZAutomationAccount or all_az_scopes:AZContainerRegistry or all_az_scopes:AZFunctionApp or all_az_scopes:AZKeyVault or all_az_scopes:AZLogicApp or all_az_scopes:AZManagedCluster or all_az_scopes:AZVM or all_az_scopes:AZVMScaleSet or all_az_scopes:AZWebApp) MATCH p = (:AZGroup)-[r]->(all_az_scopes) RETURN p"
         }
       ]
     },
@@ -344,7 +344,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (g) WHERE EXISTS(g.membershipRule) MATCH (all_az_scopes) WHERE (all_az_scopes:AZManagementGroup or all_az_scopes:AZSubscription or all_az_scopes:AZResourceGroup or all_az_scopes:AZVM or all_az_scopes:AZAutomationAccount or all_az_scopes:AZContainerRegistry or all_az_scopes:AZFunctionApp or all_az_scopes:AZLogicApp or all_az_scopes:AZManagedCluster or all_az_scopes:AZVMScaleSet or all_az_scopes:AZWebApp or all_az_scopes:AZKeyVault) MATCH p = (g)-[r]->(all_az_scopes) RETURN p"
+          "query": "MATCH (g) WHERE EXISTS(g.membershipRule) MATCH (all_az_scopes) WHERE (all_az_scopes:AZManagementGroup or all_az_scopes:AZResourceGroup or all_az_scopes:AZSubscription or all_az_scopes:AZAutomationAccount or all_az_scopes:AZContainerRegistry or all_az_scopes:AZFunctionApp or all_az_scopes:AZKeyVault or all_az_scopes:AZLogicApp or all_az_scopes:AZManagedCluster or all_az_scopes:AZVM or all_az_scopes:AZVMScaleSet or all_az_scopes:AZWebApp) MATCH p = (g)-[r]->(all_az_scopes) RETURN p"
         }
       ]
     },
@@ -354,7 +354,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (mis_excluding_builtin) WHERE (mis_excluding_builtin:AZServicePrincipal AND mis_excluding_builtin.serviceprincipaltype = 'ManagedIdentity' AND NOT (mis_excluding_builtin.displayname STARTS WITH 'policy-' or mis_excluding_builtin.displayname starts with 'pim')) MATCH p = (mis_excluding_builtin)-[:AZHasRole]->(:AZRole) RETURN p",
+          "query": "MATCH (mis_excluding_builtin) WHERE (mis_excluding_builtin:AZServicePrincipal AND mis_excluding_builtin.serviceprincipaltype = 'ManagedIdentity' AND NOT (mis_excluding_builtin.displayname STARTS WITH 'pim' or mis_excluding_builtin.displayname starts with 'policy-')) MATCH p = (mis_excluding_builtin)-[:AZHasRole]->(:AZRole) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -365,7 +365,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (mis_excluding_builtin) WHERE (mis_excluding_builtin:AZServicePrincipal AND mis_excluding_builtin.serviceprincipaltype = 'ManagedIdentity' AND NOT (mis_excluding_builtin.displayname STARTS WITH 'policy-' or mis_excluding_builtin.displayname starts with 'pim')) MATCH p = (mis_excluding_builtin)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n) RETURN p",
+          "query": "MATCH (mis_excluding_builtin) WHERE (mis_excluding_builtin:AZServicePrincipal AND mis_excluding_builtin.serviceprincipaltype = 'ManagedIdentity' AND NOT (mis_excluding_builtin.displayname STARTS WITH 'pim' or mis_excluding_builtin.displayname starts with 'policy-')) MATCH p = (mis_excluding_builtin)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -376,7 +376,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (mis_excluding_builtin) WHERE (mis_excluding_builtin:AZServicePrincipal AND mis_excluding_builtin.serviceprincipaltype = 'ManagedIdentity' AND NOT (mis_excluding_builtin.displayname STARTS WITH 'policy-' or mis_excluding_builtin.displayname starts with 'pim')) MATCH p = (mis_excluding_builtin)-[entra_app_permissions_t1:]->(n) RETURN p",
+          "query": "MATCH (mis_excluding_builtin) WHERE (mis_excluding_builtin:AZServicePrincipal AND mis_excluding_builtin.serviceprincipaltype = 'ManagedIdentity' AND NOT (mis_excluding_builtin.displayname STARTS WITH 'pim' or mis_excluding_builtin.displayname starts with 'policy-')) MATCH p = (mis_excluding_builtin)-[entra_app_permissions_t1:]->(n) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -387,7 +387,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (mis_excluding_builtin) WHERE (mis_excluding_builtin:AZServicePrincipal AND mis_excluding_builtin.serviceprincipaltype = 'ManagedIdentity' AND NOT (mis_excluding_builtin.displayname STARTS WITH 'policy-' or mis_excluding_builtin.displayname starts with 'pim')) MATCH p = (mis_excluding_builtin)-[r]->(:AZManagementGroup) RETURN p",
+          "query": "MATCH (mis_excluding_builtin) WHERE (mis_excluding_builtin:AZServicePrincipal AND mis_excluding_builtin.serviceprincipaltype = 'ManagedIdentity' AND NOT (mis_excluding_builtin.displayname STARTS WITH 'pim' or mis_excluding_builtin.displayname starts with 'policy-')) MATCH p = (mis_excluding_builtin)-[r]->(:AZManagementGroup) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -398,7 +398,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (mis_excluding_builtin) WHERE (mis_excluding_builtin:AZServicePrincipal AND mis_excluding_builtin.serviceprincipaltype = 'ManagedIdentity' AND NOT (mis_excluding_builtin.displayname STARTS WITH 'policy-' or mis_excluding_builtin.displayname starts with 'pim')) MATCH p = (mis_excluding_builtin)-[r]->(:AZSubscription) RETURN p",
+          "query": "MATCH (mis_excluding_builtin) WHERE (mis_excluding_builtin:AZServicePrincipal AND mis_excluding_builtin.serviceprincipaltype = 'ManagedIdentity' AND NOT (mis_excluding_builtin.displayname STARTS WITH 'pim' or mis_excluding_builtin.displayname starts with 'policy-')) MATCH p = (mis_excluding_builtin)-[r]->(:AZSubscription) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -409,7 +409,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (mis_excluding_builtin) WHERE (mis_excluding_builtin:AZServicePrincipal AND mis_excluding_builtin.serviceprincipaltype = 'ManagedIdentity' AND NOT (mis_excluding_builtin.displayname STARTS WITH 'policy-' or mis_excluding_builtin.displayname starts with 'pim')) MATCH p = (mis_excluding_builtin)-[r]->(:AZResourceGroup) RETURN p",
+          "query": "MATCH (mis_excluding_builtin) WHERE (mis_excluding_builtin:AZServicePrincipal AND mis_excluding_builtin.serviceprincipaltype = 'ManagedIdentity' AND NOT (mis_excluding_builtin.displayname STARTS WITH 'pim' or mis_excluding_builtin.displayname starts with 'policy-')) MATCH p = (mis_excluding_builtin)-[r]->(:AZResourceGroup) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -420,7 +420,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (mis_excluding_builtin) WHERE (mis_excluding_builtin:AZServicePrincipal AND mis_excluding_builtin.serviceprincipaltype = 'ManagedIdentity' AND NOT (mis_excluding_builtin.displayname STARTS WITH 'policy-' or mis_excluding_builtin.displayname starts with 'pim')) MATCH (all_az_resources) WHERE (all_az_resources:AZVM or all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp or all_az_resources:AZKeyVault) MATCH p = (mis_excluding_builtin)-[r]->(all_az_resources) RETURN p",
+          "query": "MATCH (mis_excluding_builtin) WHERE (mis_excluding_builtin:AZServicePrincipal AND mis_excluding_builtin.serviceprincipaltype = 'ManagedIdentity' AND NOT (mis_excluding_builtin.displayname STARTS WITH 'pim' or mis_excluding_builtin.displayname starts with 'policy-')) MATCH (all_az_resources) WHERE (all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZKeyVault or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVM or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp) MATCH p = (mis_excluding_builtin)-[r]->(all_az_resources) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -474,7 +474,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZManagedCluster)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZManagedCluster)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -485,7 +485,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZManagedCluster)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZManagedCluster)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -496,7 +496,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZManagedCluster)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t1:]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZManagedCluster)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t1:]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -507,7 +507,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZManagedCluster)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZManagedCluster)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -518,7 +518,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZManagedCluster)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZManagedCluster)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -562,7 +562,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_az_resources) WHERE (all_az_resources:AZVM or all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp or all_az_resources:AZKeyVault) MATCH p = (:AZManagedCluster)-[:AZManagedIdentity]-(n)-[r]->(all_az_resources) RETURN p",
+          "query": "MATCH (all_az_resources) WHERE (all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZKeyVault or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVM or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp) MATCH p = (:AZManagedCluster)-[:AZManagedIdentity]-(n)-[r]->(all_az_resources) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -573,7 +573,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZWebApp)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZWebApp)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -584,7 +584,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZWebApp)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZWebApp)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -595,7 +595,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZWebApp)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t1:]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZWebApp)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t1:]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -606,7 +606,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZWebApp)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZWebApp)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -617,7 +617,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZWebApp)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZWebApp)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -661,7 +661,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_az_resources) WHERE (all_az_resources:AZVM or all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp or all_az_resources:AZKeyVault) MATCH p = (:AZWebApp)-[:AZManagedIdentity]-(n)-[r]->(all_az_resources) RETURN p",
+          "query": "MATCH (all_az_resources) WHERE (all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZKeyVault or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVM or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp) MATCH p = (:AZWebApp)-[:AZManagedIdentity]-(n)-[r]->(all_az_resources) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -672,7 +672,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZAutomationAccount)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZAutomationAccount)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -683,7 +683,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZAutomationAccount)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZAutomationAccount)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -694,7 +694,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZAutomationAccount)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t1:]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZAutomationAccount)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t1:]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -705,7 +705,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZAutomationAccount)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZAutomationAccount)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -727,7 +727,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZAutomationAccount)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZAutomationAccount)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -771,7 +771,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_az_resources) WHERE (all_az_resources:AZVM or all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp or all_az_resources:AZKeyVault) MATCH p = (:AZAutomationAccount)-[:AZManagedIdentity]-(n)-[r]->(all_az_resources) RETURN p",
+          "query": "MATCH (all_az_resources) WHERE (all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZKeyVault or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVM or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp) MATCH p = (:AZAutomationAccount)-[:AZManagedIdentity]-(n)-[r]->(all_az_resources) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -782,7 +782,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZContainerRegistry)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZContainerRegistry)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -793,7 +793,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZContainerRegistry)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZContainerRegistry)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -804,7 +804,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZContainerRegistry)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t1:]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZContainerRegistry)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t1:]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -815,7 +815,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZContainerRegistry)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZContainerRegistry)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -826,7 +826,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZContainerRegistry)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZContainerRegistry)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -870,7 +870,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_az_resources) WHERE (all_az_resources:AZVM or all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp or all_az_resources:AZKeyVault) MATCH p = (:AZContainerRegistry)-[:AZManagedIdentity]-(n)-[r]->(all_az_resources) RETURN p",
+          "query": "MATCH (all_az_resources) WHERE (all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZKeyVault or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVM or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp) MATCH p = (:AZContainerRegistry)-[:AZManagedIdentity]-(n)-[r]->(all_az_resources) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -881,7 +881,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZFunctionApp)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZFunctionApp)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -892,7 +892,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZFunctionApp)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZFunctionApp)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -903,7 +903,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZFunctionApp)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t1:]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZFunctionApp)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t1:]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -914,7 +914,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZFunctionApp)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZFunctionApp)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -925,7 +925,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZFunctionApp)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZFunctionApp)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -969,7 +969,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_az_resources) WHERE (all_az_resources:AZVM or all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp or all_az_resources:AZKeyVault) MATCH p = (:AZFunctionApp)-[:AZManagedIdentity]-(n)-[r]->(all_az_resources) RETURN p",
+          "query": "MATCH (all_az_resources) WHERE (all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZKeyVault or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVM or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp) MATCH p = (:AZFunctionApp)-[:AZManagedIdentity]-(n)-[r]->(all_az_resources) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -980,7 +980,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZLogicApp)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZLogicApp)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -991,7 +991,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZLogicApp)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZLogicApp)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1002,7 +1002,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZLogicApp)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t1:]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZLogicApp)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t1:]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1013,7 +1013,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZLogicApp)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZLogicApp)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1024,7 +1024,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZLogicApp)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZLogicApp)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1068,7 +1068,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_az_resources) WHERE (all_az_resources:AZVM or all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp or all_az_resources:AZKeyVault) MATCH p = (:AZLogicApp)-[:AZManagedIdentity]-(n)-[r]->(all_az_resources) RETURN p",
+          "query": "MATCH (all_az_resources) WHERE (all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZKeyVault or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVM or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp) MATCH p = (:AZLogicApp)-[:AZManagedIdentity]-(n)-[r]->(all_az_resources) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1079,7 +1079,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVM)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVM)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1090,7 +1090,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVM)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVM)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1101,7 +1101,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVM)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t1:]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVM)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t1:]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1112,7 +1112,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVM)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVM)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1123,7 +1123,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVM)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVM)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1167,7 +1167,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_az_resources) WHERE (all_az_resources:AZVM or all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp or all_az_resources:AZKeyVault) MATCH p = (:AZVM)-[:AZManagedIdentity]-(n)-[r]->(all_az_resources) RETURN p",
+          "query": "MATCH (all_az_resources) WHERE (all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZKeyVault or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVM or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp) MATCH p = (:AZVM)-[:AZManagedIdentity]-(n)-[r]->(all_az_resources) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1178,7 +1178,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n1)-[:AZHasRole]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1189,7 +1189,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t0:AZMGApplication_ReadWrite_All|AZMGAppRoleAssignment_ReadWrite_All|AZMGDirectory_ReadWrite_All|AZMGGroupMember_ReadWrite_All|AZMGGroup_ReadWrite_All|AZMGRoleManagement_ReadWrite_Directory|AZMGGrantRole|AZMGServicePrincipalEndpoint_ReadWrite_All|AZMGGrantAppRoles]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1200,7 +1200,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t1:]->(n2) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n1)-[entra_app_permissions_t1:]->(n2) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1211,7 +1211,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1222,7 +1222,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1266,7 +1266,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_az_resources) WHERE (all_az_resources:AZVM or all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp or all_az_resources:AZKeyVault) MATCH p = (:AZVMScaleSet)-[:AZManagedIdentity]-(n)-[r]->(all_az_resources) RETURN p",
+          "query": "MATCH (all_az_resources) WHERE (all_az_resources:AZAutomationAccount or all_az_resources:AZContainerRegistry or all_az_resources:AZFunctionApp or all_az_resources:AZKeyVault or all_az_resources:AZLogicApp or all_az_resources:AZManagedCluster or all_az_resources:AZVM or all_az_resources:AZVMScaleSet or all_az_resources:AZWebApp) MATCH p = (:AZVMScaleSet)-[:AZManagedIdentity]-(n)-[r]->(all_az_resources) RETURN p",
           "allowCollapse": true
         }
       ]
