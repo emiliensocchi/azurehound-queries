@@ -81,7 +81,7 @@ helper_managed_identities_excluding_built_in="AZServicePrincipal AND mis_excludi
 # all_az_resources
 helper_all_azure_resources="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_all_azure_resources\"') | .components[]' | sort | sed -n ':a;N;${s/\n/ or all_az_resources:/g;p};ba')"
 # all_az_resources_excluding_vms
-helper_all_azure_resources_excluding_vms="$(echo $helper_all_azure_resources | sed "s/all_az_resources_excluding_vms:AZVM or //" | sed "s/all_az_resources/all_az_resources_excluding_vms/g")"
+helper_all_azure_resources_excluding_vms="$(echo $helper_all_azure_resources | sed "s/all_az_resources:AZVM or //" | sed "s/all_az_resources/all_az_resources_excluding_vms/g")"
 # highlevel_az_scopes
 helper_high_level_azure_scopes="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_high_level_azure_scopes\"') | .components[]' | sort | sed -n ':a;N;${s/\n/ or highlevel_az_scopes:/g;p};ba')"
 # all_az_scopes
