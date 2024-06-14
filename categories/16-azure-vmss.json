@@ -37,7 +37,18 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:_VAR_all-security-principals-excluding-built-in) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n2)-[azure_roles_t0:_VAR_all-az-roles-in-t0]->(n3) RETURN p",
+            "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:_VAR_all-security-principals-excluding-built-in) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n)-[azure_roles_t0:_VAR_all-az-roles-in-t0]->(n3) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all principals with a path to a VMSS that has an MI with access to a Key Vault's data plane",
+    "category": "Azure - Virtual Machine Scale Set (VMSS)",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:_VAR_all-security-principals-excluding-built-in) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
             "allowCollapse": true
         }
     ]
