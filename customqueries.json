@@ -450,7 +450,7 @@
     },
     {
       "name": "Find all principals with a path to an AKS cluster that has an MI with an Entra ID role",
-      "category": "Azure - Azure Kuberntes Service (AKS)",
+      "category": "Azure - Kubernetes Service (AKS)",
       "queryList": [
         {
           "final": true,
@@ -461,7 +461,7 @@
     },
     {
       "name": "Find all principals with a path to an AKS cluster that has an MI with a Tier-0 application permission",
-      "category": "Azure - Azure Kuberntes Service (AKS)",
+      "category": "Azure - Kubernetes Service (AKS)",
       "queryList": [
         {
           "final": true,
@@ -472,7 +472,7 @@
     },
     {
       "name": "Find all principals with a path to an AKS cluster that has an MI with a Tier-1 application permission",
-      "category": "Azure - Azure Kuberntes Service (AKS)",
+      "category": "Azure - Kubernetes Service (AKS)",
       "queryList": [
         {
           "final": true,
@@ -483,18 +483,29 @@
     },
     {
       "name": "Find all principals with a path to an AKS cluster that has an MI with a Tier-0 Azure role",
-      "category": "Azure - Azure Kuberntes Service (AKS)",
+      "category": "Azure - Kubernetes Service (AKS)",
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZManagedCluster)-[:AZManagedIdentity]-(n2)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZManagedCluster)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an App Service that has an MI with access to a Key Vault's data plane",
+      "category": "Azure - Kubernetes Service (AKS)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZManagedCluster)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
           "allowCollapse": true
         }
       ]
     },
     {
       "name": "Find all AKS clusters with an MI that has permissions on Management Groups",
-      "category": "Azure - Azure Kuberntes Service (AKS)",
+      "category": "Azure - Kubernetes Service (AKS)",
       "queryList": [
         {
           "final": true,
@@ -505,7 +516,7 @@
     },
     {
       "name": "Find all AKS clusters with an MI that has permissions on Subscriptions",
-      "category": "Azure - Azure Kuberntes Service (AKS)",
+      "category": "Azure - Kubernetes Service (AKS)",
       "queryList": [
         {
           "final": true,
@@ -516,7 +527,7 @@
     },
     {
       "name": "Find all AKS clusters with an MI that has permissions on Resource Groups",
-      "category": "Azure - Azure Kuberntes Service (AKS)",
+      "category": "Azure - Kubernetes Service (AKS)",
       "queryList": [
         {
           "final": true,
@@ -527,7 +538,7 @@
     },
     {
       "name": "Find all AKS clusters with an MI that has permissions on individual resources",
-      "category": "Azure - Azure Kuberntes Service (AKS)",
+      "category": "Azure - Kubernetes Service (AKS)",
       "queryList": [
         {
           "final": true,
@@ -575,7 +586,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZWebApp)-[:AZManagedIdentity]-(n2)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZWebApp)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -586,7 +597,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZWebApp)-[:AZManagedIdentity]-(n2)-[r:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZWebApp)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -674,18 +685,29 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZAutomationAccount)-[:AZManagedIdentity]-(n2)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZAutomationAccount)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
           "allowCollapse": true
         }
       ]
     },
     {
-      "name": "Find all principals with a direct Contributor-like permission to an Automation Account",
+      "name": "Find all principals with a direct Tier-0 Azure role to an Automation Account",
       "category": "Azure - Automation Account",
       "queryList": [
         {
           "final": true,
           "query": "MATCH p=(all_principals_excluding_builtin)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(:AZAutomationAccount) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an Automation Account that has an MI with access to a Key Vault's data plane",
+      "category": "Azure - Automation Account",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZAutomationAccount)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -773,7 +795,18 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZContainerRegistry)-[:AZManagedIdentity]-(n2)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZContainerRegistry)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an ACR that has an MI with access to a Key Vault's data plane",
+      "category": "Azure - Container Registry (ACR)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZContainerRegistry)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -861,7 +894,18 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZFunctionApp)-[:AZManagedIdentity]-(n2)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZFunctionApp)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to an Function App that has an MI with access to a Key Vault's data plane",
+      "category": "Azure - Function App",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZFunctionApp)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -949,7 +993,18 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZLogicApp)-[:AZManagedIdentity]-(n2)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZLogicApp)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a Logic App that has an MI with access to a Key Vault's data plane",
+      "category": "Azure - Logic App",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZLogicApp)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1037,7 +1092,18 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVM)-[:AZManagedIdentity]-(n2)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVM)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a VM that has an MI with access to a Key Vault's data plane",
+      "category": "Azure - Virtual Machine (VM)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVM)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -1125,7 +1191,18 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n2)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(n3) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
+      "name": "Find all principals with a path to a VMSS that has an MI with access to a Key Vault's data plane",
+      "category": "Azure - Virtual Machine Scale Set (VMSS)",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZUser or all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'policy-' or all_principals_excluding_builtin.displayname starts with 'pim'))) MATCH p=(all_principals_excluding_builtin)-[r*1..3]->(:AZVMScaleSet)-[:AZManagedIdentity]-(n)-[kv_access:AZKeyVaultContributor|AZGetCertificates|AZGetKeys|AZGetSecrets]->(:AZKeyVault) RETURN p",
           "allowCollapse": true
         }
       ]
