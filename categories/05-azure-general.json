@@ -14,7 +14,7 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (highlevel_az_scopes) WHERE (highlevel_az_scopes:_VAR_high-level-az-scopes) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*') MATCH p = (non_admin_users)-[r]->(highlevel_az_scopes) RETURN p"
+            "query": "MATCH (highlevel_az_scopes) WHERE (highlevel_az_scopes:_VAR_high-level-az-scopes) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*' AND NOT non_admin_users.displayname =~ '(?i).*emergency.*') MATCH p = (non_admin_users)-[r]->(highlevel_az_scopes) RETURN p"
         }
     ]
 }
@@ -24,7 +24,7 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (all_az_resources) WHERE (all_az_resources:_VAR_all-az-resources) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*') MATCH p = (non_admin_users)-[r]->(all_az_resources) RETURN p"
+            "query": "MATCH (all_az_resources) WHERE (all_az_resources:_VAR_all-az-resources) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*' AND NOT non_admin_users.displayname =~ '(?i).*emergency.*') MATCH p = (non_admin_users)-[r]->(all_az_resources) RETURN p"
         }
     ]
 }
