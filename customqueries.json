@@ -324,7 +324,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_az_resources_excluding_vms) WHERE (all_az_resources_excluding_vms:AZAutomationAccount or all_az_resources_excluding_vms:AZContainerRegistry or all_az_resources_excluding_vms:AZFunctionApp or all_az_resources_excluding_vms:AZLogicApp or all_az_resources_excluding_vms:AZManagedCluster or all_az_resources_excluding_vms:AZVM or all_az_resources_excluding_vms:AZVMScaleSet or all_az_resources_excluding_vms:AZWebApp) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*' AND NOT non_admin_users.displayname =~ '(?i).*emergency.*') MATCH p = (non_admin_users)-[r]->(all_az_resources_excluding_vms) RETURN p"
+          "query": "MATCH (all_az_resources_excluding_vms) WHERE (all_az_resources_excluding_vms:AZAutomationAccount or all_az_resources_excluding_vms:AZContainerRegistry or all_az_resources_excluding_vms:AZFunctionApp or all_az_resources_excluding_vms:AZKeyVault or all_az_resources_excluding_vms:AZLogicApp or all_az_resources_excluding_vms:AZManagedCluster or all_az_resources_excluding_vms:AZVM or all_az_resources_excluding_vms:AZVMScaleSet or all_az_resources_excluding_vms:AZWebApp) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*' AND NOT non_admin_users.displayname =~ '(?i).*emergency.*') MATCH p = (non_admin_users)-[r]->(all_az_resources_excluding_vms) RETURN p"
         }
       ]
     },
