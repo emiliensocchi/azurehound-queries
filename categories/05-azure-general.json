@@ -9,12 +9,22 @@
     ]
 }
 {
-    "name": "Find all non-admin users with an active Azure role",
+    "name": "Find all non-admin users with an active Azure role on a high scope",
     "category": "Azure - General",
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (all_az_scopes) WHERE (all_az_scopes:_VAR_all-az-scopes) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*') MATCH p = (non_admin_users)-[r]->(all_az_scopes) RETURN p"
+            "query": "MATCH (highlevel_az_scopes) WHERE (highlevel_az_scopes:_VAR_high-level-az-scopes) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*') MATCH p = (non_admin_users)-[r]->(highlevel_az_scopes) RETURN p"
+        }
+    ]
+}
+{
+    "name": "Find all non-admin users with an active Azure role on an individual resource",
+    "category": "Azure - General",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (all_az_resources) WHERE (all_az_resources:_VAR_all-az-resources) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*') MATCH p = (non_admin_users)-[r]->(all_az_resources) RETURN p"
         }
     ]
 }
