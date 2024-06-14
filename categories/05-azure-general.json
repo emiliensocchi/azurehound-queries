@@ -14,7 +14,7 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (all_az_scopes) WHERE (all_az_scopes:_VAR_all-az-scopes) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname CONTAINS 'admin') MATCH p = (non_admin_users)-[r]->(all_az_scopes) RETURN p"
+            "query": "MATCH (all_az_scopes) WHERE (all_az_scopes:_VAR_all-az-scopes) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*') MATCH p = (non_admin_users)-[r]->(all_az_scopes) RETURN p"
         }
     ]
 }
