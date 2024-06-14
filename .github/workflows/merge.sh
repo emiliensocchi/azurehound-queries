@@ -82,7 +82,7 @@ helper_all_azure_resources="$(cat $helper_file | jq -r '.[] | select(.variableNa
 # highlevel_az_scopes
 helper_high_level_azure_scopes="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_high_level_azure_scopes\"') | .components[]' | sed -n ':a;N;${s/\n/ or highlevel_az_scopes:/g;p};ba')"
 # all_az_scopes
-helper_all_scopes="$(echo $helper_high_level_azure_scopes | sed "s/highlevel_az_scopes/all_az_scopes/g") or all_az_scopes:${helper_all_azure_resources}"
+helper_all_scopes="$(echo $helper_high_level_azure_scopes | sed "s/highlevel_az_scopes/all_az_scopes/g") or all_az_scopes:$(echo $helper_all_azure_resources | sed "s/all_az_resources/all_az_scopes/g")"
 
 
 #-- Replace and merge content
