@@ -19,12 +19,12 @@
     ]
 }
 {
-    "name": "Find all non-admin users with an active Azure role on an individual resource",
+    "name": "Find all non-admin users with an active Azure role on an individual resource that is not a VM",
     "category": "Azure - General",
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (all_az_resources) WHERE (all_az_resources:_VAR_all-az-resources) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*' AND NOT non_admin_users.displayname =~ '(?i).*emergency.*') MATCH p = (non_admin_users)-[r]->(all_az_resources) RETURN p"
+            "query": "MATCH (all_az_resources_excluding_vms) WHERE (all_az_resources_excluding_vms:_VAR_all-az-resources-excluding-vms) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*' AND NOT non_admin_users.displayname =~ '(?i).*emergency.*') MATCH p = (non_admin_users)-[r]->(all_az_resources_excluding_vms) RETURN p"
         }
     ]
 }
