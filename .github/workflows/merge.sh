@@ -56,9 +56,10 @@ azure_roles_tier_0="$(cat $tier_file_azure_roles | jq -r '.[] | select(.tier == 
 placeholder_built_in_service_principals='_VAR_built-in-service-principals'
 placeholder_all_security_principals='_VAR_all-security-principals'
 placeholder_all_security_principals_excluding_built_in='_VAR_all-security-principals-excluding-built-in'
-placeholder_service_principals_excluding_built_in='_VAR_service-principals-excluding-built-in'
-placeholder_managed_identities_excluding_built_in='_VAR_managed-identities-excluding-built-in'
+placeholder_all_service_principals_excluding_built_in='_VAR_all_service-principals-excluding-built-in'
+placeholder_all_managed_identities_excluding_built_in='_VAR_all_managed-identities-excluding-built-in'
 placeholder_all_azure_resources='_VAR_all-az-resources'
+placeholder_all_azure_resources_excluding_vms='_VAR_all-az-resources-excluding-vms'
 placeholder_high_level_azure_scopes='_VAR_high-level-az-scopes'
 placeholder_all_azure_scopes='_VAR_all-az-scopes'
 
@@ -68,9 +69,9 @@ helper_file="${helper_dir}helpers.json"
 
 # Helper content with associated keys
 # builtin_sps
-helper_built_in_service_principals="$(cat $helper_file | jq '.[] | select(.variableName == '\"$placeholder_built_in_service_principals\"') | .components[]' | sed "s/\"/'/g" | sed -n ':a;N;${s/\n/ or builtin_sps.displayname starts with /g;p};ba')"
+helper_built_in_service_principals="$(cat $helper_file | jq '.[] | select(.variableName == '\"$placeholder_built_in_service_principals\"') | .components[]' | sed "s/\"/'/g" | sort | sed -n ':a;N;${s/\n/ or builtin_sps.displayname starts with /g;p};ba')"
 # all_principals
-helper_all_security_principals="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_all_security_principals\"') | .components[]' | sed -n ':a;N;${s/\n/ or all_principals:/g;p};ba')"
+helper_all_security_principals="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_all_security_principals\"') | .components[]' | sort | sed -n ':a;N;${s/\n/ or all_principals:/g;p};ba')"
 # all_principals_excluding_builtin
 helper_all_security_principals_excluding_built_in="$(echo $helper_all_security_principals | sed "s/all_principals/all_principals_excluding_builtin/g" | sed "s/ all_principals_excluding_builtin:AZServicePrincipal/ \(all_principals_excluding_builtin:AZServicePrincipal AND NOT \(all_principals_excluding_builtin.displayname STARTS WITH $helper_built_in_service_principals\)\)/" | sed "s/builtin_sps/all_principals_excluding_builtin/g")"
 # sps_excluding_builtin
@@ -78,9 +79,11 @@ helper_service_principals_excluding_built_in="AZServicePrincipal AND sps_excludi
 # mis_excluding_builtin
 helper_managed_identities_excluding_built_in="AZServicePrincipal AND mis_excluding_builtin.serviceprincipaltype = 'ManagedIdentity' AND NOT (mis_excluding_builtin.displayname STARTS WITH $(echo $helper_built_in_service_principals | sed "s/builtin_sps/mis_excluding_builtin/g"))"
 # all_az_resources
-helper_all_azure_resources="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_all_azure_resources\"') | .components[]' | sed -n ':a;N;${s/\n/ or all_az_resources:/g;p};ba')"
+helper_all_azure_resources="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_all_azure_resources\"') | .components[]' | sort | sed -n ':a;N;${s/\n/ or all_az_resources:/g;p};ba')"
+# all_az_resources_excluding_vms
+helper_all_azure_resources_excluding_vms="$(echo $helper_all_azure_resources | sed "s/ or all_az_resources:AZKeyVault//" | sed "s/all_az_resources/all_az_resources_excluding_vms/g")"
 # highlevel_az_scopes
-helper_high_level_azure_scopes="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_high_level_azure_scopes\"') | .components[]' | sed -n ':a;N;${s/\n/ or highlevel_az_scopes:/g;p};ba')"
+helper_high_level_azure_scopes="$(cat $helper_file | jq -r '.[] | select(.variableName == '\"$placeholder_high_level_azure_scopes\"') | .components[]' | sort | sed -n ':a;N;${s/\n/ or highlevel_az_scopes:/g;p};ba')"
 # all_az_scopes
 helper_all_scopes="$(echo $helper_high_level_azure_scopes | sed "s/highlevel_az_scopes/all_az_scopes/g") or all_az_scopes:$(echo $helper_all_azure_resources | sed "s/all_az_resources/all_az_scopes/g")"
 
@@ -93,9 +96,10 @@ cat $merged_file \
 | sed "s/${placeholder_entra_app_permissions_tier_1}/${entra_app_permissions_tier_1}/" \
 | sed "s/${placeholder_azure_roles_tier_0}/${azure_roles_tier_0}/" \
 | sed "s/${placeholder_all_security_principals_excluding_built_in}/${helper_all_security_principals_excluding_built_in}/" \
-| sed "s/${placeholder_service_principals_excluding_built_in}/${helper_service_principals_excluding_built_in}/" \
-| sed "s/${placeholder_managed_identities_excluding_built_in}/${helper_managed_identities_excluding_built_in}/" \
+| sed "s/${placeholder_all_service_principals_excluding_built_in}/${helper_service_principals_excluding_built_in}/" \
+| sed "s/${placeholder_all_managed_identities_excluding_built_in}/${helper_managed_identities_excluding_built_in}/" \
 | sed "s/${placeholder_all_security_principals}/${helper_all_security_principals}/" \
+| sed "s/${placeholder_all_azure_resources_excluding_vms}/${helper_all_azure_resources_excluding_vms}/" \
 | sed "s/${placeholder_all_azure_resources}/${helper_all_azure_resources}/" \
 | sed "s/${placeholder_high_level_azure_scopes}/${helper_high_level_azure_scopes}/" \
 | sed "s/${placeholder_all_azure_scopes}/${helper_all_scopes}/" \
