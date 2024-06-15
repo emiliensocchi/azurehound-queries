@@ -75,3 +75,14 @@
         }
     ]
 }
+{
+  "name": "Find all principals with direct Tier-0 permissions on an MI (can't know if it's user-assigned)",
+  "category": "Azure - Managed Identities",
+  "queryList": [
+      {
+          "final": true,
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:_VAR_all-security-principals-excluding-built-in) MATCH p=(all_principals_excluding_builtin)-[azure_roles_t0:_VAR_all-az-roles-in-t0]->(:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'}) RETURN p",
+          "allowCollapse": true
+      }
+  ] 
+}
