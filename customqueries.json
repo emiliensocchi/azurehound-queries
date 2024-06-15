@@ -426,6 +426,17 @@
       ]
     },
     {
+      "name": "Find all principals with direct Tier-0 permissions on an MI (can't know if it's user-assigned)",
+      "category": "Azure - Managed Identities",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH p=(all_principals_excluding_builtin)-[azure_roles_t0:AZOwns|AZContributor|AZAutomationContributor|AZAKSContributor|AZAvereContributor|AZLogicAppContributor|AZVMContributor|AZWebsiteContributor|AZVMAdminLogin|AZUserAccessAdministrator]->(:AZServicePrincipal {serviceprincipaltype: 'ManagedIdentity'}) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
       "name": "Find shortest Paths from Azure Users to subscription",
       "category": "Azure - Paths (OLD)",
       "queryList": [
