@@ -53,5 +53,15 @@
         "tier": "0",
         "roleName": "Role Based Access Control Administrator",
         "edgeName": ""
+    },
+    {
+        "tier": "0",
+        "roleName": "Managed Identity Operator",
+        "edgeName": ""
+    },
+    {
+        "tier": "1",
+        "roleName": "Reader",
+        "edgeName": ""
     }
 ]

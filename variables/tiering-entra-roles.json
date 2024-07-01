@@ -1,0 +1,267 @@
+[
+    {
+        "tier": "0", 
+        "roleName": "Application Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Authentication Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0",
+        "roleName": "Azure DevOps Administrator",
+         "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Cloud Application Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Cloud Device Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Directory Synchronization Accounts", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Directory Writers", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Domain Name Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "External Identity Provider Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Exchange Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Global Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Group Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Helpdesk Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Hybrid Identity Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Identity Governance Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Intune Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Knowledge Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Knowledge Manager", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Lifecycle Workflows Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Microsoft Entra Joined Device Local Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Password Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Privileged Authentication Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Privileged Role Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Security Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "SharePoint Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Teams Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "User Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "0", 
+        "roleName": "Yammer Administrator", 
+        "edgeName": ""
+    }
+    {
+        "tier": "1", 
+        "roleName": "Attribute Assignment Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Azure Information Protection Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Cloud App Security Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Compliance Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Compliance Data Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Conditional Access Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Directory Readers", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "External ID User Flow Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Fabric Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Global Reader", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Global Secure Access Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Kaizala Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Organizational Message Writer", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Permissions Management Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Power Platform Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Security Operator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Security Reader", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "SharePoint Embedded Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "SharePoint Embedded containers", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Skype for Business Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Teams Communications Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Teams Communications Support Engineer", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Teams Devices Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Teams Telephony Administrator", 
+        "edgeName": ""
+    },
+    {
+        "tier": "1", 
+        "roleName": "Viva Goals Administrator", 
+        "edgeName": ""
+    }
+]
