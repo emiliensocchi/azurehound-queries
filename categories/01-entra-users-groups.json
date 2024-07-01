@@ -1,0 +1,99 @@
+{
+    "name": "Find all active Global Administrators",
+    "category": "Entra ID - Users & Groups",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH p =(n)-[:AZGlobalAdmin]->(:AZTenant) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all users with an active Tier-0 Entra role",
+    "category": "Entra ID - Users & Groups",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)_VAR_all-entra-roles-in-t0') MATCH (:AZUser)-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t0) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all users with an active Tier-1 Entra role",
+    "category": "Entra ID - Users & Groups",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (entra_roles_t1) WHERE (entra_roles_t0.displayname =~ '(?i)_VAR_all-entra-roles-in-t1') MATCH (:AZUser)-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t1) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all groups with an active Tier-0 Entra role",
+    "category": "Entra ID - Users & Groups",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)_VAR_all-entra-roles-in-t') MATCH (:AZGroup)-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t0) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all groups with an active Tier-1 Entra role",
+    "category": "Entra ID - Users & Groups",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (entra_roles_t1) WHERE (entra_roles_t0.displayname =~ '(?i)_VAR_all-entra-roles-in-t1') MATCH (:AZGroup)-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t1) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all dynamic groups with an active Tier-0 Entra role",
+    "category": "Entra ID - Users & Groups",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)_VAR_all-entra-roles-in-t') MATCH (:AZGroup {isassignabletorole: True})-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t0) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all dynamic groups with an active Tier-1 Entra role",
+    "category": "Entra ID - Users & Groups",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (entra_roles_t1) WHERE (entra_roles_t0.displayname =~ '(?i)_VAR_all-entra-roles-in-t1') MATCH (:AZGroup {isassignabletorole: True})-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t1) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all role-assignable groups (groups potentially eligible to an Entra role)",
+    "category": "Entra ID - Users & Groups",
+    "queryList": [
+        {
+            "final": true, 
+            "query": "MATCH (g:AZGroup {isassignabletorole: True}) RETURN g",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all shortest paths to Tier-0 Entra roles",
+    "category": "Entra ID - Paths",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:_VAR_all-security-principals-excluding-built-in) MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)_VAR_all-entra-roles-in-t') MATCH p = allShortestPaths((all_principals_excluding_builtin)-[r*1..]->(entra_roles_t0))",
+            "allowCollapse": true
+        }
+    ]
+}

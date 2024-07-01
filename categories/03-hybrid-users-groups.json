@@ -1,0 +1,44 @@
+{
+    "name": "Find all Synchronization accounts possibly used for Entra ID Connect",
+    "category": "Hybrid - Users & Groups",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (account) WHERE (account:User OR account:AZUser) AND (account.name =~ '(?i)^MSOL_|.*AADConnect.*' OR account.userprincipalname =~ '(?i)^sync_.*') RETURN account",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all hybrid users with an active Tier-0 Entra role",
+    "category": "Hybrid - Users & Groups",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (onprem_user) WHERE (onprem_user.onpremisesyncenabled = true) MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)_VAR_all-entra-roles-in-t0') MATCH (onprem_user)-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t0) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all hybrid users with an active Tier-1 Entra role",
+    "category": "Hybrid - Users & Groups",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (onprem_user) WHERE (onprem_user.onpremisesyncenabled = true) MATCH (entra_roles_t1) WHERE (entra_roles_t0.displayname =~ '(?i)_VAR_all-entra-roles-in-t1') MATCH (onprem_user)-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t1) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all hybrid users with an active Azure role",
+    "category": "Hybrid - Users & Groups",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (onprem_user) WHERE (onprem_user.onpremisesyncenabled = true) MATCH (all_az_scopes) WHERE (all_az_scopes:_VAR_all-az-scopes) MATCH p = (onprem_user)-[r]->(all_az_scopes) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}

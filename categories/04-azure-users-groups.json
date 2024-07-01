@@ -1,0 +1,55 @@
+{
+    "name": "Find all users with an active Azure role",
+    "category": "Azure - Users & Groups",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (all_az_scopes) WHERE (all_az_scopes:_VAR_all-az-scopes) MATCH p = (:AZUser)-[r]->(all_az_scopes) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all non-admin users with an active Azure role on a high scope",
+    "category": "Azure - Users & Groups",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (highlevel_az_scopes) WHERE (highlevel_az_scopes:_VAR_high-level-az-scopes) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*' AND NOT non_admin_users.displayname =~ '(?i).*emergency.*') MATCH p = (non_admin_users)-[r]->(highlevel_az_scopes) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all non-admin users with an active Azure role on an individual resource that is not a VM",
+    "category": "Azure - Users & Groups",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (all_az_resources_excluding_vms) WHERE (all_az_resources_excluding_vms:_VAR_all-az-resources-excluding-vms) MATCH (non_admin_users) WHERE (non_admin_users:AZUser AND NOT non_admin_users.displayname =~ '(?i).*admin.*' AND NOT non_admin_users.displayname =~ '(?i).*emergency.*') MATCH p = (non_admin_users)-[r]->(all_az_resources_excluding_vms) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all groups with an active Azure role",
+    "category": "Azure - Users & Groups",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (all_az_scopes) WHERE (all_az_scopes:_VAR_all-az-scopes) MATCH p = (:AZGroup)-[r]->(all_az_scopes) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all dynamic groups with an active Azure role",
+    "category": "Azure - Users & Groups",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (g) WHERE EXISTS(g.membershipRule) MATCH (all_az_scopes) WHERE (all_az_scopes:_VAR_all-az-scopes) MATCH p = (g)-[r]->(all_az_scopes) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
