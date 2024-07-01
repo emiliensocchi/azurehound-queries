@@ -29,6 +29,7 @@ done
 
 # Tiering placeholders
 placeholder_entra_roles_tier_0='_VAR_all-entra-roles-in-t0'
+placeholder_entra_roles_tier_1='_VAR_all-entra-roles-in-t1'
 placeholder_entra_app_permissions_tier_0='_VAR_all-entra-app-permissions-in-t0'
 placeholder_entra_app_permissions_tier_1='_VAR_all-entra-app-permissions-in-t1'
 placeholder_azure_roles_tier_0='_VAR_all-az-roles-in-t0'
@@ -41,7 +42,10 @@ tier_file_azure_roles="${tiering_dir}tiering-azure-roles.json"
 
 # Tiering content with associated keys
 # entra_roles_t0
-entra_roles_tier_0="$(cat $tier_file_entra_roles | jq -r '.[] | select(.tier == "0" and .edgeName != "") | .edgeName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
+entra_roles_tier_0="$(cat $tier_file_entra_roles | jq -r '.[] | select(.tier == "0") | .edgeName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
+# entra_roles_t1
+entra_roles_tier_1="$(cat $tier_file_entra_roles | jq -r '.[] | select(.tier == "1") | .edgeName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
+
 # entra_app_permissions_t0
 entra_app_permissions_tier_0="$(cat $tier_file_entra_app_permissions | jq -r '.[] | select(.tier == "0" and .edgeName != "") | .edgeName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
 # entra_app_permissions_t1
@@ -92,6 +96,7 @@ helper_all_scopes="$(echo $helper_high_level_azure_scopes | sed "s/highlevel_az_
 
 cat $merged_file \
 | sed "s/${placeholder_entra_roles_tier_0}/${entra_roles_tier_0}/" \
+| sed "s/${placeholder_entra_roles_tier_1}/${entra_roles_tier_1}/" \
 | sed "s/${placeholder_entra_app_permissions_tier_0}/${entra_app_permissions_tier_0}/" \
 | sed "s/${placeholder_entra_app_permissions_tier_1}/${entra_app_permissions_tier_1}/" \
 | sed "s/${placeholder_azure_roles_tier_0}/${azure_roles_tier_0}/" \
