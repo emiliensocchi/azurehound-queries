@@ -78,6 +78,17 @@
       ]
     },
     {
+      "name": "Find all shortest paths to Tier-1 Entra roles",
+      "category": "Entra ID - Users & Groups",
+      "queryList": [
+        {
+          "final": true,
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH (entra_roles_t1) WHERE (entra_roles_t1.displayname =~ '(?i)Attribute Assignment Administrator|Azure Information Protection Administrator|Cloud App Security Administrator|Compliance Administrator|Compliance Data Administrator|Conditional Access Administrator|Directory Readers|External ID User Flow Administrator|Fabric Administrator|Global Reader|Global Secure Access Administrator|Kaizala Administrator|Organizational Message Writer|Permissions Management Administrator|Power Platform Administrator|Security Operator|Security Reader|SharePoint Embedded Administrator|SharePoint Embedded containers|Skype for Business Administrator|Teams Communications Administrator|Teams Communications Support Engineer|Teams Devices Administrator|Teams Telephony Administrator|Viva Goals Administrator') MATCH p = allShortestPaths((all_principals_excluding_builtin)-[r*1..]->(entra_roles_t1)) RETURN p",
+          "allowCollapse": true
+        }
+      ]
+    },
+    {
       "name": "Find all SPs with an Entra ID role",
       "category": "Entra ID - Service Principals",
       "queryList": [
