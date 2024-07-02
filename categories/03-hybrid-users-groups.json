@@ -15,7 +15,7 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (onprem_user) WHERE (onprem_user.onpremisesyncenabled = true) MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)_VAR_all-entra-roles-in-t0') MATCH (onprem_user)-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t0) RETURN p",
+            "query": "MATCH (onprem_user) WHERE (onprem_user.onpremisesyncenabled = true) MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)_VAR_all-entra-roles-in-t0') MATCH p = (onprem_user)-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t0) RETURN p",
             "allowCollapse": true
         }
     ]
@@ -26,7 +26,7 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (onprem_user) WHERE (onprem_user.onpremisesyncenabled = true) MATCH (entra_roles_t1) WHERE (entra_roles_t0.displayname =~ '(?i)_VAR_all-entra-roles-in-t1') MATCH (onprem_user)-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t1) RETURN p",
+            "query": "MATCH (onprem_user) WHERE (onprem_user.onpremisesyncenabled = true) MATCH (entra_roles_t1) WHERE (entra_roles_t0.displayname =~ '(?i)_VAR_all-entra-roles-in-t1') MATCH p = (onprem_user)-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t1) RETURN p",
             "allowCollapse": true
         }
     ]
