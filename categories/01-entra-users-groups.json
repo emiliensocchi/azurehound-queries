@@ -37,7 +37,7 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)_VAR_all-entra-roles-in-t') MATCH p = (:AZGroup)-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t0) RETURN p",
+            "query": "MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)_VAR_all-entra-roles-in-t0') MATCH p = (:AZGroup)-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t0) RETURN p",
             "allowCollapse": true
         }
     ]
@@ -59,7 +59,7 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)_VAR_all-entra-roles-in-t') MATCH p = (:AZGroup {isassignabletorole: True})-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t0) RETURN p",
+            "query": "MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)_VAR_all-entra-roles-in-t0') MATCH p = (:AZGroup {isassignabletorole: True})-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t0) RETURN p",
             "allowCollapse": true
         }
     ]
@@ -92,7 +92,7 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:_VAR_all-security-principals-excluding-built-in) MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)_VAR_all-entra-roles-in-t') MATCH p = allShortestPaths((all_principals_excluding_builtin)-[r*1..]->(entra_roles_t0))",
+            "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:_VAR_all-security-principals-excluding-built-in) MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)_VAR_all-entra-roles-in-t0') MATCH p = allShortestPaths((all_principals_excluding_builtin)-[r*1..]->(entra_roles_t0))",
             "allowCollapse": true
         }
     ]
