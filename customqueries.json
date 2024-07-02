@@ -17,7 +17,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)Application Administrator|Authentication Administrator|Azure DevOps Administrator|Cloud Application Administrator|Cloud Device Administrator|Directory Synchronization Accounts|Directory Writers|Domain Name Administrator|External Identity Provider Administrator|Exchange Administrator|Global Administrator|Group Administrator|Helpdesk Administrator|Hybrid Identity Administrator|Identity Governance Administrator|Intune Administrator|Knowledge Administrator|Knowledge Manager|Lifecycle Workflows Administrator|Microsoft Entra Joined Device Local Administrator|Password Administrator|Privileged Authentication Administrator|Privileged Role Administrator|Security Administrator|SharePoint Administrator|Teams Administrator|User Administrator|Yammer Administrator') MATCH p = (:AZUser)-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t0) RETURN p",
+          "query": "MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)Application Administrator|Authentication Administrator|Azure DevOps Administrator|Cloud Application Administrator|Cloud Device Administrator|Directory Synchronization Accounts|Directory Writers|Domain Name Administrator|External Identity Provider Administrator|Exchange Administrator|Global Administrator|Group Administrator|Helpdesk Administrator|Hybrid Identity Administrator|Identity Governance Administrator|Intune Administrator|Knowledge Administrator|Knowledge Manager|Lifecycle Workflows Administrator|Microsoft Entra Joined Device Local Administrator|Password Administrator|Privileged Authentication Administrator|Privileged Role Administrator|Security Administrator|SharePoint Administrator|Teams Administrator|User Administrator|Yammer Administrator') MATCH p = (:AZUser)-[:AZHasRole|AZMemberOf*1..5]->(entra_roles_t0) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -28,7 +28,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (entra_roles_t1) WHERE (entra_roles_t1.displayname =~ '(?i)Attribute Assignment Administrator|Azure Information Protection Administrator|Cloud App Security Administrator|Compliance Administrator|Compliance Data Administrator|Conditional Access Administrator|Directory Readers|External ID User Flow Administrator|Fabric Administrator|Global Reader|Global Secure Access Administrator|Kaizala Administrator|Organizational Message Writer|Permissions Management Administrator|Power Platform Administrator|Security Operator|Security Reader|SharePoint Embedded Administrator|SharePoint Embedded containers|Skype for Business Administrator|Teams Communications Administrator|Teams Communications Support Engineer|Teams Devices Administrator|Teams Telephony Administrator|Viva Goals Administrator') MATCH p = (:AZUser)-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t1) RETURN p",
+          "query": "MATCH (entra_roles_t1) WHERE (entra_roles_t1.displayname =~ '(?i)Attribute Assignment Administrator|Azure Information Protection Administrator|Cloud App Security Administrator|Compliance Administrator|Compliance Data Administrator|Conditional Access Administrator|Directory Readers|External ID User Flow Administrator|Fabric Administrator|Global Reader|Global Secure Access Administrator|Kaizala Administrator|Organizational Message Writer|Permissions Management Administrator|Power Platform Administrator|Security Operator|Security Reader|SharePoint Embedded Administrator|SharePoint Embedded containers|Skype for Business Administrator|Teams Communications Administrator|Teams Communications Support Engineer|Teams Devices Administrator|Teams Telephony Administrator|Viva Goals Administrator') MATCH p = (:AZUser)-[:AZHasRole|AZMemberOf*1..5]->(entra_roles_t1) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -39,7 +39,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)Application Administrator|Authentication Administrator|Azure DevOps Administrator|Cloud Application Administrator|Cloud Device Administrator|Directory Synchronization Accounts|Directory Writers|Domain Name Administrator|External Identity Provider Administrator|Exchange Administrator|Global Administrator|Group Administrator|Helpdesk Administrator|Hybrid Identity Administrator|Identity Governance Administrator|Intune Administrator|Knowledge Administrator|Knowledge Manager|Lifecycle Workflows Administrator|Microsoft Entra Joined Device Local Administrator|Password Administrator|Privileged Authentication Administrator|Privileged Role Administrator|Security Administrator|SharePoint Administrator|Teams Administrator|User Administrator|Yammer Administrator') MATCH p = (:AZGroup)-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t0) RETURN p",
+          "query": "MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)Application Administrator|Authentication Administrator|Azure DevOps Administrator|Cloud Application Administrator|Cloud Device Administrator|Directory Synchronization Accounts|Directory Writers|Domain Name Administrator|External Identity Provider Administrator|Exchange Administrator|Global Administrator|Group Administrator|Helpdesk Administrator|Hybrid Identity Administrator|Identity Governance Administrator|Intune Administrator|Knowledge Administrator|Knowledge Manager|Lifecycle Workflows Administrator|Microsoft Entra Joined Device Local Administrator|Password Administrator|Privileged Authentication Administrator|Privileged Role Administrator|Security Administrator|SharePoint Administrator|Teams Administrator|User Administrator|Yammer Administrator') MATCH p = (:AZGroup)-[:AZHasRole|AZMemberOf*1..5]->(entra_roles_t0) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -50,29 +50,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (entra_roles_t1) WHERE (entra_roles_t1.displayname =~ '(?i)Attribute Assignment Administrator|Azure Information Protection Administrator|Cloud App Security Administrator|Compliance Administrator|Compliance Data Administrator|Conditional Access Administrator|Directory Readers|External ID User Flow Administrator|Fabric Administrator|Global Reader|Global Secure Access Administrator|Kaizala Administrator|Organizational Message Writer|Permissions Management Administrator|Power Platform Administrator|Security Operator|Security Reader|SharePoint Embedded Administrator|SharePoint Embedded containers|Skype for Business Administrator|Teams Communications Administrator|Teams Communications Support Engineer|Teams Devices Administrator|Teams Telephony Administrator|Viva Goals Administrator') MATCH p = (:AZGroup)-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t1) RETURN p",
-          "allowCollapse": true
-        }
-      ]
-    },
-    {
-      "name": "Find all dynamic groups with an active Tier-0 Entra role",
-      "category": "Entra ID - Users & Groups",
-      "queryList": [
-        {
-          "final": true,
-          "query": "MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)Application Administrator|Authentication Administrator|Azure DevOps Administrator|Cloud Application Administrator|Cloud Device Administrator|Directory Synchronization Accounts|Directory Writers|Domain Name Administrator|External Identity Provider Administrator|Exchange Administrator|Global Administrator|Group Administrator|Helpdesk Administrator|Hybrid Identity Administrator|Identity Governance Administrator|Intune Administrator|Knowledge Administrator|Knowledge Manager|Lifecycle Workflows Administrator|Microsoft Entra Joined Device Local Administrator|Password Administrator|Privileged Authentication Administrator|Privileged Role Administrator|Security Administrator|SharePoint Administrator|Teams Administrator|User Administrator|Yammer Administrator') MATCH p = (:AZGroup {isassignabletorole: True})-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t0) RETURN p",
-          "allowCollapse": true
-        }
-      ]
-    },
-    {
-      "name": "Find all dynamic groups with an active Tier-1 Entra role",
-      "category": "Entra ID - Users & Groups",
-      "queryList": [
-        {
-          "final": true,
-          "query": "MATCH (entra_roles_t1) WHERE (entra_roles_t1.displayname =~ '(?i)Attribute Assignment Administrator|Azure Information Protection Administrator|Cloud App Security Administrator|Compliance Administrator|Compliance Data Administrator|Conditional Access Administrator|Directory Readers|External ID User Flow Administrator|Fabric Administrator|Global Reader|Global Secure Access Administrator|Kaizala Administrator|Organizational Message Writer|Permissions Management Administrator|Power Platform Administrator|Security Operator|Security Reader|SharePoint Embedded Administrator|SharePoint Embedded containers|Skype for Business Administrator|Teams Communications Administrator|Teams Communications Support Engineer|Teams Devices Administrator|Teams Telephony Administrator|Viva Goals Administrator') MATCH p = (:AZGroup {isassignabletorole: True})-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t1) RETURN p",
+          "query": "MATCH (entra_roles_t1) WHERE (entra_roles_t1.displayname =~ '(?i)Attribute Assignment Administrator|Azure Information Protection Administrator|Cloud App Security Administrator|Compliance Administrator|Compliance Data Administrator|Conditional Access Administrator|Directory Readers|External ID User Flow Administrator|Fabric Administrator|Global Reader|Global Secure Access Administrator|Kaizala Administrator|Organizational Message Writer|Permissions Management Administrator|Power Platform Administrator|Security Operator|Security Reader|SharePoint Embedded Administrator|SharePoint Embedded containers|Skype for Business Administrator|Teams Communications Administrator|Teams Communications Support Engineer|Teams Devices Administrator|Teams Telephony Administrator|Viva Goals Administrator') MATCH p = (:AZGroup)-[:AZHasRole|AZMemberOf*1..5]->(entra_roles_t1) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -90,11 +68,11 @@
     },
     {
       "name": "Find all shortest paths to Tier-0 Entra roles",
-      "category": "Entra ID - Paths",
+      "category": "Entra ID - Users & Groups",
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)Application Administrator|Authentication Administrator|Azure DevOps Administrator|Cloud Application Administrator|Cloud Device Administrator|Directory Synchronization Accounts|Directory Writers|Domain Name Administrator|External Identity Provider Administrator|Exchange Administrator|Global Administrator|Group Administrator|Helpdesk Administrator|Hybrid Identity Administrator|Identity Governance Administrator|Intune Administrator|Knowledge Administrator|Knowledge Manager|Lifecycle Workflows Administrator|Microsoft Entra Joined Device Local Administrator|Password Administrator|Privileged Authentication Administrator|Privileged Role Administrator|Security Administrator|SharePoint Administrator|Teams Administrator|User Administrator|Yammer Administrator') MATCH p = allShortestPaths((all_principals_excluding_builtin)-[r*1..]->(entra_roles_t0))",
+          "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:AZGroup or (all_principals_excluding_builtin:AZServicePrincipal AND NOT (all_principals_excluding_builtin.displayname STARTS WITH 'pim' or all_principals_excluding_builtin.displayname starts with 'policy-')) or all_principals_excluding_builtin:AZUser) MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)Application Administrator|Authentication Administrator|Azure DevOps Administrator|Cloud Application Administrator|Cloud Device Administrator|Directory Synchronization Accounts|Directory Writers|Domain Name Administrator|External Identity Provider Administrator|Exchange Administrator|Global Administrator|Group Administrator|Helpdesk Administrator|Hybrid Identity Administrator|Identity Governance Administrator|Intune Administrator|Knowledge Administrator|Knowledge Manager|Lifecycle Workflows Administrator|Microsoft Entra Joined Device Local Administrator|Password Administrator|Privileged Authentication Administrator|Privileged Role Administrator|Security Administrator|SharePoint Administrator|Teams Administrator|User Administrator|Yammer Administrator') MATCH p = allShortestPaths((all_principals_excluding_builtin)-[r*1..]->(entra_roles_t0)) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -215,7 +193,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (onprem_user) WHERE (onprem_user.onpremisesyncenabled = true) MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)Application Administrator|Authentication Administrator|Azure DevOps Administrator|Cloud Application Administrator|Cloud Device Administrator|Directory Synchronization Accounts|Directory Writers|Domain Name Administrator|External Identity Provider Administrator|Exchange Administrator|Global Administrator|Group Administrator|Helpdesk Administrator|Hybrid Identity Administrator|Identity Governance Administrator|Intune Administrator|Knowledge Administrator|Knowledge Manager|Lifecycle Workflows Administrator|Microsoft Entra Joined Device Local Administrator|Password Administrator|Privileged Authentication Administrator|Privileged Role Administrator|Security Administrator|SharePoint Administrator|Teams Administrator|User Administrator|Yammer Administrator') MATCH p = (onprem_user)-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t0) RETURN p",
+          "query": "MATCH (onprem_user) WHERE (onprem_user.onpremisesyncenabled = true) MATCH (entra_roles_t0) WHERE (entra_roles_t0.displayname =~ '(?i)Application Administrator|Authentication Administrator|Azure DevOps Administrator|Cloud Application Administrator|Cloud Device Administrator|Directory Synchronization Accounts|Directory Writers|Domain Name Administrator|External Identity Provider Administrator|Exchange Administrator|Global Administrator|Group Administrator|Helpdesk Administrator|Hybrid Identity Administrator|Identity Governance Administrator|Intune Administrator|Knowledge Administrator|Knowledge Manager|Lifecycle Workflows Administrator|Microsoft Entra Joined Device Local Administrator|Password Administrator|Privileged Authentication Administrator|Privileged Role Administrator|Security Administrator|SharePoint Administrator|Teams Administrator|User Administrator|Yammer Administrator') MATCH p = (onprem_user)-[:AZHasRole|AZMemberOf*1..5]->(entra_roles_t0) RETURN p",
           "allowCollapse": true
         }
       ]
@@ -226,7 +204,7 @@
       "queryList": [
         {
           "final": true,
-          "query": "MATCH (onprem_user) WHERE (onprem_user.onpremisesyncenabled = true) MATCH (entra_roles_t1) WHERE (entra_roles_t0.displayname =~ '(?i)Attribute Assignment Administrator|Azure Information Protection Administrator|Cloud App Security Administrator|Compliance Administrator|Compliance Data Administrator|Conditional Access Administrator|Directory Readers|External ID User Flow Administrator|Fabric Administrator|Global Reader|Global Secure Access Administrator|Kaizala Administrator|Organizational Message Writer|Permissions Management Administrator|Power Platform Administrator|Security Operator|Security Reader|SharePoint Embedded Administrator|SharePoint Embedded containers|Skype for Business Administrator|Teams Communications Administrator|Teams Communications Support Engineer|Teams Devices Administrator|Teams Telephony Administrator|Viva Goals Administrator') MATCH p = (onprem_user)-[:AZHasRole|AZMemberOf*1..2]->(entra_roles_t1) RETURN p",
+          "query": "MATCH (onprem_user) WHERE (onprem_user.onpremisesyncenabled = true) MATCH (entra_roles_t1) WHERE (entra_roles_t0.displayname =~ '(?i)Attribute Assignment Administrator|Azure Information Protection Administrator|Cloud App Security Administrator|Compliance Administrator|Compliance Data Administrator|Conditional Access Administrator|Directory Readers|External ID User Flow Administrator|Fabric Administrator|Global Reader|Global Secure Access Administrator|Kaizala Administrator|Organizational Message Writer|Permissions Management Administrator|Power Platform Administrator|Security Operator|Security Reader|SharePoint Embedded Administrator|SharePoint Embedded containers|Skype for Business Administrator|Teams Communications Administrator|Teams Communications Support Engineer|Teams Devices Administrator|Teams Telephony Administrator|Viva Goals Administrator') MATCH p = (onprem_user)-[:AZHasRole|AZMemberOf*1..5]->(entra_roles_t1) RETURN p",
           "allowCollapse": true
         }
       ]
