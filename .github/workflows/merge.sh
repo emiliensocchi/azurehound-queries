@@ -42,9 +42,9 @@ tier_file_azure_roles="${tiering_dir}tiering-azure-roles.json"
 
 # Tiering content with associated keys
 # entra_roles_t0
-entra_roles_tier_0="$(cat $tier_file_entra_roles | jq -r '.[] | select(.tier == "0") | .edgeName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
+entra_roles_tier_0="$(cat $tier_file_entra_roles | jq -r '.[] | select(.tier == "0") | .roleName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
 # entra_roles_t1
-entra_roles_tier_1="$(cat $tier_file_entra_roles | jq -r '.[] | select(.tier == "1") | .edgeName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
+entra_roles_tier_1="$(cat $tier_file_entra_roles | jq -r '.[] | select(.tier == "1") | .roleName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
 
 # entra_app_permissions_t0
 entra_app_permissions_tier_0="$(cat $tier_file_entra_app_permissions | jq -r '.[] | select(.tier == "0" and .edgeName != "") | .edgeName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
