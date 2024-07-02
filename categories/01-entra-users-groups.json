@@ -75,3 +75,14 @@
         }
     ]
 }
+{
+    "name": "Find all shortest paths to Tier-1 Entra roles",
+    "category": "Entra ID - Users & Groups",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (all_principals_excluding_builtin) WHERE (all_principals_excluding_builtin:_VAR_all-security-principals-excluding-built-in) MATCH (entra_roles_t1) WHERE (entra_roles_t1.displayname =~ '(?i)_VAR_all-entra-roles-in-t1') MATCH p = allShortestPaths((all_principals_excluding_builtin)-[r*1..]->(entra_roles_t1)) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
