@@ -42,3 +42,25 @@
         }
     ]
 }
+{
+    "name": "Find all hybrid users with an active Azure role on a high scope",
+    "category": "Hybrid - Users & Groups",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (onprem_user) WHERE (onprem_user.onpremisesyncenabled = true) MATCH (highlevel_az_scopes) WHERE (highlevel_az_scopes:_VAR_high-level-az-scopes) MATCH p = (onprem_user)-[r]->(highlevel_az_scopes) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
+{
+    "name": "Find all hybrid users with an active Azure role on an individual resource that is not a VM",
+    "category": "Azure - Users & Groups",
+    "queryList": [
+        {
+            "final": true,
+            "query": "MATCH (onprem_user) WHERE (onprem_user.onpremisesyncenabled = true) MATCH (all_az_resources_excluding_vms) WHERE (all_az_resources_excluding_vms:_VAR_all-az-resources-excluding-vms) MATCH p = (onprem_user)-[r]->(all_az_resources_excluding_vms) RETURN p",
+            "allowCollapse": true
+        }
+    ]
+}
