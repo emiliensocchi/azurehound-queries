@@ -66,4 +66,4 @@ curl -X 'POST' \
 
 ## Disclaimer
 
-This repository is actively used for personal use and queries may change, disappear or stop working at any time. Additionally, the tiering of roles and permissions used in this project is partly based on a personal tiering model, which does not necessarily conmply with all companies.
+This repository is actively used for personal use and queries may change, disappear or stop working at any time. Additionally, the tiering of roles and permissions used in this project is partly based on a personal tiering model, which does not necessarily conmply with all companies. 
