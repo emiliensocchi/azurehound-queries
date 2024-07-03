@@ -35,11 +35,13 @@ The objective of this project is to provide a scalable way to develop BloodHound
 
 ### BloodHound Legacy
 
-Copy [customqueries.json](https://github.com/emiliensocchi/azurehound-queries/blob/main/customqueries.json) to the following location and refresh "Custom Queries" in the analysis tab of the search panel within BloodHound: 
+1. Copy [customqueries.json](https://github.com/emiliensocchi/azurehound-queries/releases/download/v1.0.0/customqueries.json) from the [latest release](https://github.com/emiliensocchi/azurehound-queries/releases) to the following location: 
 
 ```code
 C:\Users\%USERNAME%\AppData\Roaming\bloodhound\customqueries.json
 ```
+
+2. Within BloodHound, refresh "Custom Queries" in the analysis tab of the search panel.
 
 ### BloodHound Community Edition (CE)
 
@@ -66,4 +68,4 @@ curl -X 'POST' \
 
 ## Disclaimer
 
-This repository is actively used for personal use and queries may change, disappear or stop working at any time. Additionally, the tiering of roles and permissions used in this project is partly based on a personal tiering model, which does not necessarily conmply with all companies. 
+The tiering of roles and permissions used in this project is partly based on a personal tiering model, which does not necessarily comply with all companies. Depending on the reader's usage, those tiers may have to be adapated to the company in scope.
