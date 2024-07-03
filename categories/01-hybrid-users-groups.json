@@ -55,7 +55,7 @@
 }
 {
     "name": "Find all hybrid users with an active Azure role on an individual resource that is not a VM",
-    "category": "Azure - Users & Groups",
+    "category": "Hybrid - Users & Groups",
     "queryList": [
         {
             "final": true,
