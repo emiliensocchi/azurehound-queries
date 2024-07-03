@@ -21,17 +21,6 @@
   ]
 }
 {
-  "name": "Find all MIs with a Tier-1 application permission",
-  "category": "Azure - Managed Identities",
-  "queryList": [
-      {
-          "final": true,
-          "query": "MATCH (mis_excluding_builtin) WHERE (mis_excluding_builtin:_VAR_all_managed-identities-excluding-built-in) MATCH p = (mis_excluding_builtin)-[entra_app_permissions_t1:_VAR_all-entra-app-permissions-in-t1]->(n) RETURN p",
-          "allowCollapse": true
-      }
-  ]
-}
-{
   "name": "Find all MIs with Azure permissions on Management Groups",
   "category": "Azure - Managed Identities",
   "queryList": [

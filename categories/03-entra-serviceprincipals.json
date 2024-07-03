@@ -21,17 +21,6 @@
     ]
 }
 {
-    "name": "Find all SPs with a Tier-1 application permission",
-    "category": "Entra ID - Service Principals",
-    "queryList": [
-        {
-            "final": true,
-            "query": "MATCH (sps_excluding_builtin) WHERE (sps_excluding_builtin:_VAR_all_service-principals-excluding-built-in) MATCH p = (sps_excluding_builtin)-[entra_app_permissions_t1:_VAR_all-entra-app-permissions-in-t1]->(n) RETURN p",
-            "allowCollapse": true
-        }
-    ]
-}
-{
     "name": "Find all principals with an abusable permission on MS Graph",
     "category": "Entra ID - Service Principals",
     "queryList": [
