@@ -59,11 +59,7 @@ curl -X 'POST' \
 
 ## Screenshots
 
-### Overview of query categories once imported to BloodHound
-
 ![Overview of custom query categories once imported to BloodHound](assets/images/01_example_imported_collapsed.png)
-
-### Example of Azure queries once imported to BloodHound
 
 ![Sample of Azure queries once imported to BloodHound](assets/images/02_example_imported_expanded.png)
 
