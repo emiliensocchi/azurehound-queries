@@ -48,7 +48,7 @@
     "queryList": [
         {
             "final": true,
-            "query": "MATCH (g) WHERE EXISTS(g.membershipRule) MATCH (all_az_scopes) WHERE (all_az_scopes:_VAR_all-az-scopes) MATCH p = (g)-[r]->(all_az_scopes) RETURN p",
+            "query": "MATCH (all_az_scopes) WHERE (all_az_scopes:_VAR_all-az-scopes) MATCH (dynamic_groups) WHERE EXISTS(dynamic_groups.membershipRule) MATCH p = (dynamic_groups)-[r]->(all_az_scopes) RETURN p",
             "allowCollapse": true
         }
     ]
