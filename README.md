@@ -61,20 +61,20 @@ curl -X 'POST' \
 
 ## Screenshots
 
-#### Overview of custom query categories once imported to BloodHound
+#### Overview of custom query categories once imported to BloodHound:
 
 ![Overview of custom query categories once imported to BloodHound](assets/images/01_example_imported_collapsed.png)
 
-#### Sample of Azure queries for users and groups
+#### Sample of Azure queries for users and groups:
 
 ![Sample of Azure queries for users and groups](assets/images/02_example_users_groups.png)
 
 
-#### Sample of Azure queries for Service Principals and Managed Identities
+#### Sample of Azure queries for Service Principals and Managed Identities:
 
 ![Sample of Azure queries for service principals](assets/images/03_example_service_principals.png)
 
-#### Sample of Azure queries for Logic Apps
+#### Sample of Azure queries for Logic Apps:
 
 ![Sample of Azure queries for Logic Apps](assets/images/04_example_logic_apps.png)
 
