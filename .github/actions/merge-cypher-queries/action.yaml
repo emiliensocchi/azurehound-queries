@@ -1,0 +1,18 @@
+name: 'Merge Cypher Queries'
+description: 'Merges the content of all JSON files containing categorized Cypher queries into a single file formatted for BloodHound'
+inputs:
+  user_email:
+    description: 'Email for the git commit'
+    required: true
+  user_name:
+    description: 'Github username for the git commit'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.user-email }}
+    - ${{ inputs.user-name }}
+branding:
+  icon: 'git-commit'
+  color: 'green'

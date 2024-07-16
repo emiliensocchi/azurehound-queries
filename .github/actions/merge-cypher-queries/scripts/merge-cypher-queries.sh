@@ -1,6 +1,6 @@
 #### Description #################################################################################
 #
-# Merges the content of all .json files in the repository containing cipher queries into a single
+# Merges the content of all .json files in the repository containing cypher queries into a single
 # BloodHound-formated file, and replaces custom BloodHound variables with specific content.
 #
 ####
@@ -45,7 +45,6 @@ tier_file_azure_roles="${tiering_dir}tiering-azure-roles.json"
 entra_roles_tier_0="$(cat $tier_file_entra_roles | jq -r '.[] | select(.tier == "0") | .roleName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
 # entra_roles_t1
 entra_roles_tier_1="$(cat $tier_file_entra_roles | jq -r '.[] | select(.tier == "1") | .roleName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
-
 # entra_app_permissions_t0
 entra_app_permissions_tier_0="$(cat $tier_file_entra_app_permissions | jq -r '.[] | select(.tier == "0" and .edgeName != "") | .edgeName' | sed -n ':a;N;${s/\n/|/g;p};ba')"
 # entra_app_permissions_t1
