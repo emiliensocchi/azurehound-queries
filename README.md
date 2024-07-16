@@ -1,4 +1,4 @@
-# AzureHound Queries
+# 🌩️ AzureHound Queries
 
 Collection of BloodHound queries for Microsoft Azure.
 
@@ -7,12 +7,12 @@ Collection of BloodHound queries for Microsoft Azure.
 > 👉 <cite>[Click here](#bh-import)</cite>
 
 
-## Objective
+## 🎯 Objective
 
 The objective of this project is to provide a scalable way to develop BloodHound queries for Azure.
 
 
-## Background 
+## 💡 Background 
 
 | Challenge | Solution in this project | 
 |-----------|----------|
@@ -20,7 +20,7 @@ The objective of this project is to provide a scalable way to develop BloodHound
 | Complex queries often require the use of boolean operators to include multiple types of nodes and edges (e.g. nodes including all Tier-0 Entra roles). Such queries often end up being very long and hard to maintain when values need to be updated, especially accross multiple queries. | Queries are written in pseudo code using variables instead of long node or edge boolean strings. The content of such variables is maintained in a single place, and variables are populated on push to the repository. <br> This approach makes the inclusion or exclusion of nodes trivial and easy to scale accross multiple queries (e.g. excluding built-in service principals). |
 
 
-## Project structure
+## 🧱 Project structure
 
 | Asset | Type | Description |
 |---|---|---|
@@ -31,7 +31,7 @@ The objective of this project is to provide a scalable way to develop BloodHound
 
 
 <a id='bh-import'></a>
-## Importing merged queries to BloodHound 
+## ⬇️ Importing merged queries to BloodHound 
 
 ### BloodHound Legacy
 
@@ -59,7 +59,7 @@ curl -X 'POST' \
 ```
 
 
-## Screenshots
+## 📷 Screenshots
 
 #### Overview of custom query categories once imported to BloodHound:
 
@@ -79,6 +79,6 @@ curl -X 'POST' \
 ![Sample of Azure queries for Logic Apps](assets/images/04_example_logic_apps.png)
 
 
-## Disclaimer
+## 📢 Disclaimer
 
-The tiering of roles and permissions used in this project is partly based on a personal tiering model, which does not necessarily comply with all companies. Depending on the reader's usage, those tiers may have to be adapated to the company in scope.
+The tiering of roles and permissions used in this project is partly based on a personal tiering model, which does not necessarily comply with all companies. Depending on the reader's usage, those tiers may have to be adapted to the company in scope.
