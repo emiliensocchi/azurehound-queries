@@ -1,6 +1,8 @@
 name: Merge and Synchronize to remote directory
 run-name: Merge and Sync repo to remote directory
-on: push
+on: 
+  workflow_dispatch:
+  push:
 
 jobs:
   merge-and-sync-to-remote-dir:
