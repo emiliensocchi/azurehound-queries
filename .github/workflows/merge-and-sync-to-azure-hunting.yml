@@ -8,20 +8,20 @@ jobs:
   merge-and-sync-to-remote-dir:
     runs-on: ubuntu-latest
     env:
-      API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - name: Checkout
       uses: emiliensocchi/actions@checkout
     - name: Merge and commit
       uses: ./.github/actions/merge-cypher-queries
       with:
-        user_email: 'emilien.socchi@gmail.com'
-        user_name: 'emiliensocchi'
+        user_email: 'azurehound-queries-robot@gmail.com'
+        user_name: 'azurehound-queries-robot'
     - name: Push remotely
       uses: emiliensocchi/actions@sync-to-remote-file
       with:
         source_file: 'customqueries.json'
         destination_file: 'Tools/azurehound/customqueries.json'
         destination_repo: 'emiliensocchi/azure-hunting'
-        user_email: 'emilien.socchi@gmail.com'
-        user_name: 'emiliensocchi'
+        user_email: 'azurehound-queries-robot@gmail.com'
+        user_name: 'azurehound-queries-robot'
