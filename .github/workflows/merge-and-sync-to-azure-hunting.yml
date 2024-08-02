@@ -3,6 +3,9 @@ run-name: Merge and Sync repo to remote directory
 on: 
   workflow_dispatch:
   push:
+    paths:
+      - 'categories/**'
+      - 'variables/**'
 
 jobs:
   merge-and-sync-to-remote-dir:
