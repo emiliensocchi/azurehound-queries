@@ -11,7 +11,7 @@ jobs:
   merge-and-sync-to-remote-dir:
     runs-on: ubuntu-latest
     env:
-      API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
+      API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
     steps:
     - name: Checkout
       uses: emiliensocchi/actions@checkout
