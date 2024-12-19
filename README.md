@@ -58,7 +58,7 @@ curl -X 'POST' \
   -d '{"name":"<QUERY-NAME>", "query":"<CYPHER-QUERY>"}'
 ```
 
-## Bloodgound Community Edition (CE) upload with script
+## Bulk upload custom queries to BloodHound Community Edition (CE)
 
 Simply edit url and bearer token in the `send_queries_via_api.py` and run the python script. `customqueries.json` needs to be in the same directory as the script.
 
