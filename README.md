@@ -35,7 +35,7 @@ The objective of this project is to provide a scalable way to develop BloodHound
 
 ### BloodHound Legacy
 
-1. Copy [customqueries.json](https://github.com/emiliensocchi/azurehound-queries/releases/download/v1.0.0/customqueries.json) from the [latest release](https://github.com/emiliensocchi/azurehound-queries/releases) to the following location: 
+1. Copy [customqueries.json](https://github.com/emiliensocchi/azurehound-queries/blob/main/customqueries.json) from the [latest release](https://github.com/emiliensocchi/azurehound-queries/releases) to the following location: 
 
 ```code
 C:\Users\%USERNAME%\AppData\Roaming\bloodhound\customqueries.json
@@ -45,9 +45,9 @@ C:\Users\%USERNAME%\AppData\Roaming\bloodhound\customqueries.json
 
 ### BloodHound Community Edition (CE)
 
-1. Update the URL and Bearer token in `upload-queries-to-bhce.py` with the location of your BHCE instance and access token issued for your BHCE session.
+1. Update the URL and Bearer token in [upload-queries-to-bhce.py](https://github.com/emiliensocchi/azurehound-queries/blob/main/upload-queries-to-bhce.py) with the location of your BHCE instance and access token issued for your BHCE session.
 
-2. Ensure `upload-queries-to-bhce.py` and `customqueries.json` are located within the same directory before running the script.
+2. Copy [customqueries.json](https://github.com/emiliensocchi/azurehound-queries/blob/main/customqueries.json) from the [latest release](https://github.com/emiliensocchi/azurehound-queries/releases) next to [upload-queries-to-bhce.py](https://github.com/emiliensocchi/azurehound-queries/blob/main/upload-queries-to-bhce.py) (make sure both files are located within the same directory), and run the script.
 
 Credits for the script: [@Albert-LGTM](https://github.com/Albert-LGTM?tab=repositories)
 
