@@ -45,22 +45,12 @@ C:\Users\%USERNAME%\AppData\Roaming\bloodhound\customqueries.json
 
 ### BloodHound Community Edition (CE)
 
-Importing queries in bulk is currently not trivial in BloodHound CE (BHCE), but it can be achieved using the `/api/v2/saved-queries` endpoint of the BHCE API.
+1. Update the URL and Bearer token in `upload-queries-to-bhce.py` with the location of your BHCE instance and access token issued for your BHCE session.
 
-Here is a high-level example using curl:
+2. Ensure `upload-queries-to-bhce.py` and `customqueries.json` are located within the same directory before running the script.
 
-```code
-curl -X 'POST' \
-  'http://localhost:8080/api/v2/saved-queries' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer <TOKEN-VALUE>' \
-  -d '{"name":"<QUERY-NAME>", "query":"<CYPHER-QUERY>"}'
-```
+Credits for the script: [@Albert-LGTM](https://github.com/Albert-LGTM?tab=repositories)
 
-## Bulk upload custom queries to BloodHound Community Edition (CE)
-
-Simply edit url and bearer token in the `send_queries_via_api.py` and run the python script. `customqueries.json` needs to be in the same directory as the script.
 
 ## 📷 Screenshots
 

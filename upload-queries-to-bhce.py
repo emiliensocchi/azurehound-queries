@@ -1,3 +1,7 @@
+"""
+    Uploads queries from 'customqueries.json' in bulk to BHCE, using the BHCE API.
+
+"""
 import json
 import requests
 
@@ -33,4 +37,3 @@ for query_data in queries:
         description = f"Category: {category}"
         status_code, response = send_query(name, query, description)
         print(f"Query '{name}' sent. Status: {status_code}, Response: {response}")
-
