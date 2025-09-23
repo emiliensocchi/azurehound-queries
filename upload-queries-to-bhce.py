@@ -4,6 +4,8 @@
 """
 import json
 import requests
+import random
+import time
 
 # Your configuration here:
 API_URL = "<YOUR_URL_HERE>/api/v2/saved-queries"
